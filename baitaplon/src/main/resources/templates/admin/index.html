@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html>
+<head th:replace="common/head-ad :: head-ad"></head>
+<body class="dashboard-page">
+
+	<nav class="main-menu" th:replace="common/menu-ad :: menu-ad"></nav>
+	<section class="wrapper scrollable">
+		<nav class="user-menu">
+			<a href="javascript:;" class="main-menu-access"> <i
+				class="icon-proton-logo"></i> <i class="icon-reorder"></i>
+			</a>
+		</nav>
+
+		<section th:replace="common/search-ad :: search-ad"></section>
+		
+		<div class="main-grid">
+			
+			<div class="social grid">
+					<div class="grid-info">
+						<div class="col-md-3 top-comment-grid">
+							<div class="comments likes">
+								<div class="comments-icon">
+									<i class="fa fa-facebook"></i>
+								</div>
+								<div class="comments-info likes-info">
+									<h3>95K</h3>
+									<a href="#">Likes</a>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+						<div class="col-md-3 top-comment-grid">
+							<div class="comments">
+								<div class="comments-icon">
+									<i class="fa fa-comments"></i>
+								</div>
+								<div class="comments-info">
+									<h3>12K</h3>
+									<a href="#">Comments</a>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+						<div class="col-md-3 top-comment-grid">
+							<div class="comments tweets">
+								<div class="comments-icon">
+									<i class="fa fa-twitter"></i>
+								</div>
+								<div class="comments-info tweets-info">
+									<h3>27K</h3>
+									<a href="#">Tweets</a>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+						<div class="col-md-3 top-comment-grid">
+							<div class="comments views">
+								<div class="comments-icon">
+									<i class="fa fa-eye"></i>
+								</div>
+								<div class="comments-info views-info">
+									<h3>557K</h3>
+									<a href="#">Views</a>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+			</div>
+			
+			
+
+			<div class="agile-bottom-grids">
+				<div class="col-md-6 agile-bottom-right">
+					<div class="agile-bottom-grid">
+						<div class="area-grids-heading">
+							<h3>Thống kê doanh thu 2018</h3>
+						</div>
+						<div id="graph6"></div>
+						<script>
+						// Use Morris.Bar
+						Morris.Bar({
+						  element: 'graph6',
+						  data: [
+							{x: '2018 T1', y:  1 },
+							{x: '2018 T2', y:  1 },
+							{x: '2018 T3', y:  3},
+							{x: '2018 T4', y:  4},
+							{x: '2018 T5', y:  2},
+							{x: '2018 T6', y: 0},
+							{x: '2018 T7', y: 0},
+							{x: '2018 T8', y: 0},
+							{x: '2018 T9', y: 0},
+							{x: '2018 T10', y: 0},
+							{x: '2018 T11', y:0},
+							{x: '2018 T12', y:0}
+						  ],
+						  xkey: 'x',
+						  ykeys: ['y'],
+						  labels: ['Y'],
+						  barColors: function (row, series, type) {
+							if (type === 'bar') {
+							  var red = Math.ceil(255 * row.y / this.ymax);
+							  return 'rgb(' + red + ',0,0)';
+							}
+							else {
+							  return '#000';
+							}
+						  }
+						});
+						</script>
+					</div>
+				</div>
+
+				<!-- <div class="col-md-6 agile-bottom-left">
+					<div class="agile-bottom-grid">
+						<div class="area-grids-heading">
+							<h3>Thống kê số lượng khách</h3>
+						</div>
+						<div id="graph5"></div>
+						<script>
+						// Use Morris.Bar
+						Morris.Bar({
+						  element: 'graph5',
+						  data: [
+							{x: '2018 Q1', a: 3, b: 1.5, c: 2},
+							{x: '2018 Q2', a: 2, b: 0.5, c: 1},
+							{x: '2018 Q3', a: 0, b: 2, c: 4},
+							{x: '2018 Q4', a: 2, b: 4, c: 3}
+						  ],
+						  xkey: 'x',
+						  ykeys: ['a', 'b', 'c'],
+						  labels: ['A', 'B', 'C'],
+						  stacked: true
+						});
+						</script>
+					</div>
+				</div> -->
+				<div class="clearfix"> </div>
+			</div>
+			
+		</div>
+		<!-- footer -->
+		<div class="footer">
+			<p>
+				© 2018 Colored . All Rights Reserved . Design by <a
+					href="http://w3layouts.com/">W3layouts</a>
+			</p>
+		</div>
+		<!-- //footer -->
+	</section>
+	
+</body>
+</html>

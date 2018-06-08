@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="common/head-ad :: head-ad"></head>
+<body class="dashboard-page">
+
+	<nav class="main-menu" th:replace="common/menu-ad :: menu-ad"></nav>
+	<section class="wrapper scrollable">
+		<nav class="user-menu">
+			<a href="javascript:;" class="main-menu-access"> <i
+				class="icon-proton-logo"></i> <i class="icon-reorder"></i>
+			</a>
+		</nav>
+		<section th:replace="common/search-ad :: search-ad"></section>
+
+		<div class="main-grid">
+			<div class="agile-grids">
+				<!-- tables -->
+
+				<div class="table-heading">
+					<h2>DANH SÁCH PHIẾU ĐỀ XUẤT</h2>
+
+				</div>
+
+				<!-- <a href="" class="btn btn-success">Thêm khách hàng</a> <br/> <br/> -->
+				<h3>DANH SÁCH PHIẾU CHI</h3>
+				<table id="table-breakpoint">
+					<thead>
+						<tr>
+							<th>STT</th>
+							<th>Người đề nghị</th>
+							<th>nội dung đề xuất</th>
+							<th>ngày đề xuất</th>
+							<th>người kế toán</th>
+							<th>Tổng tiền</th>
+							<th>trang thái</th>
+							<th>Tùy Chọn</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="list,c : ${phieuDeXuatDTOs}">
+							<td th:text="${c.count}"></td>
+							<td th:text="${list.nguoiDeNghi}"></td>
+							<td th:text="${list.noiDungDeXuat}"></td>
+							<td th:text="${list.ngayDeXuat}"></td>
+							<td th:text="${list.nguoiKeToan}"></td>
+							<td th:text="${list.tongTienFormat}"></td>
+							<td th:if="${list.trangThai} == 0">
+							<select
+								class="form-control" name="trangThai">
+									<option value="0">Đang xét duyệt</option>
+									<option value="1">Đã duyệt</option>
+									<option value="2">Đã chi</option>
+							</select>
+							</td>
+							
+							<td th:if="${list.trangThai} == 1">
+							<select
+								class="form-control" name="trangThai">
+									<option value="1">Đã duyệt</option>
+									<option value="0">Đang xét duyệt</option>
+									<option value="2">Đã chi</option>
+							</select>
+							</td>
+							
+							<td th:if="${list.trangThai} == 2">
+							<select
+								class="form-control" name="trangThai">
+									<option value="2">Đã chi</option>
+									<option value="1">Đã duyệt</option>
+									<option value="0">Đang xét duyệt</option>
+									
+							</select>
+							</td>
+							
+							<td><a th:href="@{/chi-tiet-phieu-de-xuat(id=${list.id})}"
+								class="btn btn-success">View </a></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!-- //tables -->
+			</div>
+		</div>
+
+		<!-- footer -->
+		<div class="footer">
+			<p>
+				© 2018 Colored . All Rights Reserved . Design by <a
+					href="http://w3layouts.com/">W3layouts</a>
+			</p>
+		</div>
+		<!-- //footer -->
+	</section>
+
+</body>
+</html>

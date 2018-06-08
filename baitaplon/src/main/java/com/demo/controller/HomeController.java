@@ -13,6 +13,16 @@ public class HomeController {
 		return "client/home";
 	}
 	
+	@GetMapping(value="/them-phieu-chi")
+	public String themPhieuChi(){
+		return "client/themPhieuChi";
+	}
+	
+	@GetMapping(value="/them-phieu-de-xuat")
+	public String themphieudeXuat(){
+		return "client/themPhieuDeXuat";
+	}
+	
 	@GetMapping(value="/login")
 	public String login(ModelMap map,
 			@RequestParam(name="e", required=false) String error){

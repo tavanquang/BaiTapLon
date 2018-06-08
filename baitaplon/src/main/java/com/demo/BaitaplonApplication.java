@@ -29,7 +29,7 @@ public class BaitaplonApplication extends WebSecurityConfigurerAdapter{
 		.antMatchers("/them-phieu-de-xuat").permitAll()
 		.antMatchers("/chuyen-trang-thai").hasRole("ADMIN")
 		.anyRequest().authenticated().and()
-		.formLogin().loginPage("/login").defaultSuccessUrl("/")
+		.formLogin().loginPage("/login").defaultSuccessUrl("/admin/")
 		.failureUrl("/login?e=error").permitAll().and()
 		.logout().permitAll().and().exceptionHandling()
 		.accessDeniedPage("/login?e=deny");
