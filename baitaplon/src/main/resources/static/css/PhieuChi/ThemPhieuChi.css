@@ -1,0 +1,15 @@
+@charset "UTF-8";
+.css-header {
+	background: #eae4e4;
+	font-size: 20px;
+	padding: 20px 8%;
+}
+
+.css-header a {
+	text-decoration: none;
+}
+.css-footer {
+	background: #eae4e4;
+	font-size: 18px;
+	padding: 22px;
+}

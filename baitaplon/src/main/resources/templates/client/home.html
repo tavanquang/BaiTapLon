@@ -1,26 +1,113 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+<meta charset="UTF-8" />
 <title>Home</title>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home/home.css}" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
-	<div class="container group-lg">
-		<br />
-		<h2 style="color: blue;">Chào mừng bạn đến với website quản lý
-			dòng tiền !</h2>
-		<br /> <a class="btn btn-primary" th:href="@{/them-phieu-chi}">
-			Thêm phiếu chi </a> <a class="btn btn-success"
-			th:href="@{/them-phieu-de-xuat}">Thêm phiếu đề xuất</a> <a
-			class="btn btn-danger" th:href="@{/login}">Login </a>
+	<!-- header -->
+	<section class="css-header">
+		<div class="row">
+			<div class="col-sm-3">
+				<a th:href="@{/home}" style="color: blue;">Home</a>/ <a
+					th:href="@{/dangnhap}">Login</a>
+			</div>
+			<div class="col-sm-4">
+				<input style="background:#f5d2a0; margin-left: -58px; float: left; width: 371px;"
+					type="text" name="" placeholder="Search...." />
+			</div>
+			<div class="col-sm-4">
+				<h4 style="margin-right: -95px; float: right;">NCC Soft</h4>
+			</div>
+		</div>
+	</section>
+	<!-- body -->
+	<div class="container" style="text-align: center; height: 383px;">
+		<h2 style="margin-top: 90px;">Mời bạn chọn Mục cần dùng</h2>
+		<div class="btn-group-vertical" style="width: 452px; height: 40px;">
+			<a type="button" class="btn btn-primary" th:href="@{/them-phieu-chi}">Thêm
+				phiếu chi</a> <a type="button" class="btn btn-success"
+				th:href="@{/them-phieu-de-xuat}">Thêm phiếu đề xuất</a> <a
+				type="button" class="btn btn-warning" th:href="@{/login}">Đăng
+				nhập</a>
+		</div>
 	</div>
+	<!-- footer -->
+	<section class="css-footer">
+		<div class="container">
+			<div class="col-md-3 col-sm-6 col-xs-12">
+				<h3>Liên hệ</h3>
+				<ul>
+					<li>
+						<p>Tòa nhà 27A2-GreenStar,36A Phạm Văn Đồng, Hà Nội</p>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-3 col-sm-6 col-xs-12">
+				<h3>Đối tác</h3>
+				<ul>
+					<li>
+						<p>
+							<a>công ty A</a>
+						</p>
+					</li>
+					<li>
+						<p>
+							<a>công ty A</a>
+						</p>
+					</li>
+					<li>
+						<p>
+							<a>công ty A</a>
+						</p>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-3 col-sm-6 col-xs-12">
+				<h3>Thành tích</h3>
+				<ul>
+					<li>
+						<p>
+							<a>abc</a>
+						</p>
+					</li>
+					<li>
+						<p>
+							<a>xyz</a>
+						</p>
+					</li>
+					<li>
+						<p>
+							<a>mnp</a>
+						</p>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-3 col-sm-6 col-xs-12">
+				<h3>người dùng</h3>
+				<ul>
+					<li>
+						<p>
+							<a>Đăng nhập</a>
+						</p>
+					</li>
+					<li>
+						<p>
+							<a>Đăng kí</a>
+						</p>
+					</li>
+					<li>
+						<p>
+							<a>Đăng xuất</a>
+						</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
 </body>
 </html>

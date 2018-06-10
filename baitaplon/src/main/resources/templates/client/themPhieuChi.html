@@ -1,12 +1,119 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8"/>
-<title>Thêm Phiếu Chi</title>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/PhieuChi/themphieuchi.css}" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$("#datepicker1").datepicker();
+	});
+	
+</script>
 </head>
 <body>
+	<!-- header -->
+	<section class="css-header">
+		<div class="row">
+			<div class="col-sm-3">
+				<a th:href="@{/home}" style="color: blue;">Home</a>
+			</div>
+			<div class="col-sm-4">
+				<input
+					style="background: #f5d2a0; margin-left: -58px; float: left; width: 371px;"
+					type="text" name="" placeholder="Search...." />
+			</div>
+			<div class="col-sm-4">
+				<h4 style="margin-right: -95px; float: right;">NCC Soft</h4>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="">
+						<div class="">
+							<h2
+								style="text-align: center; margin-bottom: 27px; color: #337ab7;">Phiếu
+								chi</h2>
+							<div class="clearfix"></div>
+						</div>
+						<div class="">
+							<form class="form-horizontal form-label-left input_mask"
+								method="POST" enctype="multipart/form-data">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Tên Người Nhận</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control" placeholder="Nhập tên người nhận"
+												name="" id="" type="text" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày
+											tạo</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<div class='input-group date' id='datetimepicker1'>
+												<input style="width: 398px;" id="datepicker1" type='text' name="NgayTao" class="form-control" />
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Lí do</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<textarea id="" class="form-control" placeholder="Lí do đề xuất" name=""></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Hình
+											ảnh</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="" name="Hinh_anh" id="" type="file" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Số tiền</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control" placeholder="Số tiền"
+												name="" id="" type="number" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Viết thành chữ</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<textarea id="" class="form-control" name=""></textarea>
+										</div>
+									</div>
+								</div>
+								<!-- <div class="ln_solid clearfix"></div> -->
+								<div class="form-group">
+									<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
+										<button type="submit" name="themSP" class="btn btn-success">Thêm
+											mới</button>
+										<a class="btn btn-danger">Hủy</a>
+									</div>
 
-<h1>Thêm Phiếu Chi</h1>
-
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 </html>
