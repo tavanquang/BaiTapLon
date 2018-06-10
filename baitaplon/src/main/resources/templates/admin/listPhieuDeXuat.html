@@ -45,6 +45,9 @@
 							<td th:text="${list.ngayDeXuat}"></td>
 							<td th:text="${list.nguoiKeToan}"></td>
 							<td th:text="${list.tongTienFormat}"></td>
+							
+							<form th:action="@{/admin/chuyen-trang-thai-phieu-de-xuat}" method="get">
+							
 							<td th:if="${list.trangThai} == 0">
 							<select
 								class="form-control" name="trangThai">
@@ -73,8 +76,14 @@
 							</select>
 							</td>
 							
-							<td><a th:href="@{/chi-tiet-phieu-de-xuat(id=${list.id})}"
-								class="btn btn-success">View </a></td>
+							<input type="hidden" name="id" th:value="${list.id}"/>
+							
+							<td>
+							<a th:href="@{/admin/chi-tiet-phieu-de-xuat(id=${list.id})}"
+								class="btn btn-danger">View </a>
+							<button class="btn btn-success" type="submit">ChangeStatus </button>
+								</td>
+							</form>
 						</tr>
 					</tbody>
 				</table>

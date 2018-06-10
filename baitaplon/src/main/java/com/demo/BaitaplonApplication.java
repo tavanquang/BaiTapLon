@@ -27,18 +27,16 @@ public class BaitaplonApplication extends WebSecurityConfigurerAdapter{
 		.antMatchers("/").permitAll()
 		.antMatchers("/them-phieu-chi").permitAll()
 		.antMatchers("/them-phieu-de-xuat").permitAll()
-		.antMatchers("/chuyen-trang-thai").hasRole("ADMIN")
-		.anyRequest().authenticated().and()
-		.formLogin().loginPage("/login").defaultSuccessUrl("/admin/")
-		.failureUrl("/login?e=error").permitAll().and()
-		.logout().permitAll().and().exceptionHandling()
-		.accessDeniedPage("/login?e=deny");
 		
-	}
+		.anyRequest().authenticated().and().formLogin().loginPage("/login")
+		.defaultSuccessUrl("/admin/").failureUrl("/login?e=error").permitAll().and()
+		.logout().permitAll().and().exceptionHandling().accessDeniedPage("/login?e=deny");
+		
+}
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**","/js/**","/img/**");
+		web.ignoring().antMatchers("/css/**","/js/**","/images/**","/fonts/**");
 	}
 	
 	@Override
