@@ -69,75 +69,8 @@
 						<div class="clearfix"> </div>
 					</div>
 			</div>
-			
-			
-
-			<div class="agile-bottom-grids">
-				<div class="col-md-6 agile-bottom-right">
-					<div class="agile-bottom-grid">
-						<div class="area-grids-heading">
-							<h3>Thống kê doanh thu 2018</h3>
-						</div>
-						<div id="graph6"></div>
-						<script>
-						// Use Morris.Bar
-						Morris.Bar({
-						  element: 'graph6',
-						  data: [
-							{x: '2018 T1', y:  1 },
-							{x: '2018 T2', y:  1 },
-							{x: '2018 T3', y:  3},
-							{x: '2018 T4', y:  4},
-							{x: '2018 T5', y:  2},
-							{x: '2018 T6', y: 0},
-							{x: '2018 T7', y: 0},
-							{x: '2018 T8', y: 0},
-							{x: '2018 T9', y: 0},
-							{x: '2018 T10', y: 0},
-							{x: '2018 T11', y:0},
-							{x: '2018 T12', y:0}
-						  ],
-						  xkey: 'x',
-						  ykeys: ['y'],
-						  labels: ['Y'],
-						  barColors: function (row, series, type) {
-							if (type === 'bar') {
-							  var red = Math.ceil(255 * row.y / this.ymax);
-							  return 'rgb(' + red + ',0,0)';
-							}
-							else {
-							  return '#000';
-							}
-						  }
-						});
-						</script>
-					</div>
-				</div>
-
-				<!-- <div class="col-md-6 agile-bottom-left">
-					<div class="agile-bottom-grid">
-						<div class="area-grids-heading">
-							<h3>Thống kê số lượng khách</h3>
-						</div>
-						<div id="graph5"></div>
-						<script>
-						// Use Morris.Bar
-						Morris.Bar({
-						  element: 'graph5',
-						  data: [
-							{x: '2018 Q1', a: 3, b: 1.5, c: 2},
-							{x: '2018 Q2', a: 2, b: 0.5, c: 1},
-							{x: '2018 Q3', a: 0, b: 2, c: 4},
-							{x: '2018 Q4', a: 2, b: 4, c: 3}
-						  ],
-						  xkey: 'x',
-						  ykeys: ['a', 'b', 'c'],
-						  labels: ['A', 'B', 'C'],
-						  stacked: true
-						});
-						</script>
-					</div>
-				</div> -->
+			<div>
+				<div style="height: 166px;"><h1>Welcome!!!!</h1></div>
 				<div class="clearfix"> </div>
 			</div>
 			

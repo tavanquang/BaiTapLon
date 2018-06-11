@@ -30,16 +30,38 @@ input, textarea {
 	height: 100%;
 }
 </style>
+<script th:src="@{/js/jquery.min.js}"></script>
 <script>
-	$(document).ready(function() {
-		$("#datepicker1").datepicker();
-	});
-	$(document).ready(function() {
-		$("#datepicker2").datepicker();
-	});
-	$(document).ready(function() {
-		$("#datepicker3").datepicker();
-	});
+	
+	$(document).ready(function(){
+        $(".add-row").click(function(){
+            var markup = "
+            <tr>
+				<th></th>
+				<td style="width: 45px;"><input style="width: 20px; height: 20px;" type="checkbox" name="check" value=""/></td>
+				<th style="width: 300px; height: 50px"><textarea
+						type="text" id="" value="" /></th>
+				<th style="height: 50px;"><input type="text" /></th>
+				<th style="height: 50px;"><input name="SoLuong" type="number" /></th>
+				<th style="height: 50px;"><input name="DonGia" type="number"
+					onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
+				<th style="height: 50px;"><input name="ThanhTien" /></th>
+				<th style="height: 50px;"><textarea type="text" id=""
+						value="" /></th>
+			</tr>
+			";
+            $("table tbody").append(markup);
+        });
+         
+        // Find and remove selected table rows
+        $(".delete-row").click(function(){
+            $("table tbody").find('input[name="check"]').each(function(){
+                if($(this).is(":checked")){
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
 </script>
 </head>
 <body>
@@ -47,7 +69,7 @@ input, textarea {
 	<section class="css-header">
 		<div class="row">
 			<div class="col-sm-3">
-				<a th:href="@{/home}" style="color: blue;">Home</a>
+				<a th:href="@{/}" style="color: blue;">Home</a>
 			</div>
 			<div class="col-sm-4">
 				<input
@@ -104,9 +126,9 @@ input, textarea {
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày
 											bắt đầu</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<div class="input-group date" id="datetimepicker1">
-												<input style="width: 395px;" type='text' name="NgayBatDau"
-													class="form-control" id="datepicker1" />
+											<div class="input-group date">
+												<input style="width: 395px;" type='date' name="NgayBatDau"
+													class="form-control" />
 											</div>
 										</div>
 									</div>
@@ -114,8 +136,8 @@ input, textarea {
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">hoàn
 											thành</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<div class="input-group date" id="datetimepicker2">
-												<input style="width: 395px;" id="datepicker2" type='text'
+											<div class="input-group date">
+												<input style="width: 395px;" type='date'
 													name="NgayHoanThanh" class="form-control" />
 											</div>
 										</div>
@@ -129,49 +151,63 @@ input, textarea {
 										</div>
 									</div>
 								</div>
-								<table style="width: 100%">
-									<tr>
-										<th style="width: 20px">STT</th>
-										<th>Nội dung đề xuất</th>
-										<th style="width: 30px;">Số ngày</th>
-										<th style="width: 30px;">SL</th>
-										<th style="width: 100px;">Đơn giá</th>
-										<th style="width: 200px;">Thành tiền</th>
-										<th style="width: 200px;">Ghi Chú</th>
-									</tr>
-									<tr>
-										<th>1</th>
-										<th style="width: 300px; height: 50px"><textarea
-												type="text" id="" value="" /></th>
-										<th style="height: 50px;"><input type="text" /></th>
-										<th style="height: 50px;"><input name="SoLuong" type="number" /></th>
-										<th style="height: 50px;"><input name="DonGia" type="number"
-											onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
-										<th style="height: 50px;"><input name="ThanhTien" /></th>
-										<th style="height: 50px;"><textarea type="text" id=""
-												value="" /></th>
-									</tr>
-									<tr></tr>
-									<tr>
-										<th></th>
-										<th colspan="4">Cộng</th>
-										<th style="height: 33px;"><input type="text" /></th>
-										<th style="height: 33px;"><input type="text" /></th>
-									</tr>
-									<tr>
-										<th></th>
-										<th colspan="4">Đề xuất ngày mua</th>
-										<th style="height: 33px;"><input type="text"
-											id="datepicker3" /></th>
-										<th style="height: 33px;"><input type="text" /></th>
-									</tr>
-								</table>
-								<div>
-									<button id="" type="submit" name="" class="btn btn-success"
-										onclick="ThemBang()">Thêm bảng</button>
-								</div>
-								<div
-									style="width: 50%; height: 50%; margin: auto;">
+								<form style="margin-top: 8px;">
+									<table style="width: 100%">
+										<thead>
+											<tr>
+												<th style="width: 20px">STT</th>
+												<th>Chọn</th>
+												<th>Nội dung đề xuất</th>
+												<th style="width: 30px;">Số ngày</th>
+												<th style="width: 30px;">SL</th>
+												<th style="width: 100px;">Đơn giá</th>
+												<th style="width: 200px;">Thành tiền</th>
+												<th style="width: 200px;">Ghi Chú</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th>1</th>
+												<td style="width: 45px;"><input
+													style="width: 20px; height: 20px;" type="checkbox"
+													name="check" value="1" /></td>
+												<th style="width: 300px; height: 50px"><textarea
+														type="text" id="" value="" /></th>
+												<th style="height: 50px;"><input type="text" /></th>
+												<th style="height: 50px;"><input name="SoLuong"
+													type="number" /></th>
+												<th style="height: 50px;"><input name="DonGia"
+													type="number"
+													onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
+												<th style="height: 50px;"><input name="ThanhTien" /></th>
+												<th style="height: 50px;"><textarea type="text" id=""
+														value="" /></th>
+											</tr>
+										</tbody>
+										<tr>
+											<th></th>
+											<th colspan="5">Cộng</th>
+											<th style="height: 33px;"><input type="text" /></th>
+											<th style="height: 33px;"><input type="text" /></th>
+										</tr>
+										<tr>
+											<th></th>
+											<th colspan="5">Đề xuất ngày mua</th>
+											<th style="height: 33px;"><input type="text"
+												id="datepicker3" /></th>
+											<th style="height: 33px;"><input type="text" /></th>
+										</tr>
+									</table>
+									<div>
+										<input style="margin-top: 10px; width: 100px;" id=""
+											type="submit" name="" class="btn btn-success add-row"
+											value="Thêm hàng" /> <input
+											style="margin-top: 10px; margin-left: 10px; width: 100px;"
+											id="" type="submit" name="" class="btn btn-danger delete-row"
+											value="Xóa hàng" />
+									</div>
+								</form>
+								<div style="width: 50%; height: 50%; margin: auto;">
 									<table style="text-align: center;">
 										<tr>
 											<th>Tên người đề nghị</th>
@@ -179,9 +215,9 @@ input, textarea {
 											<th>tên giám đốc</th>
 										</tr>
 										<tr>
-											<th><input type="text" /></th>
-											<th>Nguyễn Thị Phương Anh</th>
-											<th>Mai Thế Hùng</th>
+											<th style="width: 200px; height: 35px;"><input type="text" /></th>
+											<th style="width: 200px; height: 35px;"><input type="text" /></th>
+											<th style="width: 200px; height: 35px;"><input type="text" /></th>
 										</tr>
 									</table>
 								</div>

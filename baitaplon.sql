@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
@@ -105,7 +105,6 @@ CREATE TABLE `tbl_phieu_de_xuat` (
   `nguoi_ke_toan` varchar(45) DEFAULT NULL,
   `giam_doc` varchar(45) DEFAULT NULL,
   `de_xuat_ngay_mua` date DEFAULT NULL,
-  `ghi_chu` varchar(255) DEFAULT NULL,
   `tong_tien` double DEFAULT NULL,
   `trang_thai` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
