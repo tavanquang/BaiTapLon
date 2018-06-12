@@ -45,7 +45,7 @@ public class PhieuDeXuatDaoImpl implements PhieuDeXuatDao {
 
 	@Override
 	public List<TblPhieuDeXuat> getAllByTrangThai(int trangThai) {
-		String jql = "SELECT p FROM TblPhieuDeXuat p";
+		String jql = "SELECT p FROM TblPhieuDeXuat p where p.trangThai = ?";
 		return entityManager.createQuery(jql, TblPhieuDeXuat.class).setParameter(1, trangThai).getResultList();
 	
 	}

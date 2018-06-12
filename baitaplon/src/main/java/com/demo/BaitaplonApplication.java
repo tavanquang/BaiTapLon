@@ -25,8 +25,8 @@ public class BaitaplonApplication extends WebSecurityConfigurerAdapter{
 		// TODO Auto-generated method stub
 		http.csrf().disable().authorizeRequests()
 		.antMatchers("/").permitAll()
-		.antMatchers("/them-phieu-chi").permitAll()
-		.antMatchers("/them-phieu-de-xuat").permitAll()
+		.antMatchers("/admin/them-phieu-chi").permitAll()
+		.antMatchers("/admin/them-phieu-de-xuat").permitAll()
 		
 		.anyRequest().authenticated().and().formLogin().loginPage("/login")
 		.defaultSuccessUrl("/admin/").failureUrl("/login?e=error").permitAll().and()

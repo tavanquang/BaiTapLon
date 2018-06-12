@@ -18,9 +18,59 @@
 
 				<div class="table-heading">
 					<h2>DANH SÁCH PHIẾU CHI</h2>
-
+					<div class="container" style="width:200px;">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<form th:action="@{/admin/loc-theo-trang-thai-phieu-chi}" method="POST">
+									<h2 style="color:red; margin-left: 15px;
+   								 font-size: 22px;" th:text="${msg}"></h2> <br/>
+									<!-- status == 4 -->
+									<select th:if="${status} == '4'"
+									 class="form-group selectTT" name="trangThai" >
+									<option value="4">All</option>
+									<option value="0">Đang xét duyệt</option>
+									<option value="1">Đã duyệt</option>
+									<option value="2">Đã chi</option>
+									</select>
+									
+									<!-- status == 0 -->
+									<select th:if="${status} == '0'"
+									class="form-group selectTT" name="trangThai">
+									<option value="0">Đang xét duyệt</option>
+									<option value="4">All</option>
+									<option value="1">Đã duyệt</option>
+									<option value="2">Đã chi</option>
+									</select>
+									
+									<!-- status == 1 -->
+									<select th:if="${status} == '1'"
+									class="form-group selectTT" name="trangThai">
+									<option value="1">Đã duyệt</option>
+									<option value="4">All</option>
+									<option value="0">Đang xét duyệt</option>
+									<option value="2">Đã chi</option>
+									</select>
+									
+									<!-- status == 2 -->
+									<select th:if="${status} == '2'"
+									class="form-group selectTT" name="trangThai">
+									<option value="2">Đã chi</option>
+									<option value="4">All</option>
+									<option value="0">Đang xét duyệt</option>
+									<option value="1">Đã duyệt</option>
+									
+									</select>
+									<br/>
+									<p> 
+										<input type="submit" name="sub-1" value="Submit" class="btn btn-success form-control"/>
+									</p>
+								</form>
+							</div>
+						</div>
+					</div>
+					<br/><br/>
 				</div>
-
+				
 				<!-- <a href="" class="btn btn-success">Thêm khách hàng</a> <br/> <br/> -->
 				<h3>DANH SÁCH PHIẾU CHI</h3>
 				<table id="table-breakpoint">

@@ -57,7 +57,6 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 			
 			phieuDeXuatDTO.setGiamDoc(phieuDeXuat.getGiamDoc());
 			phieuDeXuatDTO.setDeXuatNgayMua(phieuDeXuat.getDeXuatNgayMua());
-			phieuDeXuatDTO.setGhiChu(phieuDeXuat.getGhiChu());
 			
 			phieuDeXuatDTO.setTongTien(phieuDeXuat.getTongTien());
 			phieuDeXuatDTO.setTongTienFormat(format.format(phieuDeXuat.getTongTien()));
@@ -89,7 +88,6 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 		
 		phieuDeXuat.setGiamDoc(phieuDeXuatDTO.getGiamDoc());
 		phieuDeXuat.setDeXuatNgayMua(phieuDeXuatDTO.getDeXuatNgayMua());
-		phieuDeXuat.setGhiChu(phieuDeXuatDTO.getGhiChu());
 		
 		phieuDeXuat.setTongTien(phieuDeXuatDTO.getTongTien());
 		phieuDeXuat.setTrangThai(0);
@@ -126,7 +124,6 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 		
 		phieuDeXuatDTO.setGiamDoc(phieuDeXuat.getGiamDoc());
 		phieuDeXuatDTO.setDeXuatNgayMua(phieuDeXuat.getDeXuatNgayMua());
-		phieuDeXuatDTO.setGhiChu(phieuDeXuat.getGhiChu());
 		
 		phieuDeXuatDTO.setTongTien(phieuDeXuat.getTongTien());
 		phieuDeXuatDTO.setTongTienFormat(format.format(phieuDeXuat.getTongTien()));
@@ -169,6 +166,46 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 			
 			phieuDeXuat.setTrangThai(phieuDeXuatDTO.getTrangThai());
 		}
+	}
+
+	@Override
+	public List<TblPhieuDeXuatDTO> getAllByTrangThai(int trangThai) {
+		Locale locale = new Locale("vi","VN");
+		NumberFormat format = NumberFormat.getCurrencyInstance(locale);
+		
+		List<TblPhieuDeXuatDTO> phieuDeXuatDTOs = new ArrayList<TblPhieuDeXuatDTO>();
+		List<TblPhieuDeXuat> phieuDeXuats = phieuDeXuatDao.getAllByTrangThai(trangThai);
+		
+		 
+		
+		for(TblPhieuDeXuat phieuDeXuat : phieuDeXuats){
+		
+			TblPhieuDeXuatDTO phieuDeXuatDTO = new TblPhieuDeXuatDTO();
+			
+			phieuDeXuatDTO.setId(phieuDeXuat.getId());
+			phieuDeXuatDTO.setKinhGui(phieuDeXuat.getKinhGui());
+			phieuDeXuatDTO.setNguoiDeNghi(phieuDeXuat.getNguoiDeNghi());
+			
+			phieuDeXuatDTO.setNgayBatDau(phieuDeXuat.getNgayBatDau());
+			phieuDeXuatDTO.setNgayHoanThanh(phieuDeXuat.getNgayHoanThanh());
+			phieuDeXuatDTO.setNoiDungDeXuat(phieuDeXuat.getNoiDungDeXuat());
+			
+			phieuDeXuatDTO.setyKienLanhDao(phieuDeXuat.getYKienLanhDao());
+			phieuDeXuatDTO.setNgayDeXuat(phieuDeXuat.getNgayDeXuat());
+			phieuDeXuatDTO.setNguoiKeToan(phieuDeXuat.getNguoiKeToan());
+			
+			phieuDeXuatDTO.setGiamDoc(phieuDeXuat.getGiamDoc());
+			phieuDeXuatDTO.setDeXuatNgayMua(phieuDeXuat.getDeXuatNgayMua());
+			
+			phieuDeXuatDTO.setTongTien(phieuDeXuat.getTongTien());
+			phieuDeXuatDTO.setTongTienFormat(format.format(phieuDeXuat.getTongTien()));
+			phieuDeXuatDTO.setTrangThai(phieuDeXuat.getTrangThai());
+			
+			phieuDeXuatDTOs.add(phieuDeXuatDTO);
+		
+		}
+		
+		return phieuDeXuatDTOs;
 	}
 	
 	

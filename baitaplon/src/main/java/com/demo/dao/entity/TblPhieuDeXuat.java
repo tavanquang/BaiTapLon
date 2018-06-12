@@ -24,9 +24,6 @@ public class TblPhieuDeXuat implements Serializable {
 	@Column(name="de_xuat_ngay_mua")
 	private Date deXuatNgayMua;
 
-	@Column(name="ghi_chu")
-	private String ghiChu;
-
 	@Column(name="giam_doc")
 	private String giamDoc;
 
@@ -85,14 +82,6 @@ public class TblPhieuDeXuat implements Serializable {
 
 	public void setDeXuatNgayMua(Date deXuatNgayMua) {
 		this.deXuatNgayMua = deXuatNgayMua;
-	}
-
-	public String getGhiChu() {
-		return this.ghiChu;
-	}
-
-	public void setGhiChu(String ghiChu) {
-		this.ghiChu = ghiChu;
 	}
 
 	public String getGiamDoc() {

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Insert title here</title>
+<title>Thêm Phiếu Chi</title>
 <link rel="stylesheet" type="text/css"
 	th:href="@{/css/PhieuChi/themphieuchi.css}" />
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
@@ -48,54 +48,83 @@
 							<h2
 								style="text-align: center; margin-bottom: 27px; color: #337ab7;">Phiếu
 								chi</h2>
+								<h3 th:if="${msg} == '1'">Thêm thành công</h3>
 							<div class="clearfix"></div>
 						</div>
 						<div class="">
 							<form class="form-horizontal form-label-left input_mask"
-								method="POST" enctype="multipart/form-data">
+								th:action="@{/admin/them-phieu-chi}" method="POST" th:object="${phieuChiDTO}" >
 								<div class="col-md-6">
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Tên Người Nhận</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<input class="form-control" placeholder="Nhập tên người nhận"
-												name="" id="" type="text" />
+												th:field="*{nguoiNhanTien}"  type="text" />
 										</div>
 									</div>
+									
 									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Địa Chỉ</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control" placeholder="Nhập Địa Chỉ"
+												th:field="*{diaChi}" type="text" />
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Lí do</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<textarea  th:field="*{lyDoChi}" class="form-control" placeholder="Lí do đề xuất" name=""></textarea>
+										</div>
+									</div>
+									
+									
+									
+								</div>
+								
+								
+								<div class="col-md-6">
+								
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Số tiền</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control" placeholder="Nhập Số tiền"
+												th:field="*{soTien}"  type="number" />
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Số giấy tờ</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control" placeholder="Nhập Số giấy tờ"
+												th:field="*{kemTheo}" type="number" />
+										</div>
+									</div>
+									
+									
+									<!-- <div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày
 											tạo</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<div class='input-group date' id='datetimepicker1'>
-												<input style="width: 398px;" id="datepicker1" type='text' name="NgayTao" class="form-control" />
+												<input style="width: 398px;" id="datepicker1" th:field="*{ngayLapPhieu}" type='text' name="NgayTao" class="form-control" />
 											</div>
 										</div>
-									</div>
+									</div> -->
+									
 									<div class="form-group">
-										<label class="control-label col-md-3 col-sm-3 col-xs-12">Lí do</label>
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Người lập phiếu</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<textarea id="" class="form-control" placeholder="Lí do đề xuất" name=""></textarea>
+											<input class="form-control" th:field="*{nguoiLapPhieu}" placeholder="Nhập người lập phiếu"
+												  type="text" />
 										</div>
 									</div>
-								</div>
-								<div class="col-md-6">
+									
 									<div class="form-group">
-										<label class="control-label col-md-3 col-sm-3 col-xs-12">Hình
-											ảnh</label>
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Giám đốc</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<input class="" name="Hinh_anh" id="" type="file" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label col-md-3 col-sm-3 col-xs-12">Số tiền</label>
-										<div class="col-md-9 col-sm-9 col-xs-12">
-											<input class="form-control" placeholder="Số tiền"
-												name="" id="" type="number" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label col-md-3 col-sm-3 col-xs-12">Viết thành chữ</label>
-										<div class="col-md-9 col-sm-9 col-xs-12">
-											<textarea id="" class="form-control" name=""></textarea>
+											<input class="form-control" placeholder="Nhập giám đốc" th:field="*{giamDoc}"
+												  type="text" />
 										</div>
 									</div>
 								</div>
@@ -103,8 +132,8 @@
 								<div class="form-group">
 									<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
 										<button type="submit" name="themSP" class="btn btn-success">Thêm
-											mới</button>
-										<a class="btn btn-danger">Hủy</a>
+											phiếu</button>
+										<a class="btn btn-danger">  Hủy  </a>
 									</div>
 
 								</div>

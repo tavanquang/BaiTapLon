@@ -13,4 +13,6 @@ public interface PhieuDeXuatService {
 	public TblPhieuDeXuatDTO getPhieuDeXuatDTO(int id);
 
 	public void ChuyenTrangThai(TblPhieuDeXuatDTO phieuDeXuatDTO);
+	
+	public List<TblPhieuDeXuatDTO> getAllByTrangThai(int trangThai);
 }

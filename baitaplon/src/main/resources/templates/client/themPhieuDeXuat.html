@@ -41,6 +41,31 @@ input, textarea {
 		$("#datepicker3").datepicker();
 	});
 </script>
+
+<script src="jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".add-row").click(function(){
+        	
+            var markup = "<tr><td><input type='checkbox' name='record'/></td><td>"
+            + "<input type='text' name='name'/>" + "</td><td>" + 
+            "<input type='text' name='soluong'/>" + "</td><td>" + 
+            "<input type='text' name='soluong'/>" + "</td><td>" + 
+            "<input type='text' name='soluong'/>" + "</td><td>" + 
+            "<input type='text' name='soluong'/>" + "</td></tr>";
+            $("table tbody").append(markup);
+        });
+         
+        // Find and remove selected table rows
+        $(".delete-row").click(function(){
+            $("table tbody").find('input[name="record"]').each(function(){
+                if($(this).is(":checked")){
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });    
+</script>
 </head>
 <body>
 	<!-- header -->
@@ -170,6 +195,12 @@ input, textarea {
 									<button id="" type="submit" name="" class="btn btn-success"
 										onclick="ThemBang()">Thêm bảng</button>
 								</div>
+									 <form>
+								          <input type="button" class="add-row" value="Add Row"/>
+								      </form>
+								       <form>
+								      <button type="button" class="delete-row">Delete Row</button>
+								       </form>
 								<div
 									style="width: 50%; height: 50%; margin: auto;">
 									<table style="text-align: center;">
