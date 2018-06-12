@@ -20,7 +20,6 @@ table, th, td {
 	border: 1px solid #cccccc;
 	border-collapse: collapse;
 }
-
 th, td {
 	text-align: center;
 }
@@ -35,27 +34,27 @@ input, textarea {
 	
 	$(document).ready(function(){
         $(".add-row").click(function(){
-            var markup = "
+            var markup = `
             <tr>
 				<th></th>
 				<td style="width: 45px;"><input style="width: 20px; height: 20px;" type="checkbox" name="check" value=""/></td>
 				<th style="width: 300px; height: 50px"><textarea
 						type="text" id="" value="" /></th>
 				<th style="height: 50px;"><input type="text" /></th>
-				<th style="height: 50px;"><input name="SoLuong" type="number" /></th>
+				<th style="height: 50px;"><input name="SoLuong[]" type="number" /></th>
 				<th style="height: 50px;"><input name="DonGia" type="number"
 					onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
 				<th style="height: 50px;"><input name="ThanhTien" /></th>
 				<th style="height: 50px;"><textarea type="text" id=""
 						value="" /></th>
 			</tr>
-			";
-            $("table tbody").append(markup);
+			`;
+            $("#table1 tbody").append(markup);
         });
          
         // Find and remove selected table rows
         $(".delete-row").click(function(){
-            $("table tbody").find('input[name="check"]').each(function(){
+            $("#table1 tbody").find('input[name="check"]').each(function(){
                 if($(this).is(":checked")){
                     $(this).parents("tr").remove();
                 }
@@ -92,7 +91,7 @@ input, textarea {
 								đề xuất</h2>
 							<div class="clearfix"></div>
 						</div>
-						<div class="x_content">
+						<div class="">
 							<form class="form-horizontal form-label-left input_mask"
 								method="POST">
 								<div class="col-md-6">
@@ -151,8 +150,8 @@ input, textarea {
 										</div>
 									</div>
 								</div>
-								<form style="margin-top: 8px;">
-									<table style="width: 100%">
+								<form style="margin-top: 8px;" method="POST">
+									<table id="table1" style="width: 100%">
 										<thead>
 											<tr>
 												<th style="width: 20px">STT</th>
@@ -184,27 +183,30 @@ input, textarea {
 														value="" /></th>
 											</tr>
 										</tbody>
-										<tr>
-											<th></th>
-											<th colspan="5">Cộng</th>
-											<th style="height: 33px;"><input type="text" /></th>
-											<th style="height: 33px;"><input type="text" /></th>
-										</tr>
-										<tr>
-											<th></th>
-											<th colspan="5">Đề xuất ngày mua</th>
-											<th style="height: 33px;"><input type="text"
-												id="datepicker3" /></th>
-											<th style="height: 33px;"><input type="text" /></th>
-										</tr>
+										<tfoot>
+											<tr>
+												<th></th>
+												<th colspan="5">Cộng</th>
+												<th style="height: 33px;"><input type="text" /></th>
+												<th style="height: 33px;"><input type="text" /></th>
+											</tr>
+											<tr>
+												<th></th>
+												<th colspan="5">Đề xuất ngày mua</th>
+												<th style="height: 33px;"><input type="text"
+													id="datepicker3" /></th>
+												<th style="height: 33px;"><input type="text" /></th>
+											</tr>
+										</tfoot>
 									</table>
 									<div>
-										<input style="margin-top: 10px; width: 100px;" id=""
-											type="submit" name="" class="btn btn-success add-row"
-											value="Thêm hàng" /> <input
+										<button style="margin-top: 10px; width: 100px;" id=""
+											type="button" name="" class="btn btn-success add-row"
+											value="Thêm hàng">Thêm Hàng</button>
+										<button
 											style="margin-top: 10px; margin-left: 10px; width: 100px;"
-											id="" type="submit" name="" class="btn btn-danger delete-row"
-											value="Xóa hàng" />
+											id="" type="button" name="" class="btn btn-danger delete-row"
+											value="Xóa hàng">Xóa Hàng</button>
 									</div>
 								</form>
 								<div style="width: 50%; height: 50%; margin: auto;">
@@ -215,9 +217,12 @@ input, textarea {
 											<th>tên giám đốc</th>
 										</tr>
 										<tr>
-											<th style="width: 200px; height: 35px;"><input type="text" /></th>
-											<th style="width: 200px; height: 35px;"><input type="text" /></th>
-											<th style="width: 200px; height: 35px;"><input type="text" /></th>
+											<th style="width: 200px; height: 35px;"><input
+												type="text" /></th>
+											<th style="width: 200px; height: 35px;"><input
+												type="text" /></th>
+											<th style="width: 200px; height: 35px;"><input
+												type="text" /></th>
 										</tr>
 									</table>
 								</div>

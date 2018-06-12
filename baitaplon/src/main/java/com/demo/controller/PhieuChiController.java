@@ -23,7 +23,10 @@ public class PhieuChiController {
 	public String index(){
 		return "admin/index";
 	}
-	
+	@GetMapping(value="/chi-tiet-phieu-chi")
+	public String chiTietPC() {
+		return "admin/ChiTietPhieuChi";
+	}
 	@GetMapping(value="/danh-sach-phieu-chi")
 	public String danhSachPhieuChi(ModelMap map){
 		
