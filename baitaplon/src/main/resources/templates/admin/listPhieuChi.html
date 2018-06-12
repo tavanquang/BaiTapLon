@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head th:replace="common/head-ad :: head-ad"></head>
+<head th:replace="common/head-ad :: head-ad">
+<meta charset="UTF-8" />
+</head>
 <body class="dashboard-page">
 
 	<nav class="main-menu" th:replace="common/menu-ad :: menu-ad"></nav>
@@ -17,6 +19,7 @@
 				<!-- tables -->
 
 				<div class="table-heading">
+<<<<<<< HEAD
 					<h2>DANH SÁCH PHIẾU CHI</h2>
 					<div class="container" style="width:200px;">
 						<div class="row">
@@ -72,18 +75,24 @@
 				</div>
 				
 				<!-- <a href="" class="btn btn-success">Thêm khách hàng</a> <br/> <br/> -->
+=======
+					<h2>Danh Sách phiếu chi</h2>
+
+				</div>
+
+>>>>>>> 1c9d5c9b82ba27caebecc9d8d22f105daa21766c
 				<h3>DANH SÁCH PHIẾU CHI</h3>
 				<table id="table-breakpoint">
 					<thead>
 						<tr>
 							<th>STT</th>
 							<th>Người nhận tiền</th>
-							<th>lý do chi</th>
+							<th>Lí do chi</th>
 							<th>Số tiền</th>
-							<th>ngày lập phiếu</th>
-							<th>người lập phiếu</th>
-							<th>trạng thái</th>
-							<th>Tùy Chọn</th>
+							<th>Ngày lập phiếu</th>
+							<th>Người lập phiếu</th>
+							<th style="width: 167px;">Trạng Thái</th>
+							<th style="width: 139px;">tùy chọn</th>
 
 						</tr>
 					</thead>
@@ -98,7 +107,7 @@
 							
 							<form th:action="@{/admin/chuyen-trang-thai-phieu-chi}" method="get">
 							
-							<td th:if="${list.trangThai} == 0" class="status">
+							<td th:if="${list.trangThai} == 0" class="status">	
 							<select
 								class="form-control" name="trangThai">
 									<option value="0">Đang xét duyệt</option>
@@ -129,9 +138,9 @@
 							<input type="hidden" name="id" th:value="${list.id}"/>
 							
 							<td>
-							<a th:href="@{/admin/chi-tiet-phieu-chi(id=${list.id})}"
-								class="btn btn-danger view">View </a>
-								<button class="btn btn-success" type="submit">ChangeStatus </button>
+							<a style="width: 149px;" th:href="@{/admin/chi-tiet-phieu-chi}"
+								class="btn btn-danger view"> Xem </a>
+								<button class="btn btn-success" type="submit">Đổi trạng thái </button>
 								
 							</td>
 								
@@ -147,8 +156,8 @@
 		<!-- footer -->
 		<div class="footer">
 			<p>
-				© 2018 Colored . All Rights Reserved . Design by <a
-					href="http://w3layouts.com/">W3layouts</a>
+				Â© 2018 Colored . All Rights Reserved . Design by <a
+					href="http://w3layouts.com/">ABC_XXX</a>
 			</p>
 		</div>
 		<!-- //footer -->
