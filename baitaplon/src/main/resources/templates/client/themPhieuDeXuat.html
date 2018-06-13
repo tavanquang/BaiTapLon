@@ -41,7 +41,7 @@ input, textarea {
 				<th style="width: 300px; height: 50px"><textarea
 						type="text" id="" value="" /></th>
 				<th style="height: 50px;"><input type="text" /></th>
-				<th style="height: 50px;"><input name="SoLuong[]" type="number" /></th>
+				<th style="height: 50px;"><input name="SoLuong[]" type="number" onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
 				<th style="height: 50px;"><input name="DonGia" type="number"
 					onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
 				<th style="height: 50px;"><input name="ThanhTien" /></th>
@@ -150,7 +150,7 @@ input, textarea {
 										</div>
 									</div>
 								</div>
-								<form style="margin-top: 8px;" method="POST">
+								<form style="margin-top: 8px;">
 									<table id="table1" style="width: 100%">
 										<thead>
 											<tr>
@@ -174,7 +174,7 @@ input, textarea {
 														type="text" id="" value="" /></th>
 												<th style="height: 50px;"><input type="text" /></th>
 												<th style="height: 50px;"><input name="SoLuong"
-													type="number" /></th>
+													type="number" onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
 												<th style="height: 50px;"><input name="DonGia"
 													type="number"
 													onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>

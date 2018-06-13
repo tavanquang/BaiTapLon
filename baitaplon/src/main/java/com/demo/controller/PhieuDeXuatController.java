@@ -20,11 +20,10 @@ public class PhieuDeXuatController {
 	@Autowired
 	PhieuDeXuatService phieuDeXuatService;
 	
-	@GetMapping(value="/chuyen-trang-thai")
-	public String chuyenTrangThai(){
-		return "admin/chuyenTrangThai";
+	@GetMapping(value="/chi-tiet-phieu-de-xuat")
+	public String chiTietPDX() {
+		return "admin/ChiTietPhieuDeXuat";
 	}
-	
 	@GetMapping(value="/danh-sach-phieu-de-xuat")
 	public String danhSachPhieuChi(ModelMap map){
 		

@@ -9,8 +9,6 @@ public class TblPhieuDeXuatDTO {
 
 	private Date deXuatNgayMua;
 
-	private String ghiChu;
-
 	private String giamDoc;
 
 	private String kinhGui;
@@ -70,14 +68,6 @@ public class TblPhieuDeXuatDTO {
 
 	public void setDeXuatNgayMua(Date deXuatNgayMua) {
 		this.deXuatNgayMua = deXuatNgayMua;
-	}
-
-	public String getGhiChu() {
-		return this.ghiChu;
-	}
-
-	public void setGhiChu(String ghiChu) {
-		this.ghiChu = ghiChu;
 	}
 
 	public String getGiamDoc() {
