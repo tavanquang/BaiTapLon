@@ -10,7 +10,7 @@ public class TblPhieuChiDTO{
 
 	private String giamDoc;
 
-	private int kemTheo;
+	private String hinhAnh;
 
 	private String lyDoChi;
 
@@ -26,7 +26,6 @@ public class TblPhieuChiDTO{
 	
 	private int trangThai;
 
-	private String vietBangChu;
 
 	public TblPhieuChiDTO() {
 	}
@@ -63,12 +62,12 @@ public class TblPhieuChiDTO{
 		this.giamDoc = giamDoc;
 	}
 
-	public int getKemTheo() {
-		return this.kemTheo;
+	public String getHinhAnh() {
+		return this.hinhAnh;
 	}
 
-	public void setKemTheo(int kemTheo) {
-		this.kemTheo = kemTheo;
+	public void setHinhAnh(String hinhAnh) {
+		this.hinhAnh = hinhAnh;
 	}
 
 	public String getLyDoChi() {
@@ -117,14 +116,6 @@ public class TblPhieuChiDTO{
 
 	public void setTrangThai(int trangThai) {
 		this.trangThai = trangThai;
-	}
-
-	public String getVietBangChu() {
-		return this.vietBangChu;
-	}
-
-	public void setVietBangChu(String vietBangChu) {
-		this.vietBangChu = vietBangChu;
 	}
 
 }

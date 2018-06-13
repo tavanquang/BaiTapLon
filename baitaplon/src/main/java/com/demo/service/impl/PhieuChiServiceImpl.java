@@ -42,9 +42,8 @@ public class PhieuChiServiceImpl implements PhieuChiService{
 			phieuChiDTO.setLyDoChi(phieuChi.getLyDoChi());
 			phieuChiDTO.setSoTien(phieuChi.getSoTien());
 			phieuChiDTO.setSoTienFormat(format.format(phieuChi.getSoTien()));
-			phieuChiDTO.setVietBangChu(phieuChi.getVietBangChu());
 			
-			phieuChiDTO.setKemTheo(phieuChi.getKemTheo());
+			phieuChiDTO.setHinhAnh(phieuChi.getHinhAnh());
 			phieuChiDTO.setNgayLapPhieu(phieuChi.getNgayLapPhieu());
 			phieuChiDTO.setGiamDoc(phieuChi.getGiamDoc());
 			phieuChiDTO.setNguoiLapPhieu(phieuChi.getNguoiLapPhieu());
@@ -68,9 +67,8 @@ public class PhieuChiServiceImpl implements PhieuChiService{
 		
 		phieuChi.setLyDoChi(phieuChiDTO.getLyDoChi());
 		phieuChi.setSoTien(phieuChiDTO.getSoTien());
-		phieuChi.setVietBangChu(phieuChiDTO.getVietBangChu());
 		
-		phieuChi.setKemTheo(phieuChiDTO.getKemTheo());
+		phieuChi.setHinhAnh(phieuChiDTO.getHinhAnh());
 		phieuChi.setNgayLapPhieu(new Date());
 		phieuChi.setGiamDoc(phieuChiDTO.getGiamDoc());
 		phieuChi.setNguoiLapPhieu(phieuChiDTO.getNguoiLapPhieu());
@@ -103,9 +101,8 @@ public class PhieuChiServiceImpl implements PhieuChiService{
 		phieuChiDTO.setLyDoChi(phieuChi.getLyDoChi());
 		phieuChiDTO.setSoTien(phieuChi.getSoTien());
 		phieuChiDTO.setSoTienFormat(format.format(phieuChi.getSoTien()));
-		phieuChiDTO.setVietBangChu(phieuChi.getVietBangChu());
 		
-		phieuChiDTO.setKemTheo(phieuChi.getKemTheo());
+		phieuChiDTO.setHinhAnh(phieuChi.getHinhAnh());
 		phieuChiDTO.setNgayLapPhieu(phieuChi.getNgayLapPhieu());
 		phieuChiDTO.setGiamDoc(phieuChi.getGiamDoc());
 		phieuChiDTO.setNguoiLapPhieu(phieuChi.getNguoiLapPhieu());
@@ -142,9 +139,8 @@ public class PhieuChiServiceImpl implements PhieuChiService{
 			phieuChiDTO.setLyDoChi(phieuChi.getLyDoChi());
 			phieuChiDTO.setSoTien(phieuChi.getSoTien());
 			phieuChiDTO.setSoTienFormat(format.format(phieuChi.getSoTien()));
-			phieuChiDTO.setVietBangChu(phieuChi.getVietBangChu());
 			
-			phieuChiDTO.setKemTheo(phieuChi.getKemTheo());
+			phieuChiDTO.setHinhAnh(phieuChi.getHinhAnh());
 			phieuChiDTO.setNgayLapPhieu(phieuChi.getNgayLapPhieu());
 			phieuChiDTO.setGiamDoc(phieuChi.getGiamDoc());
 			phieuChiDTO.setNguoiLapPhieu(phieuChi.getNguoiLapPhieu());

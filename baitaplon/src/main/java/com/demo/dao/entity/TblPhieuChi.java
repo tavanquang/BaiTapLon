@@ -25,8 +25,8 @@ public class TblPhieuChi implements Serializable {
 	@Column(name="giam_doc")
 	private String giamDoc;
 
-	@Column(name="kem_theo")
-	private int kemTheo;
+	@Column(name="hinh_anh")
+	private String hinhAnh;
 
 	@Lob
 	@Column(name="ly_do_chi")
@@ -47,9 +47,6 @@ public class TblPhieuChi implements Serializable {
 
 	@Column(name="trang_thai")
 	private int trangThai;
-
-	@Column(name="viet_bang_chu")
-	private String vietBangChu;
 
 	public TblPhieuChi() {
 	}
@@ -78,12 +75,12 @@ public class TblPhieuChi implements Serializable {
 		this.giamDoc = giamDoc;
 	}
 
-	public int getKemTheo() {
-		return this.kemTheo;
+	public String getHinhAnh() {
+		return this.hinhAnh;
 	}
 
-	public void setKemTheo(int kemTheo) {
-		this.kemTheo = kemTheo;
+	public void setHinhAnh(String hinhAnh) {
+		this.hinhAnh = hinhAnh;
 	}
 
 	public String getLyDoChi() {
@@ -134,12 +131,5 @@ public class TblPhieuChi implements Serializable {
 		this.trangThai = trangThai;
 	}
 
-	public String getVietBangChu() {
-		return this.vietBangChu;
-	}
-
-	public void setVietBangChu(String vietBangChu) {
-		this.vietBangChu = vietBangChu;
-	}
 
 }

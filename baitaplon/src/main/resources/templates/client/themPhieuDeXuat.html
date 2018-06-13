@@ -35,17 +35,22 @@ input, textarea {
 	$(document).ready(function(){
         $(".add-row").click(function(){
             var markup = `
-            <tr>
-				<th></th>
-				<td style="width: 45px;"><input style="width: 20px; height: 20px;" type="checkbox" name="check" value=""/></td>
-				<th style="width: 300px; height: 50px"><textarea
-						type="text" id="" value="" /></th>
-				<th style="height: 50px;"><input type="text" /></th>
-				<th style="height: 50px;"><input name="SoLuong[]" type="number" onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
-				<th style="height: 50px;"><input name="DonGia" type="number"
-					onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
-				<th style="height: 50px;"><input name="ThanhTien" /></th>
-				<th style="height: 50px;"><textarea type="text" id=""
+            	<tr>
+				<th>1</th>
+				<td class="t4">
+				<input class="t5" type="checkbox" name="check" value="1" /></td>
+				<th class="t6">
+					<textarea type="text" id="" value="" />
+				</th>
+				<th class="t7"><input type="text" /></th>
+				<th class="t7"><input name="SoLuong1"
+					type="number" onKeyUp="ThanhTien1.value=SoLuong1.value*DonGia1.value" /></th>
+				<th  class="t7"><input name="DonGia1"
+					type="number"
+					onKeyUp="ThanhTien1.value=SoLuong1.value*DonGia1.value" /></th>
+				<th clas="t7" ><input name="ThanhTien1" /></th>
+				<th class="t7" >
+					<textarea type="text" id=""
 						value="" /></th>
 			</tr>
 			`;
@@ -71,12 +76,10 @@ input, textarea {
 				<a th:href="@{/}" style="color: blue;">Home</a>
 			</div>
 			<div class="col-sm-4">
-				<input
-					style="background: #f5d2a0; margin-left: -58px; float: left; width: 371px;"
-					type="text" name="" placeholder="Search...." />
+				<input class="search" type="text" name="" placeholder="Search...." />
 			</div>
 			<div class="col-sm-4">
-				<h4 style="margin-right: -95px; float: right;">NCC Soft</h4>
+				<h4>NCC Soft</h4>
 			</div>
 		</div>
 	</section>
@@ -86,9 +89,7 @@ input, textarea {
 				<div class="col-md-12">
 					<div class="">
 						<div class="">
-							<h2
-								style="text-align: center; margin-bottom: 27px; color: #337ab7;">Phiếu
-								đề xuất</h2>
+							<h2 class="themPDX1">Phiếu đề xuất</h2>
 							<div class="clearfix"></div>
 						</div>
 						<div class="">
@@ -150,36 +151,37 @@ input, textarea {
 										</div>
 									</div>
 								</div>
-								<form style="margin-top: 8px;">
+								<form class="themPDX2">
 									<table id="table1" style="width: 100%">
 										<thead>
 											<tr>
 												<th style="width: 20px">STT</th>
 												<th>Chọn</th>
 												<th>Nội dung đề xuất</th>
-												<th style="width: 30px;">Số ngày</th>
-												<th style="width: 30px;">SL</th>
-												<th style="width: 100px;">Đơn giá</th>
-												<th style="width: 200px;">Thành tiền</th>
-												<th style="width: 200px;">Ghi Chú</th>
+												<th class="t1">Số ngày</th>
+												<th class="t1">SL</th>
+												<th class="t2">Đơn giá</th>
+												<th class="t3">Thành tiền</th>
+												<th class="t3">Ghi Chú</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
 												<th>1</th>
-												<td style="width: 45px;"><input
-													style="width: 20px; height: 20px;" type="checkbox"
-													name="check" value="1" /></td>
-												<th style="width: 300px; height: 50px"><textarea
-														type="text" id="" value="" /></th>
-												<th style="height: 50px;"><input type="text" /></th>
-												<th style="height: 50px;"><input name="SoLuong"
+												<td class="t4">
+												<input class="t5" type="checkbox" name="check" value="1" /></td>
+												<th class="t6">
+													<textarea type="text" id="" value="" />
+												</th>
+												<th class="t7"><input type="text" /></th>
+												<th class="t7"><input name="SoLuong"
 													type="number" onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
-												<th style="height: 50px;"><input name="DonGia"
+												<th  class="t7"><input name="DonGia"
 													type="number"
 													onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
-												<th style="height: 50px;"><input name="ThanhTien" /></th>
-												<th style="height: 50px;"><textarea type="text" id=""
+												<th class="t7" ><input name="ThanhTien" /></th>
+												<th class="t7" >
+													<textarea type="text" id=""
 														value="" /></th>
 											</tr>
 										</tbody>
@@ -187,29 +189,27 @@ input, textarea {
 											<tr>
 												<th></th>
 												<th colspan="5">Cộng</th>
-												<th style="height: 33px;"><input type="text" /></th>
-												<th style="height: 33px;"><input type="text" /></th>
+												<th class="t8" ><input type="text" /></th>
+												<th class="t8" ><input type="text" /></th>
 											</tr>
 											<tr>
 												<th></th>
 												<th colspan="5">Đề xuất ngày mua</th>
-												<th style="height: 33px;"><input type="text"
+												<th class="t8" ><input type="text"
 													id="datepicker3" /></th>
-												<th style="height: 33px;"><input type="text" /></th>
+												<th class="t8" ><input type="text" /></th>
 											</tr>
 										</tfoot>
 									</table>
 									<div>
-										<button style="margin-top: 10px; width: 100px;" id=""
+										<button id="themPDX3"
 											type="button" name="" class="btn btn-success add-row"
 											value="Thêm hàng">Thêm Hàng</button>
-										<button
-											style="margin-top: 10px; margin-left: 10px; width: 100px;"
-											id="" type="button" name="" class="btn btn-danger delete-row"
+										<button id="themPDX3" type="button" name="" class="btn btn-danger delete-row"
 											value="Xóa hàng">Xóa Hàng</button>
 									</div>
 								</form>
-								<div style="width: 50%; height: 50%; margin: auto;">
+								<div class="themPDX4">
 									<table style="text-align: center;">
 										<tr>
 											<th>Tên người đề nghị</th>
@@ -217,11 +217,11 @@ input, textarea {
 											<th>tên giám đốc</th>
 										</tr>
 										<tr>
-											<th style="width: 200px; height: 35px;"><input
+											<th class="t9"><input
 												type="text" /></th>
-											<th style="width: 200px; height: 35px;"><input
+											<th class="t9"><input
 												type="text" /></th>
-											<th style="width: 200px; height: 35px;"><input
+											<th class="t9"><input
 												type="text" /></th>
 										</tr>
 									</table>
@@ -231,7 +231,7 @@ input, textarea {
 									<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
 										<button type="submit" name="" class="btn btn-success">Thêm
 											mới</button>
-										<a class="btn btn-danger">Hủy</a>
+										<a class="btn btn-danger" th:href="@{/}">Hủy</a>
 									</div>
 
 								</div>

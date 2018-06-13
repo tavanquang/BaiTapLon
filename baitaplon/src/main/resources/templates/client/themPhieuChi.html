@@ -19,6 +19,9 @@
 	$(document).ready(function() {
 		$("#datepicker1").datepicker();
 	});
+	$(document).ready(function() {
+		$("#datepicker2").datepicker();
+	});
 	
 </script>
 </head>
@@ -30,12 +33,10 @@
 				<a th:href="@{/}" style="color: blue;">Home</a>
 			</div>
 			<div class="col-sm-4">
-				<input
-					style="background: #f5d2a0; margin-left: -58px; float: left; width: 371px;"
-					type="text" name="" placeholder="Search...." />
+				<input class="search" type="text" name="" placeholder="Search...." />
 			</div>
 			<div class="col-sm-4">
-				<h4 style="margin-right: -95px; float: right;">NCC Soft</h4>
+				<h4>NCC Soft</h4>
 			</div>
 		</div>
 	</section>
@@ -45,9 +46,7 @@
 				<div class="col-md-12">
 					<div class="">
 						<div class="">
-							<h2
-								style="text-align: center; margin-bottom: 27px; color: #337ab7;">Phiếu
-								chi</h2>
+							<h2 class="themPC1">Phiếu chi</h2>
 							<div class="clearfix"></div>
 						</div>
 						<div class="">
@@ -58,33 +57,40 @@
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Tên Người Nhận</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<input class="form-control" placeholder="Nhập tên người nhận"
-												name="" id="" type="text" />
+												name="NguoiNhan" id="" type="text" />
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<input class="form-control" placeholder="Nhập địa chỉ nhận tiền"
-												name="" id="" type="text" />
+												name="DiaChi" id="" type="text" />
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày
-											tạo</label>
+											lập phiếu</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<div class='input-group date' id='datetimepicker1'>
-												<input style="width: 398px;" id="datepicker1" type='text' name="NgayTao" class="form-control" />
+												<input style="width: 398px;" id="datepicker1" type='text' name="NgayLapPhieu" class="form-control" />
 											</div>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Lí do</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<textarea id="" class="form-control" placeholder="Lí do đề xuất" name=""></textarea>
+											<textarea id="" class="form-control" placeholder="Lí do đề xuất" name="LiDo"></textarea>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Số tiền</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control" placeholder="Số tiền"
+												name="SoTien" id="" type="number" />
+										</div>
+									</div>
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Hình
 											ảnh</label>
@@ -93,25 +99,25 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-md-3 col-sm-3 col-xs-12">Số tiền</label>
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Người lập phiếu</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<input class="form-control" placeholder="Số tiền"
-												name="" id="" type="number" />
+											<input class="form-control" placeholder="Nhập tên mày vào"
+												name="NguoiLapPhieu" id="" type="text" />
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-md-3 col-sm-3 col-xs-12">Viết thành chữ</label>
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Giám Đốc</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<textarea id="" class="form-control" name=""></textarea>
+											<input class="form-control" placeholder="Nhập tên người sếp đẹp zai của bạn"
+												name="GiamDoc" id="" type="text" />
 										</div>
 									</div>
 								</div>
 								<!-- <div class="ln_solid clearfix"></div> -->
 								<div class="form-group">
 									<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
-										<button type="submit" name="themSP" class="btn btn-success">Thêm
-											mới</button>
-										<a class="btn btn-danger">Hủy</a>
+										<button type="submit" name="themSP" class="btn btn-success">Thêm mới</button>
+										<a class="btn btn-danger" th:href="@{/}">Hủy</a>
 									</div>
 
 								</div>
