@@ -23,6 +23,14 @@
 
 				</div>
 				<h3><a th:href="@{/admin/chi-tiet-phieu-de-xuat}">DANH SÁCH PHIẾU ĐỀ XUẤT</a></h3>
+				<form th:action="@{/admin/loc-theo-trang-thai-PDX}" method="get">
+				<select class="" name="trangThai" style="height: 30px;">
+					<option value="0">Đang xét duyệt</option>
+					<option value="1">Đã duyệt</option>
+					<option value="2">Đã chi</option>
+				</select> 
+				<button type="submit" value="" id="" name="" >Lọc</button>
+				</form>
 				<table id="table-breakpoint">
 					<thead>
 						<tr>
@@ -30,8 +38,8 @@
 							<th>Người đề xuất</th>
 							<th>Nội dung đề xuất</th>
 							<th>Ngày đề xuất</th>
-							<th>Người kế toán</th>
 							<th>Tổng tiền</th>
+							<th>Người kế toán</th>
 							<th style="width: 167px;">Trạng thái</th>
 							<th style="width: 139px;">Tùy chọn</th>
 
@@ -43,8 +51,8 @@
 							<td th:text="${list.nguoiDeNghi}"></td>
 							<td th:text="${list.noiDungDeXuat}"></td>
 							<td th:text="${list.ngayDeXuat}"></td>
-							<td th:text="${list.nguoiKeToan}"></td>
 							<td th:text="${list.tongTienFormat}"></td>
+							<td th:text="${list.nguoiKeToan}"></td>
 							
 							<form th:action="@{/admin/chuyen-trang-thai-phieu-de-xuat}" method="get">
 							
@@ -87,7 +95,12 @@
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- phân trang -->
+				<div class=""
+					style="float: right; margin-top: 10px; margin-right: 37px;">
+					<input type="button" id="" class="" name="" value="Trước" /> <a></a>/<a></a>
+					<input type="button" id="" class="" name="" value="Sau" />
+				</div>
 				<!-- //tables -->
 			</div>
 		</div>

@@ -13,8 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.demo.dao.NoiDungDeXuatDao;
 import com.demo.dao.PhieuDeXuatDao;
 import com.demo.dao.entity.TblNoiDungDeXuat;
+import com.demo.dao.entity.TblPhieuChi;
 import com.demo.dao.entity.TblPhieuDeXuat;
 import com.demo.repository.TblNoiDungDeXuatDTO;
+import com.demo.repository.TblPhieuChiDTO;
 import com.demo.repository.TblPhieuDeXuatDTO;
 import com.demo.service.PhieuDeXuatService;
 
@@ -166,6 +168,33 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 			
 			phieuDeXuat.setTrangThai(phieuDeXuatDTO.getTrangThai());
 		}
+	}
+
+	@Override
+	public List<TblPhieuDeXuatDTO> getAllByTrangThai(int trangThai) {
+		Locale locale = new Locale("vi","VN");
+		NumberFormat format = NumberFormat.getCurrencyInstance(locale); 
+		
+		List<TblPhieuDeXuatDTO> phieuDeXuatDTOs = new ArrayList<TblPhieuDeXuatDTO>();
+		List<TblPhieuDeXuat> phieuDeXuats = phieuDeXuatDao.getAllByTrangThai(trangThai);
+		for(TblPhieuDeXuat phieuDeXuat : phieuDeXuats){
+			
+			TblPhieuDeXuatDTO phieuDeXuatDTO = new TblPhieuDeXuatDTO();
+			
+			phieuDeXuatDTO.setId(phieuDeXuat.getId());
+			phieuDeXuatDTO.setNguoiDeNghi(phieuDeXuat.getNguoiDeNghi());
+			phieuDeXuatDTO.setNoiDungDeXuat(phieuDeXuat.getNoiDungDeXuat());
+			
+			phieuDeXuatDTO.setNgayDeXuat(phieuDeXuat.getNgayDeXuat());
+			phieuDeXuatDTO.setTongTienFormat(format.format(phieuDeXuat.getTongTien()));
+			
+			phieuDeXuatDTO.setNguoiKeToan(phieuDeXuat.getNguoiKeToan());
+			phieuDeXuatDTO.setTrangThai(phieuDeXuat.getTrangThai());
+			
+			phieuDeXuatDTOs.add(phieuDeXuatDTO);
+		}
+		
+		return phieuDeXuatDTOs;
 	}
 	
 	

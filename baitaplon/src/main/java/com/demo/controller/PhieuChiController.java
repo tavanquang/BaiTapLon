@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,13 @@ public class PhieuChiController {
 	@GetMapping(value="/chi-tiet-phieu-chi")
 	public String chiTietPC() {
 		return "admin/ChiTietPhieuChi";
+	}
+	@GetMapping(value="/loc-theo-trang-thai-PC")
+	public String danhSachTheoTrangThai(ModelMap map, @RequestParam(name="trangThai", required=true) int trangThai) {
+		
+		List<TblPhieuChiDTO> phieuChiDTOs = phieuChiService.getAllByTrangThai(trangThai);
+		map.addAttribute("phieuChiDTOs", phieuChiDTOs);
+		return "admin/listPhieuChi";
 	}
 	@GetMapping(value="/danh-sach-phieu-chi")
 	public String danhSachPhieuChi(ModelMap map){

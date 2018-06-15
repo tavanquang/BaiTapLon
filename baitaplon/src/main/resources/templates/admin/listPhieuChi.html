@@ -2,6 +2,10 @@
 <html>
 <head th:replace="common/head-ad :: head-ad">
 <meta charset="UTF-8" />
+<script type="text/javascript"
+	th:src="@{/js/ListPhieuChi/ListPhieuChi.js}"></script>
+
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
 </head>
 <body class="dashboard-page">
 
@@ -20,10 +24,17 @@
 
 				<div class="table-heading">
 					<h2>Danh Sách phiếu chi</h2>
-
 				</div>
 
 				<h3>DANH SÁCH PHIẾU CHI</h3>
+				<form th:action="@{/admin/loc-theo-trang-thai-PC}" method="get">
+				<select class="" name="trangThai" style="height: 30px;">
+					<option value="0">Đang xét duyệt</option>
+					<option value="1">Đã duyệt</option>
+					<option value="2">Đã chi</option>
+				</select> 
+				<button type="submit" value="" id="" name="" >Lọc</button>
+				</form>
 				<table id="table-breakpoint">
 					<thead>
 						<tr>
@@ -46,51 +57,43 @@
 							<td th:text="${list.soTienFormat}"></td>
 							<td th:text="${list.ngayLapPhieu}"></td>
 							<td th:text="${list.nguoiLapPhieu}"></td>
-							
-							<form th:action="@{/admin/chuyen-trang-thai-phieu-chi}" method="get">
-							
-							<td th:if="${list.trangThai} == 0" class="status">	
-							<select
-								class="form-control" name="trangThai">
-									<option value="0">Đang xét duyệt</option>
-									<option value="1">Đã duyệt</option>
-									<option value="2">Đã chi</option>
-							</select>
-							</td>
-							
-							<td th:if="${list.trangThai} == 1" class="status">
-							<select
-								class="form-control" name="trangThai">
-									<option value="1">Đã duyệt</option>
-									<option value="0">Đang xét duyệt</option>
-									<option value="2">Đã chi</option>
-							</select>
-							</td>
-							
-							<td th:if="${list.trangThai} == 2" class="status">
-							<select
-								class="form-control" name="trangThai">
-									<option value="2">Đã chi</option>
-									<option value="1">Đã duyệt</option>
-									<option value="0">Đang xét duyệt</option>
-									
-							</select>
-							</td>
-							
-							<input type="hidden" name="id" th:value="${list.id}"/>
-							
-							<td>
-							<a style="width: 149px;" th:href="@{/admin/chi-tiet-phieu-chi}"
-								class="btn btn-danger view"> Xem </a>
-								<button class="btn btn-success" type="submit">Đổi trạng thái </button>
-								
-							</td>
-								
-						</form>
+
+							<form th:action="@{/admin/chuyen-trang-thai-phieu-chi}"
+								method="get">
+
+								<td th:if="${list.trangThai} == 0" class="status"><select
+									class="form-control" name="trangThai">
+										<option value="0">Đang xét duyệt</option>
+										<option value="1">Đã duyệt</option>
+										<option value="2">Đã chi</option>
+								</select></td>
+
+								<td th:if="${list.trangThai} == 1" class="status"><select
+									class="form-control" name="trangThai">
+										<option value="1">Đã duyệt</option>
+										<option value="0">Đang xét duyệt</option>
+										<option value="2">Đã chi</option>
+								</select></td>
+
+								<td th:if="${list.trangThai} == 2" class="status"><select
+									class="form-control" name="trangThai">
+										<option value="2">Đã chi</option>
+										<option value="1">Đã duyệt</option>
+										<option value="0">Đang xét duyệt</option>
+
+								</select></td> <input type="hidden" name="id" th:value="${list.id}" />
+
+								<td><a style="width: 149px;"
+									th:href="@{/admin/chi-tiet-phieu-chi}"
+									class="btn btn-danger view"> Xem </a>
+									<button class="btn btn-success" type="submit">Đổi
+										trạng thái</button></td>
+
+							</form>
 						</tr>
 					</tbody>
 				</table>
-
+				<!-- phân trang -->
 				<!-- //tables -->
 			</div>
 		</div>

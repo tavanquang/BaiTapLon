@@ -24,6 +24,13 @@ public class PhieuDeXuatController {
 	public String chiTietPDX() {
 		return "admin/ChiTietPhieuDeXuat";
 	}
+	@GetMapping(value="/loc-theo-trang-thai-PDX")
+	public String danhSachTheoTrangThai(ModelMap map, @RequestParam(name="trangThai", required=true) int trangThai) {
+		
+		List<TblPhieuDeXuatDTO> phieuDeXuatDTOs = phieuDeXuatService.getAllByTrangThai(trangThai);
+		map.addAttribute("phieuDeXuatDTOs", phieuDeXuatDTOs);
+		return "admin/listPhieuDeXuat";
+	}
 	@GetMapping(value="/danh-sach-phieu-de-xuat")
 	public String danhSachPhieuChi(ModelMap map){
 		

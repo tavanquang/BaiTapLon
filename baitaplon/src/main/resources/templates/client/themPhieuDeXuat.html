@@ -8,6 +8,8 @@
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
 <script src="http://code.jquery.com/jquery.js"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
+
+<script th:src="@{/js/validate/validate.js}"></script>
 <link rel="stylesheet"
 	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
 <script
@@ -21,6 +23,7 @@ table, th, td {
 	border-collapse: collapse;
 }
 th, td {
+	 height: 30px;
 	text-align: center;
 }
 
@@ -36,7 +39,7 @@ input, textarea {
         $(".add-row").click(function(){
             var markup = `
             	<tr>
-				<th>1</th>
+				<th></th>
 				<td class="t4">
 				<input class="t5" type="checkbox" name="check" value="1" /></td>
 				<th class="t6">
@@ -101,7 +104,7 @@ input, textarea {
 											gửi</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<input class="form-control" placeholder="Nhập Người nhận"
-												name="" id="" type="text" />
+												name="" id="NguoiNhan" type="text" />
 										</div>
 									</div>
 									<div class="form-group">
@@ -109,14 +112,14 @@ input, textarea {
 											đề xuất </label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<input class="form-control" placeholder="Tên người đề xuất"
-												name="" id="" type="text" />
+												name="" id="NguoiDeXuat" type="text" />
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Nội
 											dung đề xuất</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<textarea id="" class="form-control" name=""
+											<textarea class="form-control" id="NoiDungDeXuat" name=""
 												placeholder="Nội dung đề xuất"></textarea>
 										</div>
 									</div>
@@ -127,7 +130,7 @@ input, textarea {
 											bắt đầu</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<div class="input-group date">
-												<input style="width: 395px;" type='date' name="NgayBatDau"
+												<input style="width: 395px;" type='date' id="NgayBatDau" name="NgayBatDau"
 													class="form-control" />
 											</div>
 										</div>
@@ -138,7 +141,7 @@ input, textarea {
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<div class="input-group date">
 												<input style="width: 395px;" type='date'
-													name="NgayHoanThanh" class="form-control" />
+													id="NgayHoanThanh" name="NgayHoanThanh" class="form-control" />
 											</div>
 										</div>
 									</div>
@@ -146,7 +149,7 @@ input, textarea {
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Ý
 											kiến lãnh đạo</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<textarea id="" class="form-control" name=""
+											<textarea class="form-control" name="" id="YKien"
 												placeholder="Ý kiến lãnh đạo"></textarea>
 										</div>
 									</div>
@@ -212,16 +215,16 @@ input, textarea {
 								<div class="themPDX4">
 									<table style="text-align: center;">
 										<tr>
-											<th>Tên người đề nghị</th>
+											<th>Tên người đề xuất</th>
 											<th>Tên kế toán</th>
 											<th>tên giám đốc</th>
 										</tr>
 										<tr>
-											<th class="t9"><input
+											<th class="t9"><input id="NDX"
 												type="text" /></th>
-											<th class="t9"><input
+											<th class="t9"><input id="KT"
 												type="text" /></th>
-											<th class="t9"><input
+											<th class="t9"><input id="GD"
 												type="text" /></th>
 										</tr>
 									</table>
@@ -229,7 +232,7 @@ input, textarea {
 								<!-- <div class="ln_solid clearfix"></div> -->
 								<div class="form-group" style="margin-top: 10px;">
 									<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
-										<button type="submit" name="" class="btn btn-success">Thêm
+										<button type="submit" name="" class="btn btn-success" onclick=" return checkPDX()">Thêm
 											mới</button>
 										<a class="btn btn-danger" th:href="@{/}">Hủy</a>
 									</div>
