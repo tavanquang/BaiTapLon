@@ -37,9 +37,10 @@ input, textarea {
 	
 	$(document).ready(function(){
         $(".add-row").click(function(){
+        	var a = $('.stt:last').val + 1;
             var markup = `
             	<tr>
-				<th></th>
+				<th>`+ a +`</th>
 				<td class="t4">
 				<input class="t5" type="checkbox" name="check" value="1" /></td>
 				<th class="t6">
@@ -51,7 +52,7 @@ input, textarea {
 				<th  class="t7"><input name="DonGia1"
 					type="number"
 					onKeyUp="ThanhTien1.value=SoLuong1.value*DonGia1.value" /></th>
-				<th clas="t7" ><input name="ThanhTien1" /></th>
+				<th class="t7" ><input name="ThanhTien1" /></th>
 				<th class="t7" >
 					<textarea type="text" id=""
 						value="" /></th>
@@ -170,7 +171,7 @@ input, textarea {
 										</thead>
 										<tbody>
 											<tr>
-												<th>1</th>
+												<th class="stt">1</th>
 												<td class="t4">
 												<input class="t5" type="checkbox" name="check" value="1" /></td>
 												<th class="t6">

@@ -43,36 +43,34 @@
 							<div class="clearfix"></div>
 						</div>
 						<div class="">
-							<form class="form-horizontal form-label-left input_mask"
-								method="" enctype="multipart/form-data">
+							<form th:object="${phieuChiDTO}" class="form-horizontal form-label-left input_mask" th:action="@{/them-phieu-chi-thanh-cong}" method="POST">
 								<div class="col-md-6">
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Tên Người Nhận</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<input class="form-control" placeholder="Nhập tên người nhận"
-												name="TenNguoiNhan" id="TenNguoiNhan" type="text" />
+											<input th:field="*{nguoiNhanTien}" class="form-control" placeholder="Nhập tên người nhận" id="NguoiNhanTien" type="text" />
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<input class="form-control" placeholder="Nhập địa chỉ nhận tiền"
-												name="DiaChi" id="DiaChi" type="text" />
+											<input class="form-control" placeholder="Nhập địa chỉ nhận tiền" th:field="*{diaChi}"
+												  id="DiaChi" type="text" />
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày
 											lập phiếu</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<div class='input-group date' id='datetimepicker1'>
-												<input style="width: 398px;" id="NgayLapPhieu" type='date' name="NgayLapPhieu" class="form-control" />
+											<div class='input-group date'>
+												<input th:filed="*{ngayLapPhieu}" style="width: 398px;" id="NgayLapPhieu" type='date' class="form-control" />
 											</div>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Lí do</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<textarea id="LiDo" class="form-control" placeholder="Lí do đề xuất" name="LiDo"></textarea>
+											<textarea th:field="*{lyDoChi}" id="LyDoChi" class="form-control" placeholder="Lí do đề xuất" name="LiDo"></textarea>
 										</div>
 									</div>
 								</div>
@@ -80,36 +78,36 @@
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Số tiền</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<input class="form-control" placeholder="Số tiền"
-												name="SoTien" id="SoTien" type="number" />
+											<input  class="form-control" placeholder="Số tiền" th:field="*{soTien}"
+												 id="SoTien" type="number" />
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Hình
 											ảnh</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<input class="" name="Hinh_anh" id="HinhAnh" type="file" />
+											<input class="" th:field="*{hinhAnh}" id="HinhAnh" type="file" />
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Người lập phiếu</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<input class="form-control" placeholder="Nhập tên mày vào"
-												name="NguoiLapPhieu" id="NguoiLapPhieu" type="text" />
+											<input class="form-control" placeholder="Nhập tên mày vào" 
+												th:filed="*{nguoiLapPhieu}" id="NguoiLapPhieu" type="text" />
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Giám Đốc</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<input class="form-control" placeholder="Nhập tên người sếp đẹp zai của bạn"
-												name="GiamDoc" id="GiamDoc" type="text" />
+												th:filed="*{giamDoc}" id="GiamDoc" type="text" />
 										</div>
 									</div>
 								</div>
 								<!-- <div class="ln_solid clearfix"></div> -->
 								<div class="form-group">
 									<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
-										<button onclick=" return checkPC()" type="submit" name="themSP" class="btn btn-success">Thêm mới</button>
+										<button onclick=" return checkPC()" type="submit" class="btn btn-success">Thêm mới</button>
 										<a class="btn btn-danger" th:href="@{/}">Hủy</a>
 									</div>
 

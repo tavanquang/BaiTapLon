@@ -37,7 +37,7 @@ public class TblPhieuChiDTO{
 	public void setSoTienFormat(String soTienFormat) {
 		this.soTienFormat = soTienFormat;
 	}
-
+	
 	public int getId() {
 		return this.id;
 	}

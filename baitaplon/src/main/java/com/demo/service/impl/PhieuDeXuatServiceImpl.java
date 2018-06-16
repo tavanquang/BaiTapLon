@@ -61,7 +61,6 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 			phieuDeXuatDTO.setDeXuatNgayMua(phieuDeXuat.getDeXuatNgayMua());
 			
 			phieuDeXuatDTO.setTongTien(phieuDeXuat.getTongTien());
-			phieuDeXuatDTO.setTongTienFormat(format.format(phieuDeXuat.getTongTien()));
 			phieuDeXuatDTO.setTrangThai(phieuDeXuat.getTrangThai());
 			
 			phieuDeXuatDTOs.add(phieuDeXuatDTO);
@@ -128,7 +127,6 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 		phieuDeXuatDTO.setDeXuatNgayMua(phieuDeXuat.getDeXuatNgayMua());
 		
 		phieuDeXuatDTO.setTongTien(phieuDeXuat.getTongTien());
-		phieuDeXuatDTO.setTongTienFormat(format.format(phieuDeXuat.getTongTien()));
 		phieuDeXuatDTO.setTrangThai(phieuDeXuat.getTrangThai());
 		
 		
@@ -186,7 +184,7 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 			phieuDeXuatDTO.setNoiDungDeXuat(phieuDeXuat.getNoiDungDeXuat());
 			
 			phieuDeXuatDTO.setNgayDeXuat(phieuDeXuat.getNgayDeXuat());
-			phieuDeXuatDTO.setTongTienFormat(format.format(phieuDeXuat.getTongTien()));
+			phieuDeXuatDTO.setTongTien(phieuDeXuat.getTongTien());
 			
 			phieuDeXuatDTO.setNguoiKeToan(phieuDeXuat.getNguoiKeToan());
 			phieuDeXuatDTO.setTrangThai(phieuDeXuat.getTrangThai());
