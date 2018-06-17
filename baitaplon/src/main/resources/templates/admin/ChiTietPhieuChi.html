@@ -60,24 +60,24 @@
 						<p>có 111</p>
 					</div>
 				</div>
-				<div class="col-sm-9 font_size pc4">
+				<div class="col-sm-9 font_size pc4" th:each="phieuChi,pc : ${phieuChiDTO}">
 					<p>
-						Người nhận tiền: <a />
+						Người nhận tiền: <a th:text="${phieuChi.nguoiNhanTien}" />
 					</p>
 					<p>
-						Địa chỉ: <a />
+						Địa chỉ: <a th:text="${phieuChi.diaChi}" />
 					</p>
 					<p>
-						Lí do chi: <a />
+						Lí do chi: <a th:text="${phieuChi.lyDoChi}" />
 					</p>
 					<p>
-						Số tiền : <a />
+						Số tiền : <a th:text="${phieuChi.soTienFormat}" />
 					</p>
 					<p>
 						Viết bằng chữ: <a />
 					</p>
 					<p>
-						Kèm theo : <a /> chứng từ gốc
+						Kèm theo : 1 chứng từ gốc
 					</p>
 				</div>
 				<div class="col-md-4 font_size pc5" style="float: right;">
@@ -90,19 +90,19 @@
 						<h4>NGƯỜI NHẬN TIỀN</h4>
 						<i>(Ký, họ tên)</i>
 						<div></div>
-						<a>Nguyễn Văn A</a>
+						<a th:text="${phieuChi.nguoiNhanTien}" />
 					</div>
 					<div class="col-md-4 text_center">
 						<h4>NGƯỜI LẬP PHIẾU</h4>
 						<i>(Ký, họ tên)</i>
 						<div></div>
-						<a>Lê Thị Phương Anh</a>
+						<a th:text="${phieuChi.nguoiLapPhieu}" />
 					</div>
 					<div class="col-md-4 text_center">
 						<h4>GIÁM ĐỐC</h4>
 						<i>(Ký, họ tên)</i>
 						<div></div>
-						<a>Nguyên Văn Hùng</a>
+						<a th:text="${phieuChi.giamDoc}" />
 					</div>
 				</div>
 				<!-- /footer -->

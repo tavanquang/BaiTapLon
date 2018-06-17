@@ -71,8 +71,7 @@ CREATE TABLE `tbl_phieu_chi` (
   `dia_chi` varchar(250) DEFAULT NULL,
   `ly_do_chi` text,
   `so_tien` double DEFAULT NULL,
-  `viet_bang_chu` varchar(250) DEFAULT NULL,
-  `kem_theo` int(11) DEFAULT NULL,
+  `hinh_anh` varchar(250) DEFAULT NULL,
   `ngay_lap_phieu` date DEFAULT NULL,
   `giam_doc` varchar(100) DEFAULT NULL,
   `nguoi_lap_phieu` varchar(100) DEFAULT NULL,
@@ -83,9 +82,9 @@ CREATE TABLE `tbl_phieu_chi` (
 -- Đang đổ dữ liệu cho bảng `tbl_phieu_chi`
 --
 
-INSERT INTO `tbl_phieu_chi` (`id`, `nguoi_nhan_tien`, `dia_chi`, `ly_do_chi`, `so_tien`, `viet_bang_chu`, `kem_theo`, `ngay_lap_phieu`, `giam_doc`, `nguoi_lap_phieu`, `trang_thai`) VALUES
-(5, 'Tạ Văn Quang', 'Công ty TNHH NCCSOFT', 'Thanh toán 10 cái màn hình máy tính', 80000000, 'Tám mươi triệu', 2, '2018-06-06', 'Mai Thế Hùng', 'Nguyễn Phương Anh', 0),
-(6, 'Lê Thị Lương', 'Công ty TNHH NCCSOFT', 'Thanh toán 2 cái bàn phím', 600000, 'Sáu trăm ngàn', 1, '2018-06-06', 'Mai Thế Hùng', 'Nguyễn Phương Anh', 0);
+INSERT INTO `tbl_phieu_chi` (`id`, `nguoi_nhan_tien`, `dia_chi`, `ly_do_chi`, `so_tien`, `kem_theo`, `ngay_lap_phieu`, `giam_doc`, `nguoi_lap_phieu`, `trang_thai`) VALUES
+(1, 'Tạ Văn Quang', 'Công ty TNHH NCCSOFT', 'Thanh toán 10 cái màn hình máy tính', 80000000,'1', '2018-06-06', 'Mai Thế Hùng', 'Nguyễn Phương Anh', 0),
+(2, 'Lê Thị Lương', 'Công ty TNHH NCCSOFT', 'Thanh toán 2 cái bàn phím', 600000, '2', '2018-06-06', 'Mai Thế Hùng', 'Nguyễn Phương Anh', 0);
 
 -- --------------------------------------------------------
 

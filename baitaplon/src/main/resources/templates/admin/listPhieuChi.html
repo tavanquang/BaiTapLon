@@ -27,13 +27,13 @@
 				</div>
 
 				<h3>DANH SÁCH PHIẾU CHI</h3>
-				<form th:action="@{/admin/loc-theo-trang-thai-PC}" method="get">
-				<select class="" name="trangThai" style="height: 30px;">
-					<option value="0">Đang xét duyệt</option>
-					<option value="1">Đã duyệt</option>
-					<option value="2">Đã chi</option>
-				</select> 
-				<button type="submit" value="" id="" name="" >Lọc</button>
+				<form th:action="@{/admin/danh-sach-phieu-chi/page/1/loc-theo-trang-thai-PC1}" method="get">
+					<select class="" name="trangThai" style="height: 30px;">
+						<option value="0">Đang xét duyệt</option>
+						<option value="1">Đã duyệt</option>
+						<option value="2">Đã chi</option>
+					</select>
+					<button type="submit" value="" id="" name="">Lọc</button>
 				</form>
 				<table id="table-breakpoint">
 					<thead>
@@ -50,7 +50,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="list,c : ${phieuChiDTOs}">
+						<tr th:each="list,c : ${phieuChiDTOs.pageList}">
 							<td th:text="${c.count}"></td>
 							<td th:text="${list.nguoiNhanTien}"></td>
 							<td th:text="${list.lyDoChi}"></td>
@@ -94,6 +94,36 @@
 					</tbody>
 				</table>
 				<!-- phân trang -->
+				<ul class="pagination">
+					<li
+						th:class="${currentIndex == 1}? 'page-item disabled' : 'page-item'">
+						<a class="page-link" th:href="@{/admin/danh-sach-phieu-chi/page/1}">First</a>
+					</li>
+					<li
+						th:class="${currentIndex == 1}? 'page-item disabled': 'page-item' ">
+						<a class="page-link" aria-label="Previous"
+						th:href="@{|${baseUrl}${currentIndex - 1}|}"
+						title='Go to previous page'><span aria-hidden="true">«</span>
+							<span class="sr-only">Previous</span></a>
+					</li>
+					<li th:each="item : ${#numbers.sequence(beginIndex,endIndex)}"
+						th:class="${item == currentIndex ? 'page-item active' :'page-item' }">
+						<a class="page-link" th:href="@{|${baseUrl}${item}|}"> <span
+							th:text='${item}'>1</span>
+					</a>
+					</li>
+					<li
+						th:class="${currentIndex == totalPageCount}? 'page-item disabled': 'page-item'">
+						<a class="page-link" aria-label="Next"
+						th:href="@{|${baseUrl}${currentIndex + 1}|}"
+						title='Go to next page'><span aria-hidden="true">»</span> <span
+							class="sr-only">Next</span></a>
+					</li>
+					<li
+						th:class="${currentIndex == totalPageCount}? 'page-item disabled':'page-item'">
+						<a class="page-link" th:href="@{|${baseUrl}${totalPageCount}|}">Last</a>
+					</li>
+				</ul>
 				<!-- //tables -->
 			</div>
 		</div>
