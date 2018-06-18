@@ -22,8 +22,9 @@ table, th, td {
 	border: 1px solid #cccccc;
 	border-collapse: collapse;
 }
+
 th, td {
-	 height: 30px;
+	height: 30px;
 	text-align: center;
 }
 
@@ -34,42 +35,75 @@ input, textarea {
 </style>
 <script th:src="@{/js/jquery.min.js}"></script>
 <script>
-	
-	$(document).ready(function(){
-        $(".add-row").click(function(){
-        	var a = $('.stt:last').val + 1;
-            var markup = `
-            	<tr>
-				<th>`+ a +`</th>
-				<td class="t4">
-				<input class="t5" type="checkbox" name="check" value="1" /></td>
-				<th class="t6">
-					<textarea type="text" id="" value="" />
-				</th>
-				<th class="t7"><input type="text" /></th>
-				<th class="t7"><input name="SoLuong1"
-					type="number" onKeyUp="ThanhTien1.value=SoLuong1.value*DonGia1.value" /></th>
-				<th  class="t7"><input name="DonGia1"
-					type="number"
-					onKeyUp="ThanhTien1.value=SoLuong1.value*DonGia1.value" /></th>
-				<th class="t7" ><input name="ThanhTien1" /></th>
-				<th class="t7" >
-					<textarea type="text" id=""
-						value="" /></th>
-			</tr>
-			`;
-            $("#table1 tbody").append(markup);
-        });
-         
-        // Find and remove selected table rows
-        $(".delete-row").click(function(){
-            $("#table1 tbody").find('input[name="check"]').each(function(){
-                if($(this).is(":checked")){
-                    $(this).parents("tr").remove();
-                }
-            });
-        });
+<!--tinh Thanh tien-->
+function reloadThanhTien(index)
+{
+    $('input[name="ThanhTien[]"]').eq(index).val($('input[name="soLuong[]"]').eq(index).val()*$('input[name="DonGia[]"]').eq(index).val());
+};
+
+
+function setEventThanhTien()
+{
+    $('input[name="soLuong[]"]').on('input', function () {
+        index = ($('input[name="soLuong[]"]').index($(this)));
+        reloadThanhTien(index);
     });
+    $('input[name="DonGia[]"]').on('input', function () {
+        index = ($('input[name="DonGia[]"]').index($(this)));
+        reloadThanhTien(index);
+    });
+}
+
+function reloadSTT()
+{
+   $('.STT').each(function (index,val) {
+       val.innerHTML = (index+1);
+   });
+}
+
+
+
+$(document).ready(function(){
+    setEventThanhTien();
+    $(".add-row").click(function(){
+        var markup = `
+    	<tr>
+            <th class="STT"></th>
+            <td class="t4">
+                <input class="t5" type="checkbox" name="check" value="" /></td>
+            <th class="t6">
+                <textarea type="text" value="" name="noiDung[]" ></textarea>
+            </th>
+
+            <th class="t7"><input type="number" name="soNgay[]" /></th>
+            <th class="t7"><input name="soLuong[]"
+                                  type="number" /></th>
+            <th  class="t7"><input name="DonGia[]"
+                                   type="number"/></th>
+            <th class="t7" ><input name="ThanhTien[]" /></th>
+            <th class="t7" >
+                            <textarea type="text"
+                                      value="" name="ghiChu[]"></textarea></th>
+        </tr>
+	`;
+        $("#table1 tbody").append(markup);
+        setEventThanhTien();
+
+        reloadSTT();
+
+    });
+
+    // Find and remove selected table rows
+    $(".delete-row").click(function(){
+        $("#table1 tbody").find('input[name="check"]').each(function(){
+            if($(this).is(":checked")){
+                $(this).parents("tr").remove();
+            }
+        });
+        reloadSTT();
+    });
+});
+
 </script>
 </head>
 <body>
@@ -97,8 +131,9 @@ input, textarea {
 							<div class="clearfix"></div>
 						</div>
 						<div class="">
-							<form class="form-horizontal form-label-left input_mask"
-								method="POST">
+							<form th:object="${phieuDeXuatDTO}"
+								th:action="@{/them-phieu-de-xuat}"
+								class="form-horizontal form-label-left input_mask" method="POST">
 								<div class="col-md-6">
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Kính
@@ -131,8 +166,8 @@ input, textarea {
 											bắt đầu</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<div class="input-group date">
-												<input style="width: 395px;" type='date' id="NgayBatDau" name="NgayBatDau"
-													class="form-control" />
+												<input style="width: 395px;" type='date' id="NgayBatDau"
+													name="NgayBatDau" class="form-control" />
 											</div>
 										</div>
 									</div>
@@ -141,8 +176,8 @@ input, textarea {
 											thành</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<div class="input-group date">
-												<input style="width: 395px;" type='date'
-													id="NgayHoanThanh" name="NgayHoanThanh" class="form-control" />
+												<input style="width: 395px;" type='date' id="NgayHoanThanh"
+													name="NgayHoanThanh" class="form-control" />
 											</div>
 										</div>
 									</div>
@@ -171,46 +206,42 @@ input, textarea {
 										</thead>
 										<tbody>
 											<tr>
-												<th class="stt">1</th>
-												<td class="t4">
-												<input class="t5" type="checkbox" name="check" value="1" /></td>
-												<th class="t6">
-													<textarea type="text" id="" value="" />
-												</th>
-												<th class="t7"><input type="text" /></th>
-												<th class="t7"><input name="SoLuong"
-													type="number" onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
-												<th  class="t7"><input name="DonGia"
-													type="number"
-													onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
-												<th class="t7" ><input name="ThanhTien" /></th>
-												<th class="t7" >
-													<textarea type="text" id=""
-														value="" /></th>
+												<th class="STT">1</th>
+												<td class="t4"><input class="t5" type="checkbox"
+													name="check" value="1" /></td>
+												<th class="t6"><textarea type="text" value=""
+														name="noiDung[]"></textarea></th>
+
+												<th class="t7"><input type="number" name="soNgay[]" /></th>
+												<th class="t7"><input name="soLuong[]" type="number" /></th>
+												<th class="t7"><input name="DonGia[]" type="number" /></th>
+												<th class="t7"><input name="ThanhTien[]" /></th>
+												<th class="t7"><textarea type="text" value=""
+														name="ghiChu[]"></textarea></th>
 											</tr>
 										</tbody>
 										<tfoot>
 											<tr>
 												<th></th>
 												<th colspan="5">Cộng</th>
-												<th class="t8" ><input type="text" /></th>
-												<th class="t8" ><input type="text" /></th>
+												<th class="t8"><input type="text" /></th>
+												<th class="t8"><input type="text" /></th>
 											</tr>
 											<tr>
 												<th></th>
 												<th colspan="5">Đề xuất ngày mua</th>
-												<th class="t8" ><input type="text"
-													id="datepicker3" /></th>
-												<th class="t8" ><input type="text" /></th>
+												<th class="t8"><input type="text" id="datepicker3" /></th>
+												<th class="t8"><input type="text" /></th>
 											</tr>
 										</tfoot>
 									</table>
 									<div>
-										<button id="themPDX3"
-											type="button" name="" class="btn btn-success add-row"
-											value="Thêm hàng">Thêm Hàng</button>
-										<button id="themPDX3" type="button" name="" class="btn btn-danger delete-row"
-											value="Xóa hàng">Xóa Hàng</button>
+										<button id="themPDX3" type="button" name=""
+											class="btn btn-success add-row" value="Thêm hàng">Thêm
+											Hàng</button>
+										<button id="themPDX3" type="button" name=""
+											class="btn btn-danger delete-row" value="Xóa hàng">Xóa
+											Hàng</button>
 									</div>
 								</form>
 								<div class="themPDX4">
@@ -221,20 +252,17 @@ input, textarea {
 											<th>tên giám đốc</th>
 										</tr>
 										<tr>
-											<th class="t9"><input id="NDX"
-												type="text" /></th>
-											<th class="t9"><input id="KT"
-												type="text" /></th>
-											<th class="t9"><input id="GD"
-												type="text" /></th>
+											<th class="t9"><input id="NDX" type="text" /></th>
+											<th class="t9"><input id="KT" type="text" /></th>
+											<th class="t9"><input id="GD" type="text" /></th>
 										</tr>
 									</table>
 								</div>
 								<!-- <div class="ln_solid clearfix"></div> -->
 								<div class="form-group" style="margin-top: 10px;">
 									<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
-										<button type="submit" name="" class="btn btn-success" onclick=" return checkPDX()">Thêm
-											mới</button>
+										<button type="submit" name="" class="btn btn-success"
+											onclick=" return checkPDX()">Thêm mới</button>
 										<a class="btn btn-danger" th:href="@{/}">Hủy</a>
 									</div>
 

@@ -7,7 +7,7 @@ function checkemail(val) {
 	return gt;
 }
 function checkPC() {
-	tenNN = $('#TenNguoiNhan');
+	tenNN = $('#NguoiNhanTien');
 	diachi = $("#DiaChi");
 	ngaylapphieu = $("#NgayLapPhieu");
 	lido = $("#LiDo");
