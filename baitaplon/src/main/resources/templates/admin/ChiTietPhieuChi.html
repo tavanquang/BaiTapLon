@@ -9,13 +9,13 @@
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script th:src="@{/js/bootstrap.min.js}"></script>
-
+<script th:src="@{/js/chuyensothanhchu/ChuyenSoThanhChu.js}"></script>
 <title>Chi tiết phiếu chi</title>
 </head>
 <body>
 
 	<div class="container pc1">
-		<form>
+		<form th:each="phieuChi,pc : ${phieuChiDTO}">
 			<div class="row">
 				<!-- header -->
 				<div>
@@ -48,7 +48,7 @@
 					<h1 class="center_margin">Phiếu Chi</h1>
 					<div class="col-md-4 pc2">
 						<div class="font_size">
-							Ngày <a /> Tháng <a /> Năm <a />
+							Ngày <a th:text="${phieuChi.ngayLapPhieu.Date}" /> Tháng <a th:text="${phieuChi.ngayLapPhieu.Month}"  /> Năm <a th:text="${phieuChi.ngayLapPhieu.Year}"  />
 						</div>
 					</div>
 					<div class="col-md-3 pc3">
@@ -60,7 +60,7 @@
 						<p>có 111</p>
 					</div>
 				</div>
-				<div class="col-sm-9 font_size pc4" th:each="phieuChi,pc : ${phieuChiDTO}">
+				<div class="col-sm-9 font_size pc4" >
 					<p>
 						Người nhận tiền: <a th:text="${phieuChi.nguoiNhanTien}" />
 					</p>
@@ -72,16 +72,17 @@
 					</p>
 					<p>
 						Số tiền : <a th:text="${phieuChi.soTienFormat}" />
+
 					</p>
 					<p>
-						Viết bằng chữ: <a />
+						Viết bằng chữ: <a value="KetQua" />
 					</p>
 					<p>
 						Kèm theo : 1 chứng từ gốc
 					</p>
 				</div>
 				<div class="col-md-4 font_size pc5" style="float: right;">
-					Ngày <a /> Tháng <a /> Năm <a />
+					Ngày <a value="" /> Tháng <a /> Năm <a />
 				</div>
 				<!-- /body -->
 				<!-- footer -->
@@ -90,19 +91,19 @@
 						<h4>NGƯỜI NHẬN TIỀN</h4>
 						<i>(Ký, họ tên)</i>
 						<div></div>
-						<a th:text="${phieuChi.nguoiNhanTien}" />
+						<!--<a th:text="${phieuChi.nguoiNhanTien}" />-->
 					</div>
 					<div class="col-md-4 text_center">
 						<h4>NGƯỜI LẬP PHIẾU</h4>
 						<i>(Ký, họ tên)</i>
 						<div></div>
-						<a th:text="${phieuChi.nguoiLapPhieu}" />
+						<!--<a th:text="${phieuChi.nguoiLapPhieu}" />-->
 					</div>
 					<div class="col-md-4 text_center">
 						<h4>GIÁM ĐỐC</h4>
 						<i>(Ký, họ tên)</i>
 						<div></div>
-						<a th:text="${phieuChi.giamDoc}" />
+						<!--<a th:text="${phieuChi.giamDoc}" />-->
 					</div>
 				</div>
 				<!-- /footer -->

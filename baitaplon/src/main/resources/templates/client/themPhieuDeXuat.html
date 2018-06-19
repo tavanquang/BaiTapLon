@@ -76,14 +76,14 @@ $(document).ready(function(){
             </th>
 
             <th class="t7"><input type="number" name="soNgay[]" /></th>
-            <th class="t7"><input name="soLuong[]"
+            <th class="t7"><input name="soLuong[]" 
                                   type="number" /></th>
-            <th  class="t7"><input name="DonGia[]"
+            <th  class="t7"><input name="DonGia[]" 
                                    type="number"/></th>
-            <th class="t7" ><input name="ThanhTien[]" /></th>
+            <th class="t7" ><input name="ThanhTien[]"  /></th>
             <th class="t7" >
                             <textarea type="text"
-                                      value="" name="ghiChu[]"></textarea></th>
+                                      value="" name="ghiChu[]" ></textarea></th>
         </tr>
 	`;
         $("#table1 tbody").append(markup);
@@ -131,7 +131,7 @@ $(document).ready(function(){
 							<div class="clearfix"></div>
 						</div>
 						<div class="">
-							<form th:object="${phieuDeXuatDTO}"
+							<form
 								th:action="@{/them-phieu-de-xuat}"
 								class="form-horizontal form-label-left input_mask" method="POST">
 								<div class="col-md-6">
@@ -140,7 +140,7 @@ $(document).ready(function(){
 											gửi</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<input class="form-control" placeholder="Nhập Người nhận"
-												name="" id="NguoiNhan" type="text" />
+												 id="NguoiNhan" type="text" />
 										</div>
 									</div>
 									<div class="form-group">
@@ -148,14 +148,14 @@ $(document).ready(function(){
 											đề xuất </label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<input class="form-control" placeholder="Tên người đề xuất"
-												name="" id="NguoiDeXuat" type="text" />
+												 id="NguoiDeXuat" type="text" />
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label col-md-3 col-sm-3 col-xs-12">Nội
 											dung đề xuất</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<textarea class="form-control" id="NoiDungDeXuat" name=""
+											<textarea class="form-control" id="NoiDungDeXuat" 
 												placeholder="Nội dung đề xuất"></textarea>
 										</div>
 									</div>
@@ -186,11 +186,11 @@ $(document).ready(function(){
 											kiến lãnh đạo</label>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<textarea class="form-control" name="" id="YKien"
-												placeholder="Ý kiến lãnh đạo"></textarea>
+												placeholder="Ý kiến lãnh đạo"  ></textarea>
 										</div>
 									</div>
 								</div>
-								<form class="themPDX2">
+								<form class="themPDX2" method="post">
 									<table id="table1" style="width: 100%">
 										<thead>
 											<tr>
@@ -206,18 +206,23 @@ $(document).ready(function(){
 										</thead>
 										<tbody>
 											<tr>
-												<th class="STT">1</th>
+												<th class="STT"></th>
 												<td class="t4"><input class="t5" type="checkbox"
-													name="check" value="1" /></td>
-												<th class="t6"><textarea type="text" value=""
-														name="noiDung[]"></textarea></th>
+													name="check" value="" /></td>
+												<th class="t6"><textarea type="text"
+														 value="" name="noiDung"></textarea>
+												</th>
 
-												<th class="t7"><input type="number" name="soNgay[]" /></th>
-												<th class="t7"><input name="soLuong[]" type="number" /></th>
-												<th class="t7"><input name="DonGia[]" type="number" /></th>
-												<th class="t7"><input name="ThanhTien[]" /></th>
+												<th class="t7"><input type="number"
+													 name="soNgay" /></th>
+												<th class="t7"><input name="soLuong"
+													 type="number" /></th>
+												<th class="t7"><input name="DonGia"
+													 type="number" /></th>
+												<th class="t7"><input name="ThanhTien"
+													 /></th>
 												<th class="t7"><textarea type="text" value=""
-														name="ghiChu[]"></textarea></th>
+														name="ghiChu"></textarea></th>
 											</tr>
 										</tbody>
 										<tfoot>

@@ -29,17 +29,16 @@ public class PhieuChiController {
 	public String index(){
 		return "admin/index";
 	}
-	@GetMapping(value="/loc-theo-trang-thai-PC")
-	public String danhSachTheoTrangThai(HttpServletRequest request,ModelMap map, @RequestParam(name="trangThai", required=true) int trangThai) {
-		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("phieuChiDTOList");
-		List<TblPhieuChiDTO> phieuChiDTOs = phieuChiService.getAllByTrangThai(trangThai);
-		map.addAttribute("phieuChiDTOs", phieuChiDTOs);
-		return "admin/listPhieuChi";
-	}
+	
 	@GetMapping(value="/chi-tiet-phieu-chi")
-	public String chiTietPhieuChi(ModelMap map, @RequestParam(name="id", required=true) int id) {
+	public String trangChiTiet(ModelMap map,@RequestParam(name="id", required=true) int id) {
 		TblPhieuChiDTO phieuChiDTO = phieuChiService.getPhieuChiDTO(id);
-		return "redirect:/admin/chi-tiet-phieu-chi";
+		map.addAttribute("phieuChiDTO", phieuChiDTO);
+		return "admin/ChitietPhieuChi";
+	}
+	@GetMapping(value="/thong-tin-phieu-chi")
+	public String chiTietPhieuChi(ModelMap map) {
+		return "redirect:/admin/thong-tin-phieu-chi";
 	}
 	@GetMapping(value="/chuyen-trang-thai-phieu-chi")
 	public String chuyenTrangThaiPhieuChi(ModelMap map,
@@ -94,16 +93,26 @@ public class PhieuChiController {
 
 		return "admin/listPhieuChi";
 	}
-	@GetMapping("/danh-sach-phieu-chi/page/{pageNumber}/loc-theo-trang-thai-PC1")
+	//loc
+	@GetMapping("/loc-danh-sach-phieu-chi")
+	public String locPage1(Model model,HttpServletRequest request
+			,RedirectAttributes redirect) {
+		request.getSession().setAttribute("phieuChiDTOList", null);
+		
+		if(model.asMap().get("success") != null)
+			redirect.addFlashAttribute("success",model.asMap().get("success").toString());
+		return "redirect:/admin/loc-danh-sach-phieu-chi/page/1";
+	}
+	@GetMapping("/loc-danh-sach-phieu-chi/page/{pageNumber}")
 	public String loc(HttpServletRequest request, 
 			@PathVariable int pageNumber, Model model, @RequestParam(name="trangThai", required=true) int trangThai) {
-		List<TblPhieuChiDTO> phieuChiDTOs = phieuChiService.getAllByTrangThai(trangThai);
-		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("phieuChiDTOs");
+		List<TblPhieuChiDTO> phieuChiDTO = phieuChiService.getAllByTrangThai(trangThai);
+		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("phieuChiDTO");
 		int pagesize = 2;
 		
-		System.out.println(phieuChiDTOs.size());
+		System.out.println(phieuChiDTO.size());
 		if (pages == null) {
-			pages = new PagedListHolder<>(phieuChiDTOs);
+			pages = new PagedListHolder<>(phieuChiDTO);
 			pages.setPageSize(pagesize);
 		} else {
 			final int goToPage = pageNumber - 1;
@@ -113,18 +122,19 @@ public class PhieuChiController {
 		}
 		request.getSession().setAttribute("phieuChiDTOs", pages);
 		int current = pages.getPage() + 1;
-		int begin = Math.max(1, current - phieuChiDTOs.size());
+		int begin = Math.max(1, current - phieuChiDTO.size());
 		int end = Math.min(begin + 5, pages.getPageCount());
 		int totalPageCount = pages.getPageCount();
-		String baseUrl = "/admin/danh-sach-phieu-chi/page/{pageNumber}/loc-theo-trang-thai-PC1";
-
+		String baseUrl = "/admin/loc-danh-sach-phieu-chi/page/";
+		
+		model.addAttribute("trangThai", trangThai);
 		model.addAttribute("beginIndex", begin);
 		model.addAttribute("endIndex", end);
 		model.addAttribute("currentIndex", current);
 		model.addAttribute("totalPageCount", totalPageCount);
 		model.addAttribute("baseUrl", baseUrl);
-		model.addAttribute("phieuChiDTOs", pages);
+		model.addAttribute("phieuChiDTO", pages);
 
-		return "admin/listPhieuChi";
+		return "admin/locPhieuChi";
 	}
 }

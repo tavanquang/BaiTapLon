@@ -20,6 +20,8 @@ public class config extends WebSecurityConfigurerAdapter{
 		// TODO Auto-generated method stub
 		http.csrf().disable().authorizeRequests()
 		.antMatchers("/").permitAll()
+		.antMatchers("/phieu-chi").permitAll()
+		.antMatchers("/phieu-de-xuat").permitAll()
 		.antMatchers("/them-phieu-chi").permitAll()
 		.antMatchers("/them-phieu-de-xuat").permitAll()
 		

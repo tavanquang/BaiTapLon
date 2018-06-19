@@ -70,8 +70,9 @@ public class PhieuChiServiceImpl implements PhieuChiService{
 		
 		phieuChi.setHinhAnh(phieuChiDTO.getHinhAnh());
 		phieuChi.setNgayLapPhieu(new Date());
-		phieuChi.setGiamDoc(phieuChiDTO.getGiamDoc());
 		phieuChi.setNguoiLapPhieu(phieuChiDTO.getNguoiLapPhieu());
+		phieuChi.setGiamDoc(phieuChiDTO.getGiamDoc());
+		
 		
 		phieuChi.setTrangThai(0);
 		

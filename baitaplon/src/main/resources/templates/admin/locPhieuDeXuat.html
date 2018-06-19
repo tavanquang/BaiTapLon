@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head th:replace="common/head-ad :: head-ad">
-	<meta charset="UTF-8" />
+<meta charset="UTF-8" />
+<script type="text/javascript"
+	th:src="@{/js/ListPhieuDeXuat/ListPhieuDeXuat.js}"></script>
+
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
 </head>
 <body class="dashboard-page">
 
@@ -51,7 +55,7 @@
 							<td th:text="${list.nguoiDeNghi}"></td>
 							<td th:text="${list.noiDungDeXuat}"></td>
 							<td th:text="${list.ngayDeXuat}"></td>
-							<td th:text="${list.tongTien}"></td>
+							<td th:text="${list.tongTienFormat}"></td>
 							<td th:text="${list.nguoiKeToan}"></td>
 							
 							<form th:action="@{/admin/chuyen-trang-thai-phieu-de-xuat}" method="get">
@@ -99,31 +103,31 @@
 				<ul class="pagination">
 					<li
 						th:class="${currentIndex == 1}? 'page-item disabled' : 'page-item'">
-						<a class="page-link" th:href="@{/admin/danh-sach-phieu-de-xuat/page/1}">First</a>
+						<a class="page-link" th:href="@{/admin/loc-danh-sach-phieu-de-xuat/page/1(trangThai=${trangThai})}">First</a>
 					</li>
 					<li
 						th:class="${currentIndex == 1}? 'page-item disabled': 'page-item' ">
 						<a class="page-link" aria-label="Previous"
-						th:href="@{|${baseUrl}${currentIndex - 1}|}"
+						th:href="@{|${baseUrl}${currentIndex - 1}(trangThai=${trangThai})}"
 						title='Go to previous page'><span aria-hidden="true">«</span>
 							<span class="sr-only">Previous</span></a>
 					</li>
 					<li th:each="item : ${#numbers.sequence(beginIndex,endIndex)}"
 						th:class="${item == currentIndex ? 'page-item active' :'page-item' }">
-						<a class="page-link" th:href="@{|${baseUrl}${item}|}"> <span
+						<a class="page-link" th:href="@{|${baseUrl}${item}(trangThai=${trangThai})}"> <span
 							th:text='${item}'>1</span>
 					</a>
 					</li>
 					<li
 						th:class="${currentIndex == totalPageCount}? 'page-item disabled': 'page-item'">
 						<a class="page-link" aria-label="Next"
-						th:href="@{|${baseUrl}${currentIndex + 1}|}"
+						th:href="@{|${baseUrl}${currentIndex +1}(trangThai=${trangThai})}"
 						title='Go to next page'><span aria-hidden="true">»</span> <span
 							class="sr-only">Next</span></a>
 					</li>
 					<li
 						th:class="${currentIndex == totalPageCount}? 'page-item disabled':'page-item'">
-						<a class="page-link" th:href="@{|${baseUrl}${totalPageCount}|}">Last</a>
+						<a class="page-link" th:href="@{|${baseUrl}${totalPageCount}(trangThai=${trangThai})}">Last</a>
 					</li>
 				</ul>
 				<!-- //tables -->

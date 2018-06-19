@@ -108,7 +108,10 @@ CREATE TABLE `tbl_phieu_de_xuat` (
   `trang_thai` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
+--insert-tbl_phieu_de_xuat
+INSERT INTO `tbl_phieu_de_xuat` (`id`, `kinh_gui`, `nguoi_de_nghi`, `ngay_bat_dau`, `ngay_hoan_thanh`, `noi_dung_de_xuat`, `y_kien_lanh_dao`, `ngay_de_xuat`, `nguoi_ke_toan`, `giam_doc`,`de_xuat_ngay_mua`,`tong_tien`,`trang_thai`) VALUES
+(1, 'Nguyễn Văn A', 'Nguyễn Văn B', '2018-06-06', '2018-06-30','Mua méo gì dell biết', 'hài lòng', '2018-06-06', 'Nguyễn Phương Anh', 'Mai Thế Hùng','2018-07-01','2000000','0'),
+(2, 'Nguyễn Văn B', 'Nguyễn Văn B1', '2018-06-08', '2018-06-31','Mua 20 cái oto', 'không hài lòng', '2018-06-06', 'Nguyễn Phương Anh', 'Mai Thế Hùng','2018-07-01','20000000','0')
 -- Chỉ mục cho các bảng đã đổ
 --
 

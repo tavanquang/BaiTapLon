@@ -26,7 +26,16 @@ public class TblPhieuDeXuatDTO {
 	private String noiDungDeXuat;
 
 	private double tongTien;
-
+	
+	private String tongTienFormat;
+	
+	public void setTongTienFormat() {
+		this.tongTienFormat = tongTienFormat;
+	}
+	public String getTongTienFormat() {
+		return tongTienFormat;
+	}
+	
 	public String getyKienLanhDao() {
 		return yKienLanhDao;
 	}
