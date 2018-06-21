@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Them phieu de xuat</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/PhieuDeXuat/themphieudexuat.css}" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/validate/validate.js}"></script>
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<style>
+table, th, td {
+	border: 1px solid #cccccc;
+	border-collapse: collapse;
+}
+
+th, td {
+	height: 30px;
+	text-align: center;
+}
+
+input, textarea {
+	width: 100%;
+	height: 100%;
+}
+</style>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script>
+
+		
+
+        <!--tinh Thanh tien-->
+        function reloadThanhTien(index)
+        {
+            $('input[name="tblNoiDungDeXuat['+index+'].ThanhTien"]').eq(index).val($('input[name="tblNoiDungDeXuat['+index+'].soLuong"]').eq(index).val()*$('input[name="tblNoiDungDeXuat['+index+'].donGia"]').eq(index).val());
+        };
+
+
+        function setEventThanhTien(i)
+        {
+            $('input[name="tblNoiDungDeXuat['+i+'].soLuong"]').on('input', function () {
+                index = ($('input[name="tblNoiDungDeXuat['+i+'].soLuong"]').index($(this)));
+                reloadThanhTien(index);
+            });
+            $('input[name="tblNoiDungDeXuat['+i+'].donGia"]').on('input', function () {
+                index = ($('input[name="tblNoiDungDeXuat['+i+'].donGia"]').index($(this)));
+                reloadThanhTien(index);
+            });
+        }
+
+        function reloadSTT()
+        {
+           $('.STT').each(function (index,val) {
+
+               $(this).siblings().not('.t4').children().each(function () {
+				   let name = ($(this).attr('name'));
+
+                   $(this).attr('name', name.replace(/\[.*\]/,'['+index+']'));
+                   // console.log(name);
+				   
+               });
+
+
+
+
+
+
+               val.innerHTML = (index + 1);
+
+               setEventThanhTien(index);
+
+           });
+        }
+        
+
+        $(document).ready(function(){
+            setEventThanhTien(0);
+            $(".add-row").click(function(){
+                var markup = `
+                	<tr >
+					<th class="STT"></th>
+					<td class="t4"><input class="t5" type="checkbox"
+						name="check" value="" /></td> 
+					<th class="t6"><textarea name="tblNoiDungDeXuat[].noiDungDeXuat"></textarea></th>
+
+					<th class="t7"><input type="number"  name="tblNoiDungDeXuat[].soNgay" /></th>
+					<th class="t7"><input  type="number" name="tblNoiDungDeXuat[].soLuong" /></th>
+					<th class="t7"><input  type="number" name="tblNoiDungDeXuat[].donGia" /></th>
+					<th class="t7"><input  type="number" name="tblNoiDungDeXuat[].ThanhTien" /></th>
+					<th class="t7"><textarea   name="tblNoiDungDeXuat[].ghiChu"></textarea></th>
+				</tr>
+			`;
+                $("#table1 tbody").append(markup);
+
+
+                reloadSTT();
+            });
+
+            // Find and remove selected table rows
+            $(".delete-row").click(function(){
+                $("#table1 tbody").find('input[name="check"]').each(function(){
+                    if($(this).is(":checked")){
+                        $(this).parents("tr").remove();
+                    }
+                });
+                reloadSTT();
+            });
+            
+          
+                
+            	
+            
+            
+            
+            
+        });
+        
+     
+    </script>
+
+</head>
+<body>
+	<!-- header -->
+	<section class="css-header">
+		<div class="row">
+			<div class="col-sm-3">
+				<a th:href="@{/}" style="color: blue;">Home</a>
+			</div>
+			<div class="col-sm-4">
+				<input class="search" type="text" name="" placeholder="Search...." />
+			</div>
+			<div class="col-sm-4">
+				<h4>NCC Soft</h4>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="">
+						<div class="">
+							<h2 class="themPDX1">Phiếu đề xuất</h2>
+							<br />
+
+							<div class="themPDX1">
+								<h4 style="color: red; text-align: center;"
+									th:if="${e} == 'error'">Thông Tin Không Hợp lệ ! Vui Lòng
+									Nhập Lại</h4>
+								<h4 style="color: red; text-align: center;"
+									th:if="${e} == 'thanhcong'">Đã Thêm Phiếu thành CÔng!</h4>
+							</div>
+						</div>
+						<div class="">
+							<form th:action="@{/them-phieu-de-xuat}"
+								class="form-horizontal form-label-left input_mask"
+								th:object="${phieuDeXuat}" method="POST">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Kính
+											gửi</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control" placeholder="Nhập Người nhận"
+												th:field="*{kinhGui}" id="NguoiNhan" type="text" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Người
+											đề xuất </label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control" placeholder="Tên người đề xuất"
+												th:field="*{nguoiDeNghi}" id="NguoiDeXuat" type="text" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Nội
+											dung đề xuất</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<textarea class="form-control" id="NoiDungDeXuat"
+												th:field="*{noiDungDeXuat}" placeholder="Nội dung đề xuất"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày
+											bắt đầu</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<div class="input-group date">
+
+
+												<input type="text" id="ngaybatdau" class="datepicker"
+													th:field="*{ngayBatDau}" name="date"
+													placeholder="DD/MM/YYYY" />
+
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">hoàn
+											thành</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<div class="input-group date">
+												<input type="text" pattern="\d{1,2}/\d{1,2}/\d{4}"
+													class="datepicker" th:field="*{ngayHoanThanh}" name="date"
+													placeholder="DD/MM/YYYY" />
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Ý
+											kiến lãnh đạo</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<textarea class="form-control" name="" id="YKien"
+												th:field="*{yKienLanhDao}" placeholder="Ý kiến lãnh đạo"></textarea>
+										</div>
+									</div>
+								</div>
+
+								<table id="table1" style="width: 100%">
+									<thead>
+										<tr>
+											<th style="width: 20px">STT</th>
+											<th>Chọn</th>
+											<th>Nội dung đề xuất</th>
+											<th class="t1">Số ngày</th>
+											<th class="t1">SL</th>
+											<th class="t2">Đơn giá</th>
+											<th class="t3">Thành tiền</th>
+											<th class="t3">Ghi Chú</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th class="STT"></th>
+											<td class="t4"><input class="t5" type="checkbox"
+												name="check" value="" /></td>
+											<th class="t6"><textarea
+													name="tblNoiDungDeXuat[0].noiDungDeXuat"></textarea></th>
+
+											<th class="t7"><input type="number"
+												name="tblNoiDungDeXuat[0].soNgay" /></th>
+											<th class="t7"><input type="number"
+												name="tblNoiDungDeXuat[0].soLuong" /></th>
+											<th class="t7"><input type="number"
+												name="tblNoiDungDeXuat[0].donGia" /></th>
+											<th class="t7"><input type="number"
+												name="tblNoiDungDeXuat[0].ThanhTien" /></th>
+											<th class="t7"><textarea
+													name="tblNoiDungDeXuat[0].ghiChu"></textarea></th>
+										</tr>
+
+									</tbody>
+
+
+									<tfoot>
+										<tr>
+											<th></th>
+											<th colspan="5">Cộng</th>
+											<th class="t8"><input type="number" name="tongTien" /></th>
+										</tr>
+										<tr>
+											<th></th>
+											<th colspan="5">Đề xuất ngày mua</th>
+											<th class="t8"><input type="text"
+												pattern="\d{1,2}/\d{1,2}/\d{4}" class="datepicker"
+												th:field="*{deXuatNgayMua}" name="date"
+												placeholder="DD/MM/YYYY" /></th>
+										</tr>
+									</tfoot>
+								</table>
+								<div>
+									<button id="themPDX3" type="button" name=""
+										class="btn btn-success add-row" value="Thêm hàng">Thêm
+										Hàng</button>
+									<button id="themPDX3" type="button" name=""
+										class="btn btn-danger delete-row" value="Xóa hàng">Xóa
+										Hàng</button>
+								</div>
+
+								<div class="themPDX4">
+									<table style="text-align: center;">
+										<tr>
+											<th>Tên người đề xuất</th>
+											<th>Tên kế toán</th>
+											<th>tên giám đốc</th>
+										</tr>
+										<tr>
+											<th class="t9"><input id="NDX" type="text" /></th>
+											<th class="t9"><input id="KT" type="text"
+												name="nguoiKeToan" th:field="*{nguoiKeToan}" /></th>
+											<th class="t9"><input id="GD" type="text" name="giamDoc"
+												th:field="*{giamDoc}" /></th>
+										</tr>
+									</table>
+								</div>
+								<!-- <div class="ln_solid clearfix"></div> -->
+								<div class="form-group" style="margin-top: 10px;">
+									<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
+										<button type="submit" name="" class="btn btn-success"
+											onclick="checkPDX()">Thêm mới</button>
+										<a class="btn btn-danger" th:href="@{/}">Hủy</a>
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+</body>
+</html>

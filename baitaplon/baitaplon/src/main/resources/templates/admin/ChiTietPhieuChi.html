@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/PhieuChi/ChiTietPhieuChi.css}" />
+	
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/chuyensothanhchu/ChuyenSoThanhChu.js}"></script>
+<title>Chi tiết phiếu chi</title>
+</head>
+<body>
+
+	<div class="container pc1">
+		<form th:each="phieuChi,pc : ${phieuChiDTO}">
+			<div class="row">
+				<!-- header -->
+				<div>
+					<div class="col-sm-6" id="a1">
+						<p>
+							<b>Công ty TNHH CN NCCSOFT Việt Nam</b>
+						</p>
+						<p>
+							<b>Số 88 đường Bia Bà, Phường La Khê, Quận Hà Đông,HN</b>
+						</p>
+						<p>
+							<b>MST: 0106522655</b>
+						</p>
+					</div>
+					<div class="col-sm-6" id="a2">
+						<p>
+							<b>Mẫu số: 01-TT</b>
+						</p>
+						<p>
+							<i>Ban hành theo QĐ số 48/2006QĐ</i>
+						</p>
+						<p>
+							<i>BTC ngày 14/09/2006 của bộ trưởng BTC</i>
+						</p>
+					</div>
+				</div>
+				<!-- /header -->
+				<!-- body -->
+				<div>
+					<h1 class="center_margin">Phiếu Chi</h1>
+					<div class="col-md-4 pc2">
+						<div class="font_size">
+							Ngày <a th:text="${phieuChi.ngayLapPhieu.Date}" /> Tháng <a th:text="${phieuChi.ngayLapPhieu.Month}"  /> Năm <a th:text="${phieuChi.ngayLapPhieu.Year}"  />
+						</div>
+					</div>
+					<div class="col-md-3 pc3">
+						<p>Quyển số: 1</p>
+						<p>
+							Số <b>PC 001</b>
+						</p>
+						<p>Nợ: 642</p>
+						<p>có 111</p>
+					</div>
+				</div>
+				<div class="col-sm-9 font_size pc4" >
+					<p>
+						Người nhận tiền: <a th:text="${phieuChi.nguoiNhanTien}" />
+					</p>
+					<p>
+						Địa chỉ: <a th:text="${phieuChi.diaChi}" />
+					</p>
+					<p>
+						Lí do chi: <a th:text="${phieuChi.lyDoChi}" />
+					</p>
+					<p>
+						Số tiền : <a th:text="${phieuChi.soTienFormat}" />
+
+					</p>
+					<p>
+						Viết bằng chữ: <a value="KetQua" />
+					</p>
+					<p>
+						Kèm theo : 1 chứng từ gốc
+					</p>
+				</div>
+				<div class="col-md-4 font_size pc5" style="float: right;">
+					Ngày <a value="" /> Tháng <a /> Năm <a />
+				</div>
+				<!-- /body -->
+				<!-- footer -->
+				<div class="col-md-12" style="margin-top: 15px;">
+					<div class="col-md-4 text_center">
+						<h4>NGƯỜI NHẬN TIỀN</h4>
+						<i>(Ký, họ tên)</i>
+						<div></div>
+						<!--<a th:text="${phieuChi.nguoiNhanTien}" />-->
+					</div>
+					<div class="col-md-4 text_center">
+						<h4>NGƯỜI LẬP PHIẾU</h4>
+						<i>(Ký, họ tên)</i>
+						<div></div>
+						<!--<a th:text="${phieuChi.nguoiLapPhieu}" />-->
+					</div>
+					<div class="col-md-4 text_center">
+						<h4>GIÁM ĐỐC</h4>
+						<i>(Ký, họ tên)</i>
+						<div></div>
+						<!--<a th:text="${phieuChi.giamDoc}" />-->
+					</div>
+				</div>
+				<!-- /footer -->
+			</div>
+		</form>
+	</div>
+</body>
+</html>
