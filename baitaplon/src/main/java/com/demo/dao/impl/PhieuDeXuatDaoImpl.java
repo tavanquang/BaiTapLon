@@ -26,11 +26,9 @@ public class PhieuDeXuatDaoImpl implements PhieuDeXuatDao {
 	}
 
 	@Override
-	public TblPhieuDeXuat AddPhieuDeXuat(TblPhieuDeXuat phieuDeXuat) {
+	public void AddPhieuDeXuat(TblPhieuDeXuat phieuDeXuat) {
 		// TODO Auto-generated method stub
 		entityManager.persist(phieuDeXuat);
-		entityManager.flush();
-		return phieuDeXuat;
 	}
 
 	@Override

@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.PhieuChiDao;
 import com.demo.dao.entity.TblPhieuChi;
-import com.demo.repository.TblPhieuChiDTO;
+import com.demo.model.TblPhieuChiDTO;
 import com.demo.service.PhieuChiService;
 
 

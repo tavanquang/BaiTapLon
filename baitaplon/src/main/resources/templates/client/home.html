@@ -10,26 +10,22 @@
 </head>
 <body>
 	<!-- header -->
-	<section class="css-header">
+	<nav class="css-header" th:fragment="nav-header">
 		<div class="row">
-			<div class="col-sm-3">
-				<a th:href="@{/}" style="color: blue;">Home</a>/ <a
-					th:href="@{/login}">Login</a>
+			<div class="col-sm-6">
+				<a th:href="@{/}" style="color: blue;">Home</a>
 			</div>
-			<div class="col-sm-4">
-				<input class="home_search" type="text" name="" placeholder="Search...." />
-			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-6">
 				<h4>NCC Soft</h4>
 			</div>
 		</div>
-	</section>
+	</nav>
 	<!-- body -->
 	<div class="container h1">
 		<h2 style="margin-top: 90px;">Mời bạn chọn Mục cần dùng</h2>
-		<div class="btn-group-vertical h2">
-			<a type="button" class="btn btn-primary" th:href="@{/phieu-chi}">Thêm phiếu chi</a> 
+		<div class="btn-group-vertical h2"> 
 			<a type="button" class="btn btn-success" th:href="@{/phieu-de-xuat}">Thêm phiếu đề xuất</a>
+			<a type="button" class="btn btn-primary" th:href="@{/phieu-chi}">Thêm phiếu chi</a>
 			<a type="button" class="btn btn-warning" th:href="@{/login}">Đăng nhập</a>
 		</div>
 	</div>

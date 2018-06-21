@@ -14,8 +14,8 @@ import com.demo.dao.NoiDungDeXuatDao;
 import com.demo.dao.PhieuDeXuatDao;
 import com.demo.dao.entity.TblNoiDungDeXuat;
 import com.demo.dao.entity.TblPhieuDeXuat;
-import com.demo.repository.TblNoiDungDeXuatDTO;
-import com.demo.repository.TblPhieuDeXuatDTO;
+import com.demo.model.TblNoiDungDeXuatDTO;
+import com.demo.model.TblPhieuDeXuatDTO;
 import com.demo.service.PhieuDeXuatService;
 
 @Service
@@ -28,9 +28,6 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 	@Autowired
 	NoiDungDeXuatDao noiDungDeXuatDao;
 
-	@Autowired
-	NoiDungDeXuatServiceImpl noiDungService;
-	
 	@Override
 	public List<TblPhieuDeXuatDTO> getAll() {
 		
@@ -58,9 +55,8 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 			phieuDeXuatDTO.setNgayDeXuat(phieuDeXuat.getNgayDeXuat());
 			phieuDeXuatDTO.setNguoiKeToan(phieuDeXuat.getNguoiKeToan());
 			
-			phieuDeXuatDTO.setGiamDoc(phieuDeXuat.getGiamDoc());
 			phieuDeXuatDTO.setDeXuatNgayMua(phieuDeXuat.getDeXuatNgayMua());
-			
+			phieuDeXuatDTO.setTongTienFormat(format.format(phieuDeXuat.getTongTien()));
 			phieuDeXuatDTO.setTongTien(phieuDeXuat.getTongTien());
 			phieuDeXuatDTO.setTrangThai(phieuDeXuat.getTrangThai());
 			
@@ -71,9 +67,8 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 		return phieuDeXuatDTOs;
 	}
 
-
 	@Override
-	public void AddPhieuDeXuatDTO(TblPhieuDeXuatDTO phieuDeXuatDTO ) {
+	public void AddPhieuDeXuatDTO(TblPhieuDeXuatDTO phieuDeXuatDTO) {
 		// TODO Auto-generated method stub
 		TblPhieuDeXuat phieuDeXuat = new TblPhieuDeXuat();
 		
@@ -85,40 +80,21 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 		phieuDeXuat.setNgayHoanThanh(phieuDeXuatDTO.getNgayHoanThanh());
 		phieuDeXuat.setNoiDungDeXuat(phieuDeXuatDTO.getNoiDungDeXuat());
 		
-		phieuDeXuat.setYKienLanhDao(phieuDeXuatDTO.getyKienLanhDao());
+		phieuDeXuat.setYKienLanhDao(phieuDeXuatDTO.getYKienLanhDao());
 		phieuDeXuat.setNgayDeXuat(new Date());
 		phieuDeXuat.setNguoiKeToan(phieuDeXuatDTO.getNguoiKeToan());
-		
-		phieuDeXuat.setGiamDoc(phieuDeXuatDTO.getGiamDoc());
+		phieuDeXuatDTO.setGiamDoc(phieuDeXuat.getGiamDoc());
 		phieuDeXuat.setDeXuatNgayMua(phieuDeXuatDTO.getDeXuatNgayMua());
 		
 		phieuDeXuat.setTongTien(phieuDeXuatDTO.getTongTien());
 		phieuDeXuat.setTrangThai(0);
-	
 		
-		
-		
-		 
-		 List<TblNoiDungDeXuatDTO> deXuats = phieuDeXuatDTO.getTblNoiDungDeXuat();		
-		 TblPhieuDeXuat deXuat= phieuDeXuatDao.AddPhieuDeXuat(phieuDeXuat);
-		 
-		for (TblNoiDungDeXuatDTO tblNoiDungDeXuatDTO : deXuats) {
-			
-			tblNoiDungDeXuatDTO.setIdPhieuDeXuat(deXuat.getId());
-			noiDungService.AddNoiDungDeXuatDTO(tblNoiDungDeXuatDTO);
-			
-//			noiDungDeXuatDao.AddNoiDungDeXuat(dungDeXuat);
-		}
-		
-	
-		 
-		
-		
-
-		
-		
-	
-		
+		/*
+		 * 0. dang xet duyet
+		 * 1. da xet duyet
+		 * 2. da chi
+		 */
+		phieuDeXuatDao.AddPhieuDeXuat(phieuDeXuat);
 		
 	}
 
@@ -142,10 +118,9 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 		phieuDeXuatDTO.setyKienLanhDao(phieuDeXuat.getYKienLanhDao());
 		phieuDeXuatDTO.setNgayDeXuat(phieuDeXuat.getNgayDeXuat());
 		phieuDeXuatDTO.setNguoiKeToan(phieuDeXuat.getNguoiKeToan());
-		
 		phieuDeXuatDTO.setGiamDoc(phieuDeXuat.getGiamDoc());
 		phieuDeXuatDTO.setDeXuatNgayMua(phieuDeXuat.getDeXuatNgayMua());
-		
+		phieuDeXuatDTO.setTongTienFormat(format.format(phieuDeXuat.getTongTien()));
 		phieuDeXuatDTO.setTongTien(phieuDeXuat.getTongTien());
 		phieuDeXuatDTO.setTrangThai(phieuDeXuat.getTrangThai());
 		
@@ -172,7 +147,7 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 			noiDungDeXuatDTOs.add(noiDungDeXuatDTO);
 		}
 		
-		phieuDeXuatDTO.setTblNoiDungDeXuat(noiDungDeXuatDTOs);
+		phieuDeXuatDTO.setTblNoiDungDeXuats(noiDungDeXuatDTOs);
 		
 		return phieuDeXuatDTO;
 	}
@@ -205,8 +180,9 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 			
 			phieuDeXuatDTO.setNgayDeXuat(phieuDeXuat.getNgayDeXuat());
 			phieuDeXuatDTO.setTongTien(phieuDeXuat.getTongTien());
-			
+			phieuDeXuatDTO.setTongTienFormat(format.format(phieuDeXuat.getTongTien()));
 			phieuDeXuatDTO.setNguoiKeToan(phieuDeXuat.getNguoiKeToan());
+			
 			phieuDeXuatDTO.setTrangThai(phieuDeXuat.getTrangThai());
 			
 			phieuDeXuatDTOs.add(phieuDeXuatDTO);

@@ -1,7 +1,6 @@
 package com.demo.service;
 
-import com.demo.dao.entity.TblNoiDungDeXuat;
-import com.demo.repository.TblNoiDungDeXuatDTO;
+import com.demo.model.TblNoiDungDeXuatDTO;
 
 public interface NoiDungDeXuatService {
 
