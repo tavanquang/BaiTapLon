@@ -27,6 +27,14 @@
 
 				</div>
 				<h3>DANH SÁCH PHIẾU ĐỀ XUẤT</h3>
+				<form th:action="@{/admin/loc-danh-sach-phieu-de-xuat/page/1}" method="get">
+				<select class="" name="trangThai" style="height: 30px;">
+					<option value="0">Đang xét duyệt</option>
+					<option value="1">Đã duyệt</option>
+					<option value="2">Đã chi</option>
+				</select> 
+				<button type="submit" value="" id="" name="" >Lọc</button>
+				</form>
 				<table id="table-breakpoint">
 					<thead>
 						<tr>
@@ -42,7 +50,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="list,c : ${phieuDeXuatDTO.pageList}">
+						<tr th:each="list,c : ${phieuDeXuatDTOs.pageList}">
 							<td th:text="${c.count}"></td>
 							<td th:text="${list.nguoiDeNghi}"></td>
 							<td th:text="${list.noiDungDeXuat}"></td>

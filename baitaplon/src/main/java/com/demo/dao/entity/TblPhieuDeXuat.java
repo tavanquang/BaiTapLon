@@ -64,6 +64,10 @@ public class TblPhieuDeXuat implements Serializable {
 	//bi-directional many-to-one association to TblNoiDungDeXuat
 	@OneToMany(mappedBy="tblPhieuDeXuat")
 	private List<TblNoiDungDeXuat> tblNoiDungDeXuats;
+	
+	
+	
+	
 
 	public TblPhieuDeXuat() {
 	}
@@ -193,5 +197,15 @@ public class TblPhieuDeXuat implements Serializable {
 
 		return tblNoiDungDeXuat;
 	}
+
+	@Override
+	public String toString() {
+		return "TblPhieuDeXuat [id=" + id + ", deXuatNgayMua=" + deXuatNgayMua + ", giamDoc=" + giamDoc + ", kinhGui="
+				+ kinhGui + ", ngayBatDau=" + ngayBatDau + ", ngayDeXuat=" + ngayDeXuat + ", ngayHoanThanh="
+				+ ngayHoanThanh + ", nguoiDeNghi=" + nguoiDeNghi + ", nguoiKeToan=" + nguoiKeToan + ", noiDungDeXuat="
+				+ noiDungDeXuat + ", tongTien=" + tongTien + ", trangThai=" + trangThai + ", yKienLanhDao="
+				+ yKienLanhDao + ", tblNoiDungDeXuats=" + tblNoiDungDeXuats + "]";
+	}
+	
 
 }

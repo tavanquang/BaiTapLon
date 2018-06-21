@@ -65,16 +65,15 @@ function checkPC() {
 		alert("Chưa nhập tên giám đốc");
 		giamdoc.focus();
 		return false;
-	} else {
-		alert("Thêm thành công");
-	}
+	} 
+	return true;
 }
 
 function checkPDX() {
 	nguoinhan = $("#NguoiNhan");
 	nguoidexuat = $("#NguoiDeXuat");
 	noidungdexuat = $("#NoiDungDeXuat");
-	ngaybatdau = $("#NgayBatDau");
+	ngaybatdau = $("#ngaybatdau");
 	ngayhoanthanh = $("#NgayHoanThanh");
 	ykien = $("#YKien");
 	ndx = $("#NDX");
@@ -94,7 +93,7 @@ function checkPDX() {
 		noidungdexuat.focus();
 		return false;
 	}
-	else if (ngaybatdau.val() == "") {
+	else if (ngaybatdau.val() == "" ) {
 		alert("Chưa nhập ngày bắt đầu");
 		ngaybatdau.focus();
 		return false;
@@ -123,10 +122,7 @@ function checkPDX() {
 		alert("Chưa nhập tên sếp");
 		gd.focus();
 		return false;
-	}else{
-		alert("Thêm Thành công!!!");
 	}
-	
 }
 
 

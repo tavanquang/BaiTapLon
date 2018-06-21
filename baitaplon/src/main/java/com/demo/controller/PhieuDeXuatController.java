@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.demo.model.TblPhieuChiDTO;
-import com.demo.model.TblPhieuDeXuatDTO;
+import com.demo.repository.TblPhieuChiDTO;
+import com.demo.repository.TblPhieuDeXuatDTO;
 import com.demo.service.PhieuDeXuatService;
 
 @Controller
@@ -27,14 +27,8 @@ public class PhieuDeXuatController {
 	PhieuDeXuatService phieuDeXuatService;
 	
 	@GetMapping(value="/chi-tiet-phieu-de-xuat")
-	public String trangChiTietPC(ModelMap map,@RequestParam(name="id", required=true) int id) {
-		TblPhieuDeXuatDTO phieuDeXuatDTO = phieuDeXuatService.getPhieuDeXuatDTO(id);
-		map.addAttribute("phieuDeXuatDTO", phieuDeXuatDTO);
+	public String chiTietPDX() {
 		return "admin/ChiTietPhieuDeXuat";
-	}
-	@GetMapping(value="/thong-tin-phieu-de-xuat")
-	public String chiTietPhieuDeXuat(ModelMap map) {
-		return "redirect:/admin/thong-tin-phieu-de-xuat";
 	}
 	
 	@GetMapping(value="/chuyen-trang-thai-phieu-de-xuat")
@@ -91,7 +85,7 @@ public class PhieuDeXuatController {
 	}
 	//loc
 	@GetMapping("/loc-danh-sach-phieu-de-xuat")
-	public String locPage1PDX(Model model,HttpServletRequest request
+	public String locPage1(Model model,HttpServletRequest request
 			,RedirectAttributes redirect) {
 		request.getSession().setAttribute("phieuDeXuatDTOList", null);
 		
@@ -100,7 +94,7 @@ public class PhieuDeXuatController {
 		return "redirect:/admin/loc-danh-sach-phieu-de-xuat/page/1";
 	}
 	@GetMapping("/loc-danh-sach-phieu-de-xuat/page/{pageNumber}")
-	public String locPDX(HttpServletRequest request, 
+	public String loc(HttpServletRequest request, 
 			@PathVariable int pageNumber, Model model, @RequestParam(name="trangThai", required=true) int trangThai) {
 		List<TblPhieuDeXuatDTO> phieuDeXuatDTO = phieuDeXuatService.getAllByTrangThai(trangThai);
 		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("phieuDeXuatDTO");
