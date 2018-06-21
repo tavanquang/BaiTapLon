@@ -1,4 +1,4 @@
-package com.demo.repository;
+package com.demo.model;
 
 import java.util.Date;
 import java.util.List;
@@ -29,7 +29,7 @@ public class TblPhieuDeXuatDTO {
 	
 	private String tongTienFormat;
 	
-	public void setTongTienFormat() {
+	public void setTongTienFormat(String tongTienFormat) {
 		this.tongTienFormat = tongTienFormat;
 	}
 	public String getTongTienFormat() {

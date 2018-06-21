@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Home</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home/home.css}" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<!-- header -->
+	<nav class="css-header" th:fragment="nav-header">
+		<div class="row">
+			<div class="col-sm-6">
+				<a th:href="@{/}" style="color: blue;">Home</a>
+			</div>
+			<div class="col-sm-6">
+				<h4>NCC Soft</h4>
+			</div>
+		</div>
+	</nav>
+	<!-- body -->
+	<div class="container h1">
+		<h2 style="margin-top: 90px;">Mời bạn chọn Mục cần dùng</h2>
+		<div class="btn-group-vertical h2"> 
+			<a type="button" class="btn btn-success" th:href="@{/phieu-de-xuat}">Thêm phiếu đề xuất</a>
+			<a type="button" class="btn btn-primary" th:href="@{/phieu-chi}">Thêm phiếu chi</a>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.demo.repository;
+package com.demo.model;
 
 import java.util.Date;
 

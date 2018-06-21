@@ -20,19 +20,7 @@
 </head>
 <body>
 	<!-- header -->
-	<section class="css-header">
-		<div class="row">
-			<div class="col-sm-3">
-				<a th:href="@{/}" style="color: blue;">Home</a>
-			</div>
-			<div class="col-sm-4">
-				<input class="search" type="text" name="" placeholder="Search...." />
-			</div>
-			<div class="col-sm-4">
-				<h4>NCC Soft</h4>
-			</div>
-		</div>
-	</section>
+	<nav class="" th:replace="client/home :: nav-header"></nav>
 	<section>
 		<div class="container">
 			<div class="row">

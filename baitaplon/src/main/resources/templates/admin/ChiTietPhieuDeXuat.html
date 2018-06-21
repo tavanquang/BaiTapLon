@@ -13,58 +13,54 @@
 	<div class="container">
 		<h1 style="text-align: center;">Phiếu đề xuất</h1>
 		<div class="row">
-			<form>
+			<form th:each="phieudexuat,pdx : ${phieuDeXuatDTO}">
 				<table id="customers">
 					<tr>
 						<th colspan="2">Thông tin Chi tiết phiếu đề xuất </th>
 					</tr>
 					<tr>
-						<th>Người nhận phiếu: </th>
-						<td></td>
-					</tr>
-					<tr>
 						<th>Người đề nghị: </th>
-						<td></td>
+						<td th:text="${phieudexuat.nguoiDeNghi}"></td>
 					</tr>
 					<tr>
 						<th>Ngày bắt đầu: </th>
-						<td></td>
+						<td th:text="${phieudexuat.ngayBatDau}"></td>
 					</tr>
 					<tr>
 						<th>Ngày hoàn thành: </th>
-						<td></td>
+						<td th:text="${phieudexuat.ngayHoanThanh}"></td>
 					</tr>
 					<tr>
 						<th>Nội dung đề xuất: </th>
-						<td></td>
+						<td th:text="${phieudexuat.noiDungDeXuat}"></td>
 					</tr>
 					<tr>
 						<th>ý kiến lãnh đạo: </th>
-						<td></td>
+						<td th:text="${phieudexuat.yKienLanhDao}"></td>
 					</tr>
 					<tr>
 						<th>Ngày đề xuất: </th>
-						<td></td>
+						<td th:text="${phieudexuat.ngayDeXuat}"></td>
 					</tr>
 					<tr>
 						<th>đề xuất ngày mua: </th>
-						<td></td>
+						<td th:text="${phieudexuat.deXuatNgayMua}"></td>
 					</tr>
 					<tr>
 						<th>Tổng tiền: </th>
-						<td></td>
+						<td th:text="${phieudexuat.tongTienFormat}"></td>
 					</tr>
 					<tr>
 						<th>Trạng thái: </th>
-						<td></td>
+						<td th:text="${phieudexuat.trangThai}"></td>
 					</tr>
 					<tr>
 						<th>Người kế toán: </th>
-						<td></td>
+						<td th:text="${phieudexuat.nguoiKeToan}"></td>
 					</tr>
 					<tr>
 						<th>Giám đốc: </th>
-						<td></td>
+						<td th:text="${phieudexuat.giamDoc}"></td>
 					</tr>
 				</table>
 			</form>

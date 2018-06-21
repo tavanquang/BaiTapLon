@@ -2,7 +2,7 @@ package com.demo.service;
 
 import java.util.List;
 
-import com.demo.repository.TblPhieuChiDTO;
+import com.demo.model.TblPhieuChiDTO;
 
 public interface PhieuChiService {
 

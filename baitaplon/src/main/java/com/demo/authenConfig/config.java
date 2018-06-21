@@ -1,4 +1,4 @@
-package com.demo;
+package com.demo.authenConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

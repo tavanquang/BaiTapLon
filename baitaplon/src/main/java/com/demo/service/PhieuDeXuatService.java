@@ -2,7 +2,7 @@ package com.demo.service;
 
 import java.util.List;
 
-import com.demo.repository.TblPhieuDeXuatDTO;
+import com.demo.model.TblPhieuDeXuatDTO;
 
 public interface PhieuDeXuatService {
 

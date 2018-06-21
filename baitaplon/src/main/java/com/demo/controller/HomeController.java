@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.demo.repository.TblNoiDungDeXuatDTO;
-import com.demo.repository.TblPhieuChiDTO;
-import com.demo.repository.TblPhieuDeXuatDTO;
+import com.demo.model.TblNoiDungDeXuatDTO;
+import com.demo.model.TblPhieuChiDTO;
+import com.demo.model.TblPhieuDeXuatDTO;
 import com.demo.service.NoiDungDeXuatService;
 import com.demo.service.PhieuChiService;
 import com.demo.service.PhieuDeXuatService;
@@ -35,6 +35,10 @@ public class HomeController {
 	@GetMapping(value="/")
 	public String home(){
 		return "client/home";
+	}
+	@GetMapping(value="/home")
+	public String home2(){
+		return "client/home2";
 	}
 	
 	@GetMapping(value="/phieu-chi")

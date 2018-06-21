@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.demo.repository.TblPhieuChiDTO;
+import com.demo.model.TblPhieuChiDTO;
 import com.demo.service.PhieuChiService;
 
 @Controller
@@ -95,7 +95,7 @@ public class PhieuChiController {
 	}
 	//loc
 	@GetMapping("/loc-danh-sach-phieu-chi")
-	public String locPage1(Model model,HttpServletRequest request
+	public String locPage1PC(Model model,HttpServletRequest request
 			,RedirectAttributes redirect) {
 		request.getSession().setAttribute("phieuChiDTOList", null);
 		
@@ -104,7 +104,7 @@ public class PhieuChiController {
 		return "redirect:/admin/loc-danh-sach-phieu-chi/page/1";
 	}
 	@GetMapping("/loc-danh-sach-phieu-chi/page/{pageNumber}")
-	public String loc(HttpServletRequest request, 
+	public String locPC(HttpServletRequest request, 
 			@PathVariable int pageNumber, Model model, @RequestParam(name="trangThai", required=true) int trangThai) {
 		List<TblPhieuChiDTO> phieuChiDTO = phieuChiService.getAllByTrangThai(trangThai);
 		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("phieuChiDTO");

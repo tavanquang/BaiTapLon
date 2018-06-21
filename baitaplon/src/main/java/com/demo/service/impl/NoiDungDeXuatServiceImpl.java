@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.demo.dao.NoiDungDeXuatDao;
 import com.demo.dao.PhieuDeXuatDao;
 import com.demo.dao.entity.TblNoiDungDeXuat;
-import com.demo.repository.TblNoiDungDeXuatDTO;
+import com.demo.model.TblNoiDungDeXuatDTO;
 import com.demo.service.NoiDungDeXuatService;
 
 @Service
