@@ -1,0 +1,50 @@
+<nav class="main-menu" th:fragment="menu-ad">
+		<ul>
+			<li>
+				<a th:href="@{/}">
+					<i class="fa fa-home nav_icon"></i>
+					<span class="nav-text">
+					Home
+					</span>
+				</a>
+			</li>
+			
+			<li>
+				<a th:href="@{/admin/danh-sach-phieu-chi}">
+					<i class="icon-font nav-icon"></i>
+					<span class="nav-text">
+					Phiếu chi
+					</span>
+				</a>
+			</li>
+		
+			<li>
+				<a th:href="@{/admin/danh-sach-phieu-de-xuat}">
+					<i class="fa fa-map-marker" aria-hidden="true"></i>
+					<span class="nav-text">
+					Phiếu đề xuất
+					</span>
+				</a>
+			</li>
+			<li>
+				<a th:href="@{/admin/in-phiếu}">
+					<i class="icon-font nav-icon"></i>
+					<span class="nav-text">
+					In phiếu
+					</span>
+				</a>
+			</li>
+			
+			
+		</ul>
+		<ul class="logout">
+			<li>
+			<a th:href="@{/logout}">
+			<i class="icon-off nav-icon"></i>
+			<span class="nav-text">
+			Đăng xuất
+			</span>
+			</a>
+			</li>
+		</ul>
+	</nav>

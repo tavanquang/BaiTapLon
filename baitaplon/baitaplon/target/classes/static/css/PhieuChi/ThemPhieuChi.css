@@ -1,0 +1,31 @@
+@charset "UTF-8";
+.css-header {
+	background: #eae4e4;
+	font-size: 20px;
+	padding: 20px 8%;
+}
+
+.css-header a {
+	text-decoration: none;
+}
+.css-footer {
+	background: #eae4e4;
+	font-size: 18px;
+	padding: 22px;
+}
+.search{
+	border: 1px solid #ccc!important; 
+	background:#f5d2a0; 
+	margin-left: -58px; 
+	float: left; 
+	width: 371px;
+}
+h4{
+	margin-right: -95px;
+	float: right;
+}
+.themPC1{
+	text-align: center;
+	margin-bottom: 27px;
+	color: #337ab7;
+}

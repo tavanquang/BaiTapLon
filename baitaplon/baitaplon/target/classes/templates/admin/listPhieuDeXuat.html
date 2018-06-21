@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="common/head-ad :: head-ad">
+	<meta charset="UTF-8" />
+</head>
+<body class="dashboard-page">
+
+	<nav class="main-menu" th:replace="common/menu-ad :: menu-ad"></nav>
+	<section class="wrapper scrollable">
+		<nav class="user-menu">
+			<a href="javascript:;" class="main-menu-access"> <i
+				class="icon-proton-logo"></i> <i class="icon-reorder"></i>
+			</a>
+		</nav>
+		<section th:replace="common/search-ad :: search-ad"></section>
+
+		<div class="main-grid">
+			<div class="agile-grids">
+				<!-- tables -->
+
+				<div class="table-heading">
+					<h2>DANH SÁCH PHIẾU ĐỀ XUẤTT</h2>
+
+				</div>
+				<h3>DANH SÁCH PHIẾU ĐỀ XUẤT</h3>
+				<form th:action="@{/admin/loc-danh-sach-phieu-de-xuat/page/1}" method="get">
+				<select class="" name="trangThai" style="height: 30px;">
+					<option value="0">Đang xét duyệt</option>
+					<option value="1">Đã duyệt</option>
+					<option value="2">Đã chi</option>
+				</select> 
+				<button type="submit" value="" id="" name="" >Lọc</button>
+				</form>
+				<table id="table-breakpoint">
+					<thead>
+						<tr>
+							<th>STT</th>
+							<th>Người đề xuất</th>
+							<th>Nội dung đề xuất</th>
+							<th>Ngày đề xuất</th>
+							<th>Tổng tiền</th>
+							<th>Người kế toán</th>
+							<th style="width: 167px;">Trạng thái</th>
+							<th style="width: 139px;">Tùy chọn</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="list,c : ${phieuDeXuatDTOs.pageList}">
+							<td th:text="${c.count}"></td>
+							<td th:text="${list.nguoiDeNghi}"></td>
+							<td th:text="${list.noiDungDeXuat}"></td>
+							<td th:text="${list.ngayDeXuat}"></td>
+							<td th:text="${list.tongTien}"></td>
+							<td th:text="${list.nguoiKeToan}"></td>
+							
+							<form th:action="@{/admin/chuyen-trang-thai-phieu-de-xuat}" method="get">
+							
+							<td th:if="${list.trangThai} == 0">
+							<select
+								class="form-control" name="trangThai">
+									<option value="0">Đang Xét duyệt</option>
+									<option value="1">Đã duyệt</option>
+									<option value="2">Đã chi</option>
+							</select>
+							</td>
+							
+							<td th:if="${list.trangThai} == 1">
+							<select
+								class="form-control" name="trangThai">
+									<option value="1">Đã duyệt</option>
+									<option value="0">Đang xét duyệt</option>
+									<option value="2">Đã chi</option>
+							</select>
+							</td>
+							
+							<td th:if="${list.trangThai} == 2">
+							<select
+								class="form-control" name="trangThai">
+									<option value="2">Đã chi</option>
+									<option value="1">Đã duyệt</option>
+									<option value="0">Đang xét duyệt</option>
+									
+							</select>
+							</td>
+							
+							<input type="hidden" name="id" th:value="${list.id}"/>
+							
+							<td>
+							<a style="width: 149px;" th:href="@{/admin/chi-tiet-phieu-de-xuat(id=${list.id})}"
+								class="btn btn-danger"> Xem </a>
+							<button class="btn btn-success" type="submit">Đổi trạng thái </button>
+								</td>
+							</form>
+						</tr>
+					</tbody>
+				</table>
+				<!-- phân trang -->
+				<ul class="pagination">
+					<li
+						th:class="${currentIndex == 1}? 'page-item disabled' : 'page-item'">
+						<a class="page-link" th:href="@{/admin/danh-sach-phieu-de-xuat/page/1}">First</a>
+					</li>
+					<li
+						th:class="${currentIndex == 1}? 'page-item disabled': 'page-item' ">
+						<a class="page-link" aria-label="Previous"
+						th:href="@{|${baseUrl}${currentIndex - 1}|}"
+						title='Go to previous page'><span aria-hidden="true">«</span>
+							<span class="sr-only">Previous</span></a>
+					</li>
+					<li th:each="item : ${#numbers.sequence(beginIndex,endIndex)}"
+						th:class="${item == currentIndex ? 'page-item active' :'page-item' }">
+						<a class="page-link" th:href="@{|${baseUrl}${item}|}"> <span
+							th:text='${item}'>1</span>
+					</a>
+					</li>
+					<li
+						th:class="${currentIndex == totalPageCount}? 'page-item disabled': 'page-item'">
+						<a class="page-link" aria-label="Next"
+						th:href="@{|${baseUrl}${currentIndex + 1}|}"
+						title='Go to next page'><span aria-hidden="true">»</span> <span
+							class="sr-only">Next</span></a>
+					</li>
+					<li
+						th:class="${currentIndex == totalPageCount}? 'page-item disabled':'page-item'">
+						<a class="page-link" th:href="@{|${baseUrl}${totalPageCount}|}">Last</a>
+					</li>
+				</ul>
+				<!-- //tables -->
+			</div>
+		</div>
+
+		<!-- footer -->
+		<div class="footer">
+			<p>
+				Â© 2018 Colored . All Rights Reserved . Design by <a
+					href="http://w3layouts.com/">ABC_XXX</a>
+			</p>
+		</div>
+		<!-- //footer -->
+	</section>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+@CHARSET "UTF-8";
+.pc1{
+	margin-top: 20px; 
+	margin-bottom : 20px; 
+	display: flex; 
+	justify-content: center;
+}
+form{
+	width: 595px; 
+	height: 842px; 
+	border-style: solid;
+}
+.center_margin{
+	text-align: center;
+	margin-top: 200px;
+}
+#a1{
+	text-align: left;
+	padding-left: 40px;
+    padding-top: 70px;
+}
+#a2{
+	text-align: center;
+	padding-right: 35px;
+    padding-top: 70px;
+}
+.pc2{
+	margin-left: 204px; 
+	text-align: center;
+}
+.pc3{
+	margin-left: 40px;
+}
+.pc4 p{
+	margin-left: 50px;
+}
+.pc5{
+	text-align: center;
+	margin-right: 70px;
+}
+.font_size{
+	font-size: 15px;
+}
+div.text_center{
+	height: 240px;
+}
+div.text_center h4{
+	text-align: center;
+}
+.text_center i{
+	margin-left: 45px;
+}
+.text_center div{
+	height: 120px;
+}
+.text_center a{
+	margin-left: 25px;
+}
+

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/PhieuChi/themphieuchi.css}" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+<script th:src="@{/js/validate/validate.js}"></script>
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+</head>
+<body>
+	<!-- header -->
+	<section class="css-header">
+		<div class="row">
+			<div class="col-sm-3">
+				<a th:href="@{/}" style="color: blue;">Home</a>
+			</div>
+			<div class="col-sm-4">
+				<input class="search" type="text" name="" placeholder="Search...." />
+			</div>
+			<div class="col-sm-4">
+				<h4>NCC Soft</h4>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="">
+						<div class="">
+							<h2 class="themPC1">Phiếu chi</h2>
+							<div class="clearfix"></div>
+						</div>
+						<div class="">
+							<form th:object="${phieuChiDTO}"
+								class="form-horizontal form-label-left input_mask"
+								th:action="@{/them-phieu-chi}" method="POST">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Tên
+											Người Nhận</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input th:field="*{nguoiNhanTien}" class="form-control"
+												placeholder="Nhập tên người nhận" id="NguoiNhanTien"
+												type="text" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Địa
+											chỉ</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control"
+												placeholder="Nhập địa chỉ nhận tiền" th:field="*{diaChi}"
+												id="DiaChi" type="text" />
+										</div>
+									</div>
+									<!--<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày
+											lập phiếu</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<div class='input-group date'>
+												<input style="width: 398px;" class="form-control"
+													th:field="*{ngayLapPhieu}" type="date" value="2018-09-30"
+													min="2018-06-06" max="2018-12-31" />
+											</div>
+										</div>
+									</div>-->
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Lí
+											do</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<textarea th:field="*{lyDoChi}" id="LyDoChi"
+												class="form-control" placeholder="Lí do đề xuất" name="LiDo"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Số
+											tiền</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control" placeholder="Số tiền"
+												th:field="*{soTien}" id="SoTien" type="number" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Hình
+											ảnh</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="" th:field="*{hinhAnh}" id="HinhAnh"
+												type="file" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Người
+											lập phiếu</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control" placeholder="Nhập tên mày vào"
+												th:field="*{nguoiLapPhieu}" id="NguoiLapPhieu" type="text" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Giám
+											Đốc</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control"
+												placeholder="Nhập tên người sếp đẹp zai của bạn"
+												th:field="*{giamDoc}" id="GiamDoc" type="text" />
+										</div>
+									</div>
+								</div>
+								<!-- <div class="ln_solid clearfix"></div> -->
+								<div class="form-group">
+									<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
+										<button onclick=" return checkPC()" type="submit"
+											class="btn btn-success">Thêm mới</button>
+										<a class="btn btn-danger" th:href="@{/}">Hủy</a>
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
