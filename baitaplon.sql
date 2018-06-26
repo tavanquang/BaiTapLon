@@ -1,169 +1,113 @@
-﻿-- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+﻿-- MySQL dump 10.13  Distrib 8.0.11, for Win64 (x86_64)
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 07, 2018 lúc 06:57 AM
--- Phiên bản máy phục vụ: 10.1.26-MariaDB
--- Phiên bản PHP: 7.0.22
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: baitaplon
+-- ------------------------------------------------------
+-- Server version	8.0.11
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+ SET NAMES utf8 ;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Cơ sở dữ liệu: `baitaplon`
+-- Table structure for table `tbl_admin`
 --
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `tbl_admin`
---
-
+DROP TABLE IF EXISTS `tbl_admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `tbl_admin` (
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-  `roles` varchar(45) NOT NULL
+  `roles` varchar(45) NOT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Đang đổ dữ liệu cho bảng `tbl_admin`
+-- Table structure for table `tbl_noi_dung_de_xuat`
 --
 
-INSERT INTO `tbl_admin` (`username`, `password`, `roles`) VALUES
-('admin', '123', 'ROLE_ADMIN'),
-('quang', '123', 'ROLE_USER');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `tbl_noi_dung_de_xuat`
---
-
+DROP TABLE IF EXISTS `tbl_noi_dung_de_xuat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `tbl_noi_dung_de_xuat` (
-  `id` int(11) NOT NULL,
-  `noi_dung_de_xuat` text,
-  `so_ngay` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `don_gia` int(11) DEFAULT NULL,
+  `ghi_chu` varchar(45) DEFAULT NULL,
+  `noi_dung_de_xuat` varchar(45) DEFAULT NULL,
   `so_luong` int(11) DEFAULT NULL,
-  `don_gia` double DEFAULT NULL,
+  `so_ngay` int(11) DEFAULT NULL,
   `thanh_tien` double DEFAULT NULL,
-  `ghi_chu` varchar(255) DEFAULT NULL,
-  `id_phieu_de_xuat` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `id_phieu_de_xuat` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_phieu_de_xuat` (`id_phieu_de_xuat`),
+  CONSTRAINT `tbl_noi_dung_de_xuat_ibfk_1` FOREIGN KEY (`id_phieu_de_xuat`) REFERENCES `tbl_phieu_de_xuat` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Cấu trúc bảng cho bảng `tbl_phieu_chi`
+-- Table structure for table `tbl_phieu_chi`
 --
 
+DROP TABLE IF EXISTS `tbl_phieu_chi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `tbl_phieu_chi` (
-  `id` int(11) NOT NULL,
-  `nguoi_nhan_tien` varchar(100) NOT NULL,
-  `dia_chi` varchar(250) DEFAULT NULL,
-  `ly_do_chi` text,
-  `so_tien` double DEFAULT NULL,
-  `hinh_anh` varchar(250) DEFAULT NULL,
-  `ngay_lap_phieu` date DEFAULT NULL,
-  `giam_doc` varchar(100) DEFAULT NULL,
-  `nguoi_lap_phieu` varchar(100) DEFAULT NULL,
-  `trang_thai` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Đang đổ dữ liệu cho bảng `tbl_phieu_chi`
---
-
-INSERT INTO `tbl_phieu_chi` (`id`, `nguoi_nhan_tien`, `dia_chi`, `ly_do_chi`, `so_tien`, `hinh_anh`, `ngay_lap_phieu`, `giam_doc`, `nguoi_lap_phieu`, `trang_thai`) VALUES
-(1, 'Tạ Văn Quang', 'Công ty TNHH NCCSOFT', 'Thanh toán 10 cái màn hình máy tính', 80000000,'1', '2018-06-06', 'Mai Thế Hùng', 'Nguyễn Phương Anh', 0),
-(2, 'Lê Thị Lương', 'Công ty TNHH NCCSOFT', 'Thanh toán 2 cái bàn phím', 600000, '2', '2018-06-06', 'Mai Thế Hùng', 'Nguyễn Phương Anh', 0);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `tbl_phieu_de_xuat`
---
-
-CREATE TABLE `tbl_phieu_de_xuat` (
-  `id` int(11) NOT NULL,
-  `kinh_gui` varchar(255) DEFAULT NULL,
-  `nguoi_de_nghi` varchar(100) DEFAULT NULL,
-  `ngay_bat_dau` date DEFAULT NULL,
-  `ngay_hoan_thanh` date DEFAULT NULL,
-  `noi_dung_de_xuat` varchar(255) DEFAULT NULL,
-  `y_kien_lanh_dao` text,
-  `ngay_de_xuat` date DEFAULT NULL,
-  `nguoi_ke_toan` varchar(45) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `dia_chi` varchar(45) DEFAULT NULL,
   `giam_doc` varchar(45) DEFAULT NULL,
-  `de_xuat_ngay_mua` date DEFAULT NULL,
-  `tong_tien` double DEFAULT NULL,
-  `trang_thai` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
--- Chỉ mục cho các bảng đã đổ
---
-
---
--- Chỉ mục cho bảng `tbl_admin`
---
-ALTER TABLE `tbl_admin`
-  ADD PRIMARY KEY (`username`);
+  `hinh_anh` varchar(45) DEFAULT NULL,
+  `ly_do_chi` varchar(45) DEFAULT NULL,
+  `ngay_lap_phieu` date DEFAULT NULL,
+  `nguoi_lap_phieu` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `nguoi_nhan_tien` varchar(45) DEFAULT NULL,
+  `so_tien` double DEFAULT NULL,
+  `trang_thai` int(11) DEFAULT NULL,
+  `viet_bang_chu` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `kem_theo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Chỉ mục cho bảng `tbl_noi_dung_de_xuat`
---
-ALTER TABLE `tbl_noi_dung_de_xuat`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_phieu_de_xuat1_idx` (`id_phieu_de_xuat`);
-
---
--- Chỉ mục cho bảng `tbl_phieu_chi`
---
-ALTER TABLE `tbl_phieu_chi`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `tbl_phieu_de_xuat`
---
-ALTER TABLE `tbl_phieu_de_xuat`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT cho các bảng đã đổ
+-- Table structure for table `tbl_phieu_de_xuat`
 --
 
---
--- AUTO_INCREMENT cho bảng `tbl_noi_dung_de_xuat`
---
-ALTER TABLE `tbl_noi_dung_de_xuat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+DROP TABLE IF EXISTS `tbl_phieu_de_xuat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `tbl_phieu_de_xuat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `de_Xuat_Ngay_Mua` date DEFAULT NULL,
+  `giam_doc` varchar(45) DEFAULT NULL,
+  `kinh_gui` varchar(45) DEFAULT NULL,
+  `ngay_bat_dau` date DEFAULT NULL,
+  `ngay_de_xuat` date DEFAULT NULL,
+  `ngay_hoan_thanh` date DEFAULT NULL,
+  `nguoi_de_nghi` varchar(45) DEFAULT NULL,
+  `nguoi_ke_toan` varchar(45) DEFAULT NULL,
+  `noi_dung_de_xuat` varchar(45) DEFAULT NULL,
+  `tong_tien` int(11) DEFAULT NULL,
+  `trang_thai` int(11) DEFAULT NULL,
+  `y_kien_lanh_dao` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- AUTO_INCREMENT cho bảng `tbl_phieu_chi`
---
-ALTER TABLE `tbl_phieu_chi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- Các ràng buộc cho các bảng đã đổ
---
-
---
--- Các ràng buộc cho bảng `tbl_noi_dung_de_xuat`
---
-ALTER TABLE `tbl_noi_dung_de_xuat`
-  ADD CONSTRAINT `fk_phieu_de_xuat1` FOREIGN KEY (`id_phieu_de_xuat`) REFERENCES `tbl_phieu_de_xuat` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-06-19 14:37:58
