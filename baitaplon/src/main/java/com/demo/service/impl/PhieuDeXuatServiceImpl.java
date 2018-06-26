@@ -1,33 +1,48 @@
 package com.demo.service.impl;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.controller.HomeController;
 import com.demo.dao.NoiDungDeXuatDao;
 import com.demo.dao.PhieuDeXuatDao;
 import com.demo.dao.entity.TblNoiDungDeXuat;
 import com.demo.dao.entity.TblPhieuDeXuat;
 import com.demo.repository.TblNoiDungDeXuatDTO;
 import com.demo.repository.TblPhieuDeXuatDTO;
+import com.demo.service.FileOut;
 import com.demo.service.PhieuDeXuatService;
 
 @Service
 @Transactional
 public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 
+	 private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+	 @Autowired
+	 FileOut fout;
+
+	
 	@Autowired
 	PhieuDeXuatDao phieuDeXuatDao;
 	
 	@Autowired
 	NoiDungDeXuatDao noiDungDeXuatDao;
-
+	
+	 
+	
 	@Autowired
 	NoiDungDeXuatServiceImpl noiDungService;
 	
@@ -97,16 +112,25 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 		phieuDeXuat.setGiamDoc(phieuDeXuatDTO.getGiamDoc());
 		phieuDeXuat.setDeXuatNgayMua(phieuDeXuatDTO.getDeXuatNgayMua());
 		
+		
+		
 		List<TblNoiDungDeXuatDTO> deXuats = phieuDeXuatDTO.getTblNoiDungDeXuat();
+		
+		for(int i = 0; i < deXuats.size(); i++){
+			
+			LOGGER.info(deXuats.get(i).toString());
+			
+		}
 		
 		
 		double tt = 0;
+		double thanhtien = 0;
 		for(int i = 0; i < deXuats.size(); i++ ){
 			
 			int soLuong = deXuats.get(i).getSoLuong();
 			double donGia = deXuats.get(i).getDonGia();
 			
-			double thanhtien = soLuong* donGia;
+			thanhtien = soLuong* donGia;
 			
 			deXuats.get(i).setThanhTien(thanhtien);
 			
@@ -123,6 +147,7 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 		 
 		 		
 		 TblPhieuDeXuat deXuat= phieuDeXuatDao.AddPhieuDeXuat(phieuDeXuat);
+		 
 		 
 		for (TblNoiDungDeXuatDTO tblNoiDungDeXuatDTO : deXuats) {
 			
@@ -235,6 +260,52 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 		}
 		
 		return phieuDeXuatDTOs;
+	}
+
+
+	@Override
+	public FileInputStream inphieu(File fileInHtml, File fileOutHtml, File fileOutPDf, TblPhieuDeXuatDTO deXuatDTO) {
+		
+		try {
+			String conten = fout.readFiletoString(fileInHtml);
+			
+			
+			conten = conten.replace("$kinhGui",deXuatDTO.getKinhGui());
+			conten = conten.replace("$nguoiDeNghi",deXuatDTO.getNguoiDeNghi());
+			conten = conten.replace("$ngayHoanThanh",deXuatDTO.getNgayHoanThanh().toString());
+			conten = conten.replace("$noiDungDeXuat",deXuatDTO.getNoiDungDeXuat());
+			conten =conten.replace("$yKienLanhDao",deXuatDTO.getyKienLanhDao());
+			conten =conten.replace("$ngayDeXuat",deXuatDTO.getNgayDeXuat().toString());
+			conten =conten.replace("$deXuatNgayMua",deXuatDTO.getDeXuatNgayMua().toString());
+			conten =conten.replace("$tongTien",String.valueOf(deXuatDTO.getTongTien()));
+			conten =conten.replace("$nguoiKeToan",deXuatDTO.getNguoiKeToan());
+			conten =conten.replace("$giamDoc",deXuatDTO.getGiamDoc());
+			
+			LOGGER.info(conten);
+			
+			fout.saveFile(conten, fileOutHtml);
+			fout.Out(fileOutHtml, fileOutPDf);
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		FileInputStream fileInputStream = null;
+		try {
+			 fileInputStream = new FileInputStream(fileOutPDf);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return fileInputStream;
 	}
 	
 	

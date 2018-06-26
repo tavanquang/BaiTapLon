@@ -1,5 +1,7 @@
 package com.demo.service;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
@@ -19,4 +21,7 @@ public interface PhieuDeXuatService {
 	public void ChuyenTrangThai(TblPhieuDeXuatDTO phieuDeXuatDTO);
 	
 	public List<TblPhieuDeXuatDTO> getAllByTrangThai(int trangThai);
+	
+	public FileInputStream inphieu(File fileInHtml, File fileOutHtml, File fileOutPDf, TblPhieuDeXuatDTO deXuatDTO);
+	
 }

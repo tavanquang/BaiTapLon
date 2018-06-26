@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -23,11 +25,18 @@ import com.demo.service.PhieuDeXuatService;
 @RequestMapping(value="/admin")
 public class PhieuDeXuatController {
 
+	 private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+
+	
 	@Autowired
 	PhieuDeXuatService phieuDeXuatService;
 	
 	@GetMapping(value="/chi-tiet-phieu-de-xuat")
-	public String chiTietPDX() {
+	public String chiTietPDX(ModelMap map,@RequestParam(name="id", required=true) int id) {
+		TblPhieuDeXuatDTO phieuDeXuatDTO = phieuDeXuatService.getPhieuDeXuatDTO(id);
+		map.addAttribute("phieuDeXuatDTO", phieuDeXuatDTO);
+		
+		
 		return "admin/ChiTietPhieuDeXuat";
 	}
 	
@@ -88,6 +97,7 @@ public class PhieuDeXuatController {
 	public String locPage1(Model model,HttpServletRequest request
 			,RedirectAttributes redirect) {
 		request.getSession().setAttribute("phieuDeXuatDTOList", null);
+		LOGGER.info("/loc-danh-sach-phieu-de-xuat");
 		
 		if(model.asMap().get("success") != null)
 			redirect.addFlashAttribute("success",model.asMap().get("success").toString());
@@ -96,9 +106,12 @@ public class PhieuDeXuatController {
 	@GetMapping("/loc-danh-sach-phieu-de-xuat/page/{pageNumber}")
 	public String loc(HttpServletRequest request, 
 			@PathVariable int pageNumber, Model model, @RequestParam(name="trangThai", required=true) int trangThai) {
+		LOGGER.info("/loc-danh-sach-phieu-de-xuat/page/{pageNumber}");
 		List<TblPhieuDeXuatDTO> phieuDeXuatDTO = phieuDeXuatService.getAllByTrangThai(trangThai);
 		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("phieuDeXuatDTO");
 		int pagesize = 2;
+	
+		
 		
 		System.out.println(phieuDeXuatDTO.size());
 		if (pages == null) {

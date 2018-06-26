@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,8 @@ import com.demo.service.PhieuChiService;
 @Controller
 @RequestMapping(value="/admin")
 public class PhieuChiController {
+	 private static final Logger LOGGER = LoggerFactory.getLogger(PhieuChiController.class);
+
 
 	@Autowired
 	PhieuChiService phieuChiService;
@@ -99,6 +103,8 @@ public class PhieuChiController {
 			,RedirectAttributes redirect) {
 		request.getSession().setAttribute("phieuChiDTOList", null);
 		
+		LOGGER.info("loc-danh-sach-phieu-chi");
+		
 		if(model.asMap().get("success") != null)
 			redirect.addFlashAttribute("success",model.asMap().get("success").toString());
 		return "redirect:/admin/loc-danh-sach-phieu-chi/page/1";
@@ -109,6 +115,7 @@ public class PhieuChiController {
 		List<TblPhieuChiDTO> phieuChiDTO = phieuChiService.getAllByTrangThai(trangThai);
 		PagedListHolder<?> pages = (PagedListHolder<?>) request.getSession().getAttribute("phieuChiDTO");
 		int pagesize = 2;
+		LOGGER.info("/loc-danh-sach-phieu-chi/page/{pageNumber}");
 		
 		System.out.println(phieuChiDTO.size());
 		if (pages == null) {

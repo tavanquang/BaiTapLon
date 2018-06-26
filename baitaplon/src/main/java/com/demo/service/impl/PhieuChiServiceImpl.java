@@ -1,24 +1,36 @@
 package com.demo.service.impl;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.controller.HomeController;
 import com.demo.dao.PhieuChiDao;
 import com.demo.dao.entity.TblPhieuChi;
 import com.demo.repository.TblPhieuChiDTO;
+import com.demo.service.FileOut;
 import com.demo.service.PhieuChiService;
 
 
 @Transactional
 @Service
 public class PhieuChiServiceImpl implements PhieuChiService{
+	
+	 private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+	 @Autowired
+	 FileOut fout;
 
 	@Autowired
 	PhieuChiDao phieuChiDao;
@@ -152,6 +164,46 @@ public class PhieuChiServiceImpl implements PhieuChiService{
 		}
 		
 		return phieuChiDTOs;
+	}
+
+	@Override
+	public FileInputStream inphieu(File fileInHtml, File fileOutHtml, File fileOutPDf, TblPhieuChiDTO deChiDTO) {
+		
+		try {
+			String conten = fout.readFiletoString(fileInHtml);
+			
+			
+			conten = conten.replace("$nguoiNhanTien",deChiDTO.getNguoiNhanTien());
+			conten = conten.replace("$diaChi",deChiDTO.getDiaChi());
+			conten = conten.replace("$lyDoChi",deChiDTO.getLyDoChi());
+			conten = conten.replace("$soTien",String.valueOf(deChiDTO.getSoTien()));
+		
+			
+			LOGGER.info(conten);
+			
+			fout.saveFile(conten, fileOutHtml);
+			fout.Out(fileOutHtml, fileOutPDf);
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		FileInputStream fileInputStream = null;
+		try {
+			 fileInputStream = new FileInputStream(fileOutPDf);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return fileInputStream;
 	}
 	
 	

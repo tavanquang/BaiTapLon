@@ -54,9 +54,9 @@ public class HomeController {
 	
 	@GetMapping(value="/phieu-de-xuat")
 	public String themphieudeXuat(Model map){
-		List<TblNoiDungDeXuatDTO> deXuatDTOs = new ArrayList<>();
+		
 		TblPhieuDeXuatDTO deXuatDTO = new TblPhieuDeXuatDTO();
-		deXuatDTO.setTblNoiDungDeXuat(deXuatDTOs);
+		
 		map.addAttribute("phieuDeXuat", deXuatDTO);
 		return "client/themPhieuDeXuat";
 	}
@@ -80,7 +80,7 @@ public class HomeController {
 			 return "client/themPhieuDeXuat";
 		}
 		
-		LOGGER.info(phieuDeXuatDTO.toString());
+	//	LOGGER.info(phieuDeXuatDTO.toString());
 		
 		for(int i =0;i<phieuDeXuatDTO.getTblNoiDungDeXuat().size();i++){
 			

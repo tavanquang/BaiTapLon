@@ -42,19 +42,27 @@ input, textarea {
         <!--tinh Thanh tien-->
         function reloadThanhTien(index)
         {
-            $('input[name="tblNoiDungDeXuat['+index+'].ThanhTien"]').eq(index).val($('input[name="tblNoiDungDeXuat['+index+'].soLuong"]').eq(index).val()*$('input[name="tblNoiDungDeXuat['+index+'].donGia"]').eq(index).val());
+			$('input[name="tblNoiDungDeXuat['+index+'].ThanhTien"]').val($('input[name="tblNoiDungDeXuat['+index+'].soLuong"]').val()*$('input[name="tblNoiDungDeXuat['+index+'].donGia"]').val());
+
+			let sum = 0;
+			$('input[name$="].ThanhTien"]').each(function (index,val) {
+			    // console.log(val);
+				sum += parseInt(val.value);
+            });
+
+            $('input[name="tongTien"]').val(sum);
         };
 
 
         function setEventThanhTien(i)
         {
             $('input[name="tblNoiDungDeXuat['+i+'].soLuong"]').on('input', function () {
-                index = ($('input[name="tblNoiDungDeXuat['+i+'].soLuong"]').index($(this)));
-                reloadThanhTien(index);
+                // index = ($('input[name="tblNoiDungDeXuat['+i+'].soLuong"]').index($(this)));
+                reloadThanhTien(i);
             });
             $('input[name="tblNoiDungDeXuat['+i+'].donGia"]').on('input', function () {
-                index = ($('input[name="tblNoiDungDeXuat['+i+'].donGia"]').index($(this)));
-                reloadThanhTien(index);
+                // index = ($('input[name="tblNoiDungDeXuat['+i+'].donGia"]').index($(this)));
+                reloadThanhTien(i);
             });
         }
 
@@ -69,8 +77,10 @@ input, textarea {
                    // console.log(name);
 				   
                });
-               val.innerHTML = (index + 1);
 
+
+               val.innerHTML = (index + 1);
+				console.log(index);
                setEventThanhTien(index);
 
            });
@@ -261,7 +271,7 @@ input, textarea {
 										<tr>
 											<th></th>
 											<th colspan="5">Cộng</th>
-											<th class="t8"><input type="number" name="tongTien" /></th>
+											<th class="t8"><input type="number" name="tongTien" th:field="*{tongTien}" /></th>
 										</tr>
 										<tr>
 											<th></th>
