@@ -77,7 +77,7 @@ public class HomeController {
 			
 			map.addAttribute("e","error");
 
-			 return "client/themPhieuDeXuat";
+			  return "redirect:/phieu-de-xuat";
 		}
 		
 	//	LOGGER.info(phieuDeXuatDTO.toString());

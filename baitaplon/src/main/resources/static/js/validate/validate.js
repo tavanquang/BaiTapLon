@@ -131,6 +131,8 @@ function checkPDX() {
 		gd.focus();
 		return false;
 	}
+	
+	return true;
 }
 
 
