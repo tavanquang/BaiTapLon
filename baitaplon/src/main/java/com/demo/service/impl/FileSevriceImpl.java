@@ -4,6 +4,8 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,7 +13,10 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
+import org.openqa.selenium.io.IOUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,45 +59,65 @@ public class FileSevriceImpl implements FileOut {
 	}
 
 
-	@Override
-	public void saveFile(String Conten, File file) {
-		BufferedWriter bw = null;
-		FileWriter fw = null;
-		try {
 
-			fw = new FileWriter(file);
-			bw = new BufferedWriter(fw);
-			bw.write(Conten);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (bw != null)
-					bw.close();
-				if (fw != null)
-					fw.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-		}
-		
-	}
+
+	
+//	public FileInputStream Out(InputStream fileInput,  File fileOut) {
+//		 Document document = new Document();
+//		 // step 2
+//		 PdfWriter writer;
+//		try {
+//			writer = PdfWriter.getInstance(document,new FileOutputStream(fileOut));
+//			 // step 3
+//			 document.open();
+//			 // step 4
+//			 XMLWorkerHelper.getInstance().parseXHtml(writer, document,fileInput);
+//			 //step 5
+//			 document.close();
+//			 
+//				 
+//		} catch (DocumentException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		 FileInputStream fileInputStream = null;
+//		try {
+//			fileInputStream = new FileInputStream(fileOut);
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}	
+//	
+//	 
+//		return fileInputStream;
+//	}
+
+
+
 
 	@Override
-	public FileInputStream Out(File fileIn,  File fileOut) {
+	public ByteArrayInputStream Out(InputStream Input, ByteArrayOutputStream OutStream) throws FileNotFoundException {
 		 Document document = new Document();
 		 // step 2
 		 PdfWriter writer;
 		try {
-			writer = PdfWriter.getInstance(document,new FileOutputStream(fileOut));
+			writer = PdfWriter.getInstance(document,OutStream);
 			 // step 3
 			 document.open();
 			 // step 4
-			 XMLWorkerHelper.getInstance().parseXHtml(writer, document,new FileInputStream(fileIn));
+			 XMLWorkerHelper.getInstance().parseXHtml(writer, document,Input);
 			 //step 5
 			 document.close();
 			 
-				 
+			 
+			
+			 ByteArrayInputStream inStream = new ByteArrayInputStream( OutStream.toByteArray());
+			 
+			 return inStream;
+			 
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -100,16 +125,21 @@ public class FileSevriceImpl implements FileOut {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 FileInputStream fileInputStream = null;
-		try {
-			fileInputStream = new FileInputStream(fileOut);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
+		return null;
+		
+		
 	
 	 
-		return fileInputStream;
+		
 	}
 
+
+
+
+
+
+
+
+
+	
 }

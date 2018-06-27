@@ -1,7 +1,11 @@
 package com.demo.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +41,7 @@ public class api {
 	PhieuChiService phieuChiService;
 
 	@GetMapping("/{tenphieu}")
-	public ResponseEntity<InputStreamResource> downloadFile1(
+	public ResponseEntity<InputStreamResource> InPhieu(
 			@PathVariable(name = "tenphieu", required = true) String tenphieu,
 			@RequestParam(name = "id", required = true) int id) throws IOException, DocumentException {
 
@@ -48,37 +52,36 @@ public class api {
 			LOGGER.info(deXuatDTO.toString());
 
 			ClassLoader classLoader = getClass().getClassLoader();
-			File f = new File(classLoader.getResource("inphieudexuat/demo.html").getFile());
+			File f = new File(classLoader.getResource("inphieudexuat/phieudexuat.html").getFile());
 
-			File outHtml = new File(classLoader.getResource("inphieudexuat/outHtml.html").getFile());
-
-			File Out = new File(classLoader.getResource("inphieudexuat/outpdf.pdf").getFile());
-
+			ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
+			
 			InputStreamResource resource = new InputStreamResource(
-					phieuDeXuatService.inphieu(f, outHtml, Out, deXuatDTO));
+					phieuDeXuatService.inphieu(f ,arrayOutputStream, deXuatDTO));
 
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + Out.getName())
-					.contentType(MediaType.APPLICATION_PDF).contentLength(Out.length()).body(resource);
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + "phieudexuat.pdf")
+					.contentType(MediaType.APPLICATION_PDF).contentLength(arrayOutputStream.size()).body(resource);
 		}
 		else if(tenphieu.equals("phieuchi")) {
 			TblPhieuChiDTO deChiDTO = phieuChiService.getPhieuChiDTO(id);
 			LOGGER.info(deChiDTO.toString());
 
 			ClassLoader classLoader = getClass().getClassLoader();
-			File f = new File(classLoader.getResource("inphieuchi/demo.html").getFile());
+			File f = new File(classLoader.getResource("inphieuchi/phieuchi.html").getFile());
 
-			File outHtml = new File(classLoader.getResource("inphieuchi/outHtml.html").getFile());
 
-			File Out = new File(classLoader.getResource("inphieuchi/outpdf.pdf").getFile());
-
+			
+			ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
+			
 			InputStreamResource resource = new InputStreamResource(
-					phieuChiService.inphieu(f, outHtml, Out, deChiDTO));
+					phieuChiService.inphieu(f ,arrayOutputStream, deChiDTO));
 
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + Out.getName())
-					.contentType(MediaType.APPLICATION_PDF).contentLength(Out.length()).body(resource);
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + "phieuchi.pdf")
+					.contentType(MediaType.APPLICATION_PDF).contentLength(arrayOutputStream.size()).body(resource);
 		}
 		return null;
 		
+	
 	
 	
 

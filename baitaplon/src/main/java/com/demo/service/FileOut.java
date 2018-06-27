@@ -1,18 +1,26 @@
 package com.demo.service;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 
 public interface FileOut {
 
 	String readFiletoString(File file) throws FileNotFoundException, IOException;
 	
 	
-	void saveFile(String Conten,File file);
 	
-	public FileInputStream Out(File fileIn,  File fileOut);
+	
+	public ByteArrayInputStream Out(InputStream stream, ByteArrayOutputStream outStream) throws FileNotFoundException;
+
+
+
+
+
 	
 }

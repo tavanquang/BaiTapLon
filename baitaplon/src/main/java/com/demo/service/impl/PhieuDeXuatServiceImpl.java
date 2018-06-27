@@ -1,9 +1,14 @@
 package com.demo.service.impl;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -264,7 +269,7 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 
 
 	@Override
-	public FileInputStream inphieu(File fileInHtml, File fileOutHtml, File fileOutPDf, TblPhieuDeXuatDTO deXuatDTO) {
+	public ByteArrayInputStream inphieu(File fileInHtml,ByteArrayOutputStream outputStream, TblPhieuDeXuatDTO deXuatDTO) {
 		
 		try {
 			String conten = fout.readFiletoString(fileInHtml);
@@ -283,8 +288,11 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 			
 			LOGGER.info(conten);
 			
-			fout.saveFile(conten, fileOutHtml);
-			fout.Out(fileOutHtml, fileOutPDf);
+			InputStream stream = new ByteArrayInputStream(conten.getBytes(StandardCharsets.UTF_8));
+			
+			
+			
+			return fout.Out(stream,outputStream);
 			
 			
 			
@@ -296,16 +304,11 @@ public class PhieuDeXuatServiceImpl implements PhieuDeXuatService{
 			e.printStackTrace();
 		}
 		
-		FileInputStream fileInputStream = null;
-		try {
-			 fileInputStream = new FileInputStream(fileOutPDf);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		return null;
+		
+	
 		
 		
-		return fileInputStream;
 	}
 	
 	

@@ -1,5 +1,7 @@
 package com.demo.service;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
@@ -19,6 +21,6 @@ public interface PhieuChiService {
 
 	public List<TblPhieuChiDTO> getAllByTrangThai(int trangThai);
 	
-	public FileInputStream inphieu(File fileInHtml, File fileOutHtml, File fileOutPDf, TblPhieuChiDTO deChiDTO);
+	public ByteArrayInputStream inphieu(File fileInHtml,ByteArrayOutputStream outputStream,  TblPhieuChiDTO deChiDTO);
 
 }

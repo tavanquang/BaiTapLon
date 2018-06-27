@@ -1,9 +1,13 @@
 package com.demo.service.impl;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -167,7 +171,7 @@ public class PhieuChiServiceImpl implements PhieuChiService{
 	}
 
 	@Override
-	public FileInputStream inphieu(File fileInHtml, File fileOutHtml, File fileOutPDf, TblPhieuChiDTO deChiDTO) {
+	public ByteArrayInputStream inphieu(File fileInHtml,ByteArrayOutputStream outputStream, TblPhieuChiDTO deChiDTO) {
 		
 		try {
 			String conten = fout.readFiletoString(fileInHtml);
@@ -179,10 +183,12 @@ public class PhieuChiServiceImpl implements PhieuChiService{
 			conten = conten.replace("$soTien",String.valueOf(deChiDTO.getSoTien()));
 		
 			
-			LOGGER.info(conten);
+
+			InputStream stream = new ByteArrayInputStream(conten.getBytes(StandardCharsets.UTF_8));
 			
-			fout.saveFile(conten, fileOutHtml);
-			fout.Out(fileOutHtml, fileOutPDf);
+			
+			
+			return fout.Out(stream,outputStream);
 			
 			
 			
@@ -194,16 +200,8 @@ public class PhieuChiServiceImpl implements PhieuChiService{
 			e.printStackTrace();
 		}
 		
-		FileInputStream fileInputStream = null;
-		try {
-			 fileInputStream = new FileInputStream(fileOutPDf);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		return null;
 		
-		
-		return fileInputStream;
 	}
 	
 	
