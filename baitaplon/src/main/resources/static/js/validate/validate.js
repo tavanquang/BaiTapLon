@@ -75,10 +75,13 @@ function checkPDX() {
 	noidungdexuat = $("#NoiDungDeXuat");
 	ngaybatdau = $("#ngaybatdau");
 	ngayhoanthanh = $("#NgayHoanThanh");
+	dexuatngaymua = $("#DeXuatNgayMua");
 	ykien = $("#YKien");
 	ndx = $("#NDX");
 	kt = $("#KT");
 	gd = $("#GD");
+	
+	
 	if (nguoinhan.val() == "") {
 		alert("Chưa nhập tên người nhận");
 		nguoinhan.focus();
@@ -96,6 +99,11 @@ function checkPDX() {
 	else if (ngaybatdau.val() == "" ) {
 		alert("Chưa nhập ngày bắt đầu");
 		ngaybatdau.focus();
+		return false;
+	}
+	else if (dexuatngaymua.val() == "" ) {
+		alert("Chưa nhập đề xuất ngày mua ");
+		dexuatngaymua.focus();
 		return false;
 	}
 	else if (ngayhoanthanh.val() == "") {

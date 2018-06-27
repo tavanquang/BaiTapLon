@@ -276,7 +276,7 @@ input, textarea {
 										<tr>
 											<th></th>
 											<th colspan="5">Đề xuất ngày mua</th>
-											<th class="t8"><input type="text"
+											<th class="t8"><input type="text"  id="DeXuatNgayMua"
 												pattern="\d{1,2}/\d{1,2}/\d{4}" class="datepicker"
 												th:field="*{deXuatNgayMua}" name="date"
 												placeholder="DD/MM/YYYY" /></th>
@@ -312,7 +312,7 @@ input, textarea {
 								<div class="form-group" style="margin-top: 10px;">
 									<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
 										<button type="submit" name="" class="btn btn-success"
-											onclick="checkPDX()">Thêm mới</button>
+											onclick="return checkPDX()">Thêm mới</button>
 										<a class="btn btn-danger" th:href="@{/}">Hủy</a>
 									</div>
 
