@@ -13,14 +13,7 @@ public interface FileOut {
 
 	String readFiletoString(File file) throws FileNotFoundException, IOException;
 	
-	
-	
-	
 	public ByteArrayInputStream Out(InputStream stream, ByteArrayOutputStream outStream) throws FileNotFoundException;
 
 
-
-
-
-	
 }

@@ -46,40 +46,35 @@ public class api {
 			@RequestParam(name = "id", required = true) int id) throws IOException, DocumentException {
 
 		LOGGER.info("da di vao ham");
-
+		
+		ByteArrayInputStream inputstream = null;
+		ByteArrayOutputStream arrayOutputStream = null;
+		
+		
 		if (tenphieu.equals("phieudexuat")) {
 			TblPhieuDeXuatDTO deXuatDTO = phieuDeXuatService.getPhieuDeXuatDTO(id);
 			LOGGER.info(deXuatDTO.toString());
 
 			ClassLoader classLoader = getClass().getClassLoader();
 			File f = new File(classLoader.getResource("inphieudexuat/phieudexuat.html").getFile());
-
-			ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
-			
-			InputStreamResource resource = new InputStreamResource(
-					phieuDeXuatService.inphieu(f ,arrayOutputStream, deXuatDTO));
-
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + "phieudexuat.pdf")
-					.contentType(MediaType.APPLICATION_PDF).contentLength(arrayOutputStream.size()).body(resource);
+			arrayOutputStream = new  ByteArrayOutputStream();
+			inputstream = phieuDeXuatService.inphieu(f ,arrayOutputStream, deXuatDTO);
 		}
 		else if(tenphieu.equals("phieuchi")) {
 			TblPhieuChiDTO deChiDTO = phieuChiService.getPhieuChiDTO(id);
 			LOGGER.info(deChiDTO.toString());
-
 			ClassLoader classLoader = getClass().getClassLoader();
 			File f = new File(classLoader.getResource("inphieuchi/phieuchi.html").getFile());
-
-
+			arrayOutputStream = new ByteArrayOutputStream();
+			inputstream = phieuChiService.inphieu(f ,arrayOutputStream, deChiDTO);
 			
-			ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
-			
-			InputStreamResource resource = new InputStreamResource(
-					phieuChiService.inphieu(f ,arrayOutputStream, deChiDTO));
-
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + "phieuchi.pdf")
-					.contentType(MediaType.APPLICATION_PDF).contentLength(arrayOutputStream.size()).body(resource);
 		}
-		return null;
+		
+		InputStreamResource resource = new InputStreamResource(
+				inputstream	);
+
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + tenphieu+ ".pdf")
+				.contentType(MediaType.APPLICATION_PDF).contentLength(arrayOutputStream.size()).body(resource);
 		
 	
 	
