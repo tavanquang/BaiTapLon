@@ -36,49 +36,56 @@ public class api {
 	FileOut fout;
 	@Autowired
 	PhieuDeXuatService phieuDeXuatService;
-	
+
 	@Autowired
 	PhieuChiService phieuChiService;
 
-	@GetMapping("/{tenphieu}")
-	public ResponseEntity<InputStreamResource> InPhieu(
-			@PathVariable(name = "tenphieu", required = true) String tenphieu,
-			@RequestParam(name = "id", required = true) int id) throws IOException, DocumentException {
+	@GetMapping("/phieudexuat")
+	public ResponseEntity<InputStreamResource> InPhieuDeXuat(@RequestParam(name = "id", required = true) int id)
+			throws IOException, DocumentException {
 
 		LOGGER.info("da di vao ham");
-		
+
 		ByteArrayInputStream inputstream = null;
 		ByteArrayOutputStream arrayOutputStream = null;
-		
-		
-		if (tenphieu.equals("phieudexuat")) {
-			TblPhieuDeXuatDTO deXuatDTO = phieuDeXuatService.getPhieuDeXuatDTO(id);
-			LOGGER.info(deXuatDTO.toString());
 
-			ClassLoader classLoader = getClass().getClassLoader();
-			File f = new File(classLoader.getResource("inphieudexuat/phieudexuat.html").getFile());
-			arrayOutputStream = new  ByteArrayOutputStream();
-			inputstream = phieuDeXuatService.inphieu(f ,arrayOutputStream, deXuatDTO);
-		}
-		else if(tenphieu.equals("phieuchi")) {
-			TblPhieuChiDTO deChiDTO = phieuChiService.getPhieuChiDTO(id);
-			LOGGER.info(deChiDTO.toString());
-			ClassLoader classLoader = getClass().getClassLoader();
-			File f = new File(classLoader.getResource("inphieuchi/phieuchi.html").getFile());
-			arrayOutputStream = new ByteArrayOutputStream();
-			inputstream = phieuChiService.inphieu(f ,arrayOutputStream, deChiDTO);
-			
-		}
-		
-		InputStreamResource resource = new InputStreamResource(
-				inputstream	);
+		TblPhieuDeXuatDTO deXuatDTO = phieuDeXuatService.getPhieuDeXuatDTO(id);
+		LOGGER.info(deXuatDTO.toString());
 
-		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + tenphieu+ ".pdf")
+		ClassLoader classLoader = getClass().getClassLoader();
+		File f = new File(classLoader.getResource("inphieudexuat/phieudexuat.html").getFile());
+		arrayOutputStream = new ByteArrayOutputStream();
+		inputstream = phieuDeXuatService.inphieu(f ,arrayOutputStream, deXuatDTO);
+
+		InputStreamResource resource = new InputStreamResource(inputstream);
+
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + "phieudexuat.pdf")
 				.contentType(MediaType.APPLICATION_PDF).contentLength(arrayOutputStream.size()).body(resource);
-		
-	
-	
-	
 
 	}
+
+	@GetMapping("/phieuchi")
+	public ResponseEntity<InputStreamResource> InPhieuChi(@RequestParam(name = "id", required = true) int id)
+			throws IOException, DocumentException {
+
+		LOGGER.info("da di vao ham");
+
+		ByteArrayInputStream inputstream = null;
+		ByteArrayOutputStream arrayOutputStream = null;
+
+		TblPhieuChiDTO deChiDTO = phieuChiService.getPhieuChiDTO(id);
+		LOGGER.info(deChiDTO.toString());
+		
+		ClassLoader classLoader = getClass().getClassLoader();
+		File f = new File(classLoader.getResource("inphieuchi/phieuchi.html").getFile());
+		arrayOutputStream = new ByteArrayOutputStream();
+		inputstream = phieuChiService.inphieu(f, arrayOutputStream, deChiDTO);
+
+		InputStreamResource resource = new InputStreamResource(inputstream);
+
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + "chieuchi.pdf")
+				.contentType(MediaType.APPLICATION_PDF).contentLength(arrayOutputStream.size()).body(resource);
+
+	}
+
 }
