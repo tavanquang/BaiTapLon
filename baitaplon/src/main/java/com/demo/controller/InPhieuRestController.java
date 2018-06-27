@@ -29,7 +29,7 @@ import com.itextpdf.text.DocumentException;
 
 @RestController
 @RequestMapping(value = "/api")
-public class api {
+public class InPhieuRestController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
