@@ -80,16 +80,14 @@ public class InPhieuRestController {
 
 		LOGGER.info("da di vao ham");
 
-		ByteArrayInputStream inputstream = null;
-		ByteArrayOutputStream arrayOutputStream = null;
 
 		TblPhieuChiDTO deChiDTO = phieuChiService.getPhieuChiDTO(id);
 		LOGGER.info(deChiDTO.toString());
 
 		ClassLoader classLoader = getClass().getClassLoader();
 		File f = new File(classLoader.getResource("inphieuchi/phieuchi.html").getFile());
-		arrayOutputStream = new ByteArrayOutputStream();
-		inputstream = phieuChiService.inphieu(f, arrayOutputStream, deChiDTO);
+		ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
+		ByteArrayInputStream inputstream = phieuChiService.inphieu(f, arrayOutputStream, deChiDTO);
 
 		InputStreamResource resource = new InputStreamResource(inputstream);
 
