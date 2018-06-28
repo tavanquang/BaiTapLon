@@ -59,21 +59,7 @@ public class InPhieuRestController {
 		ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
 		ByteArrayInputStream inputstream = phieuDeXuatService.inphieu(f, arrayOutputStream, deXuatDTO);
 
-		// String filename = "phieudexuat.pdf";
-		// InputStreamResource resource = new InputStreamResource(inputstream);
-		//
-
-		// HttpHeaders headers = new HttpHeaders();
-		// headers.add("content-disposition", "inline;filename=" + filename);
-		// headers.setContentType(MediaType.parseMediaType("application/pdf"));
-		//
-		// headers.setContentDispositionFormData(filename, filename);
-		// headers.setCacheControl("must-revalidate, post-check=0,
-		// pre-check=0");
-		//
-		// ResponseEntity<InputStreamResource> response = new
-		// ResponseEntity<>(resource, headers, HttpStatus.OK);
-		//
+		
 
 		String fileName = "phieudexuat.pdf";
 		ClassPathResource pdfFile = new ClassPathResource(pathFile);
