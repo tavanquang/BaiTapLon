@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,21 +47,30 @@ public class InPhieuRestController {
 
 		LOGGER.info("da di vao ham");
 
-		ByteArrayInputStream inputstream = null;
-		ByteArrayOutputStream arrayOutputStream = null;
 
 		TblPhieuDeXuatDTO deXuatDTO = phieuDeXuatService.getPhieuDeXuatDTO(id);
 		LOGGER.info(deXuatDTO.toString());
 
 		ClassLoader classLoader = getClass().getClassLoader();
 		File f = new File(classLoader.getResource("inphieudexuat/phieudexuat.html").getFile());
-		arrayOutputStream = new ByteArrayOutputStream();
-		inputstream = phieuDeXuatService.inphieu(f ,arrayOutputStream, deXuatDTO);
+		ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
+		ByteArrayInputStream inputstream =  phieuDeXuatService.inphieu(f, arrayOutputStream, deXuatDTO);
 
+		String filename = "phieudexuat.pdf";
 		InputStreamResource resource = new InputStreamResource(inputstream);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("content-disposition", "inline;filename=" + filename);
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		
+		headers.setContentDispositionFormData(filename, filename);
+		headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
 
-		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + "phieudexuat.pdf")
-				.contentType(MediaType.APPLICATION_PDF).contentLength(arrayOutputStream.size()).body(resource);
+		ResponseEntity<InputStreamResource> response = new ResponseEntity<>(resource, headers, HttpStatus.OK);
+		
+		return response;
+		
+//		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + "phieudexuat.pdf")
+//				.contentType(MediaType.APPLICATION_PDF).contentLength(arrayOutputStream.size()).body(resource);
 
 	}
 
@@ -75,7 +85,7 @@ public class InPhieuRestController {
 
 		TblPhieuChiDTO deChiDTO = phieuChiService.getPhieuChiDTO(id);
 		LOGGER.info(deChiDTO.toString());
-		
+
 		ClassLoader classLoader = getClass().getClassLoader();
 		File f = new File(classLoader.getResource("inphieuchi/phieuchi.html").getFile());
 		arrayOutputStream = new ByteArrayOutputStream();
