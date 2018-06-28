@@ -1,11 +1,14 @@
 package com.demo.controller;
 
+import static org.assertj.core.api.Assertions.in;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -36,7 +39,6 @@ import com.itextpdf.text.DocumentException;
 public class InPhieuRestController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 	
-	public static final String pathFile = "Fileout/phieu.pdf";
 	@Autowired
 	FileOut fout;
 	@Autowired
@@ -58,27 +60,19 @@ public class InPhieuRestController {
 		File f = new File(classLoader.getResource("inphieudexuat/phieudexuat.html").getFile());
 		ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
 		ByteArrayInputStream inputstream = phieuDeXuatService.inphieu(f, arrayOutputStream, deXuatDTO);
-
 		
-
-		String fileName = "phieudexuat.pdf";
-		ClassPathResource pdfFile = new ClassPathResource(pathFile);
-		FileOutputStream outputFileName = new FileOutputStream(pdfFile.getFile());
-		IOUtils.copy(inputstream, outputFileName);
-
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.parseMediaType("application/pdf"));
 		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET, POST, PUT");
 		headers.add("Access-Control-Allow-Headers", "Content-Type");
-		headers.add("Content-Disposition", "filename=" + fileName);
+		headers.add("Content-Disposition", "filename=" + "phieudexuat.pdf");
 		headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
 		headers.add("Pragma", "no-cache");
 		headers.add("Expires", "0");
-
-		headers.setContentLength(pdfFile.contentLength());
+		headers.setContentLength(arrayOutputStream.size());
 		ResponseEntity<InputStreamResource> response = new ResponseEntity<InputStreamResource>(
-				new InputStreamResource(pdfFile.getInputStream()), headers, HttpStatus.OK);
+				new InputStreamResource(inputstream), headers, HttpStatus.OK);
 
 		return response;
 	}
@@ -96,25 +90,19 @@ public class InPhieuRestController {
 		File f = new File(classLoader.getResource("inphieuchi/phieuchi.html").getFile());
 		ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
 		ByteArrayInputStream inputstream = phieuChiService.inphieu(f, arrayOutputStream, deChiDTO);
-
-		String fileName = "phieuchi.pdf";
-		ClassPathResource pdfFile = new ClassPathResource(pathFile);
-		FileOutputStream outputFileName = new FileOutputStream(pdfFile.getFile());
-		IOUtils.copy(inputstream, outputFileName);
-
+		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.parseMediaType("application/pdf"));
 		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET, POST, PUT");
 		headers.add("Access-Control-Allow-Headers", "Content-Type");
-		headers.add("Content-Disposition", "filename=" + fileName);
+		headers.add("Content-Disposition", "filename=" + "phieuchi.pdf");
 		headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
 		headers.add("Pragma", "no-cache");
 		headers.add("Expires", "0");
-
-		headers.setContentLength(pdfFile.contentLength());
+		headers.setContentLength(arrayOutputStream.size());
 		ResponseEntity<InputStreamResource> response = new ResponseEntity<InputStreamResource>(
-				new InputStreamResource(pdfFile.getInputStream()), headers, HttpStatus.OK);
+				new InputStreamResource(inputstream), headers, HttpStatus.OK);
 
 		return response;
 	}

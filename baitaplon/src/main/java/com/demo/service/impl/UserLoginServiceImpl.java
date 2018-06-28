@@ -14,18 +14,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.AdminDao;
 import com.demo.dao.entity.TblAdmin;
+import com.demo.service.TblAdminService;
 
 @Service
 @Transactional
 public class UserLoginServiceImpl implements UserDetailsService{
 
 	@Autowired
-	AdminDao adminDao;
+	TblAdminService adminService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		TblAdmin admin = adminDao.getAdmin(username);
-		
+		TblAdmin admin = adminService.findByUsername(username);
 		if(admin == null)
 		{
 			throw new UsernameNotFoundException("no user");
